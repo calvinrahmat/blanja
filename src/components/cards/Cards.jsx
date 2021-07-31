@@ -2,6 +2,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Card, Button } from 'react-bootstrap';
 
 const CardsItems = () => {
+	const itemsInfo = [{ image: '', title: '', text: ' ' }];
+
 	return (
 		<Card style={{ width: '18rem' }}>
 			<Card.Img variant="top" src="holder.js/100px180" />
