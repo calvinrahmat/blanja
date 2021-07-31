@@ -1,4 +1,5 @@
 import './carousel.scss';
+import { Link } from 'react-router-dom';
 
 const CarouselCategory = () => {
 	return (
@@ -10,90 +11,90 @@ const CarouselCategory = () => {
 					<div className="carousel-inner">
 						<div className="carousel-item active">
 							<div className="flexbox-container">
-								<a href="#">
+								<Link href="#">
 									<img
 										className="d-block"
 										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627134527/Front%20End/Kategori/T-Shirt_kbhxdg.svg"
-										alt
+										alt="kategori"
 									/>
-								</a>
-								<a href="#">
+								</Link>
+								<Link href="#">
 									<img
 										className="d-block"
 										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627134527/Front%20End/Kategori/Short_dyep9b.svg"
-										alt
+										alt="kategori"
 									/>
-								</a>
-								<a href="#">
+								</Link>
+								<Link href="#">
 									<img
 										className="d-block"
 										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627134532/Front%20End/Kategori/Pants_vfy0xa.svg"
-										alt
+										alt="kategori"
 									/>
-								</a>
-								<a href="#">
+								</Link>
+								<Link href="#">
 									<img
 										className="d-block"
 										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627134529/Front%20End/Kategori/Shoes_ziteoh.svg"
-										alt
+										alt="kategori"
 									/>
-								</a>
-								<a href="#">
+								</Link>
+								<Link href="#">
 									<img
 										className="d-block"
 										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627229207/Front%20End/Kategori/Group_1236_vaxxb6.svg"
-										alt
+										alt="kategori"
 									/>
-								</a>
+								</Link>
 							</div>
 						</div>
 						<div className="carousel-item">
 							<div className="flexbox-container">
-								<a href="#">
+								<Link href="#">
 									<img
 										className="d-block"
 										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627229205/Front%20End/Kategori/Group_1237_la2pkm.svg"
-										alt
+										alt="kategori"
 									/>
-								</a>
-								<a href="#">
+								</Link>
+								<Link href="#">
 									<img
 										className="d-block"
 										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627229206/Front%20End/Kategori/Group_1235_wpjjc6.svg"
-										alt
+										alt="kategori"
 									/>
-								</a>
-								<a href="#">
+								</Link>
+								<Link href="#">
 									<img
 										className="d-block"
 										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627229209/Front%20End/Kategori/Group_1243_dhyf6s.svg"
-										alt
+										alt="kategori"
 									/>
-								</a>
-								<a href="#">
+								</Link>
+								<Link href="#">
 									<img
 										className="d-block"
 										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627229212/Front%20End/Kategori/Group_1245_lkzbsg.svg"
-										alt
+										alt="kategori"
 									/>
-								</a>
-								<a href="#">
+								</Link>
+								<Link href="#">
 									<img
 										className="d-block"
 										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627229206/Front%20End/Kategori/Group_1240_wtoabp.svg"
-										alt
+										alt="kategori"
 									/>
-								</a>
+								</Link>
 							</div>
 						</div>
 					</div>
@@ -124,102 +125,102 @@ const CarouselCategory = () => {
 					<div className="carousel-inner">
 						<div className="carousel-item active">
 							<div className="flexbox-container">
-								<a href="#">
+								<Link href="#">
 									<img
 										className="d-block"
 										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627134527/Front%20End/Kategori/T-Shirt_kbhxdg.svg"
-										alt
+										alt=""
 									/>
-								</a>
-								<a href="#">
+								</Link>
+								<Link href="#">
 									<img
 										className="d-block"
 										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627134527/Front%20End/Kategori/Short_dyep9b.svg"
-										alt
+										alt=""
 									/>
-								</a>
+								</Link>
 							</div>
 						</div>
 						<div className="carousel-item">
 							<div className="flexbox-container">
-								<a href="#">
+								<Link href="#">
 									<img
 										className="d-block"
 										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627134532/Front%20End/Kategori/Pants_vfy0xa.svg"
-										alt
+										alt=""
 									/>
-								</a>
-								<a href="#">
+								</Link>
+								<Link href="#">
 									<img
 										className="d-block"
 										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627134529/Front%20End/Kategori/Shoes_ziteoh.svg"
-										alt
+										alt=""
 									/>
-								</a>
+								</Link>
 							</div>
 						</div>
 						<div className="carousel-item">
 							<div className="flexbox-container">
-								<a href="#">
+								<Link href="#">
 									<img
 										className="d-block"
 										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627229207/Front%20End/Kategori/Group_1236_vaxxb6.svg"
-										alt
+										alt=""
 									/>
-								</a>
-								<a href="#">
+								</Link>
+								<Link href="#">
 									<img
 										className="d-block"
 										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627229205/Front%20End/Kategori/Group_1237_la2pkm.svg"
-										alt
+										alt=""
 									/>
-								</a>
+								</Link>
 							</div>
 						</div>
 						<div className="carousel-item">
 							<div className="flexbox-container">
-								<a href="#">
+								<Link href="#">
 									<img
 										className="d-block"
 										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627229206/Front%20End/Kategori/Group_1235_wpjjc6.svg"
-										alt
+										alt=""
 									/>
-								</a>
-								<a href="#">
+								</Link>
+								<Link href="#">
 									<img
 										className="d-block"
 										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627229209/Front%20End/Kategori/Group_1243_dhyf6s.svg"
-										alt
+										alt=""
 									/>
-								</a>
+								</Link>
 							</div>
 						</div>
 						<div className="carousel-item">
 							<div className="flexbox-container">
-								<a href="#">
+								<Link href="#">
 									<img
 										className="d-block"
 										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627229212/Front%20End/Kategori/Group_1245_lkzbsg.svg"
-										alt
+										alt=""
 									/>
-								</a>
-								<a href="#">
+								</Link>
+								<Link href="#">
 									<img
 										className="d-block"
 										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627229206/Front%20End/Kategori/Group_1240_wtoabp.svg"
-										alt
+										alt=""
 									/>
-								</a>
+								</Link>
 							</div>
 						</div>
 					</div>
