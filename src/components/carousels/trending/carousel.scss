@@ -1,0 +1,175 @@
+.container-carousel-trending-mobile {
+	display: none;
+}
+.container-carousel-trending {
+	padding-top: 50px;
+	width: 70%;
+	margin-right: auto;
+	margin-left: auto;
+	//background: blue;
+	.flexbox-container {
+		display: flex;
+		justify-content: space-around;
+		margin-left: auto;
+		margin-right: auto;
+		//background: lightblue;
+	}
+	.box {
+		width: 500px;
+		height: 200px;
+		border-radius: 8px;
+		background: lightcoral;
+	}
+
+	.crop-to-fit {
+		align-items: center;
+		overflow: hidden;
+		display: flex;
+		justify-content: center;
+	}
+
+	.crop-to-fit img {
+		width: 100%;
+		height: 300px;
+		object-fit: contain;
+	}
+
+	.items {
+		display: flex;
+		justify-content: space-evenly;
+	}
+	.flex-indicators {
+		#buttonIndicator {
+			top: 40px;
+
+			background-image: url('https://res.cloudinary.com/calvin-cloud/image/upload/v1627227153/Front%20End/Group_1163_ewy2xs.svg');
+
+			position: relative;
+		}
+	}
+	.carousel-control-prev-icon {
+		background-image: url('https://res.cloudinary.com/calvin-cloud/image/upload/v1627227153/Front%20End/Group_1163_ewy2xs.svg');
+		width: 50px;
+		height: 50px;
+	}
+
+	.carousel-control-next-icon {
+		background-image: url('https://res.cloudinary.com/calvin-cloud/image/upload/v1627227176/Front%20End/Group_1164_zb5vhd.svg');
+		width: 50px;
+		height: 50px;
+	}
+}
+@media all and (max-width: 1320px) {
+	.container-carousel-trending-mobile {
+		display: block;
+		padding-top: 40px;
+		margin-right: auto;
+		margin-left: auto;
+
+		width: 70vh;
+		.flexbox-container {
+			display: flex;
+			justify-content: space-evenly;
+			width: 100%;
+			margin-left: auto;
+			margin-right: auto;
+			padding-top: 30px;
+		}
+
+		.box {
+			width: 455px;
+			height: 200px;
+			border-radius: 8px;
+		}
+
+		.crop-to-fit {
+			align-items: center;
+			overflow: hidden;
+			display: flex;
+			justify-content: center;
+		}
+
+		.crop-to-fit img {
+			width: 455px;
+			height: 300px;
+			object-fit: contain;
+		}
+		.carousel-control-prev-icon {
+			background-image: url('https://res.cloudinary.com/calvin-cloud/image/upload/v1627227153/Front%20End/Group_1163_ewy2xs.svg');
+			width: 50px;
+			height: 50px;
+			left: 30px;
+			position: relative;
+		}
+
+		.carousel-control-next-icon {
+			background-image: url('https://res.cloudinary.com/calvin-cloud/image/upload/v1627227176/Front%20End/Group_1164_zb5vhd.svg');
+			width: 50px;
+			height: 50px;
+			right: 30px;
+			position: relative;
+		}
+	}
+	.container-carousel-category-mobile {
+		display: block;
+		padding-top: 40px;
+		margin-right: auto;
+		margin-left: auto;
+
+		width: 70vh;
+		.flexbox-container {
+			display: flex;
+			justify-content: space-evenly;
+			width: 100%;
+			margin-left: auto;
+			margin-right: auto;
+			padding-top: 30px;
+		}
+
+		h1 {
+			padding-left: 1.3em;
+			font-size: 34px;
+		}
+		p {
+			padding-left: 2.3em;
+			font-size: 20px;
+			color: #8e8e93;
+		}
+		.carousel-control-prev-icon {
+			background-image: url('https://res.cloudinary.com/calvin-cloud/image/upload/v1627227153/Front%20End/Group_1163_ewy2xs.svg');
+			width: 50px;
+			height: 50px;
+			left: 30px;
+			position: relative;
+		}
+
+		.carousel-control-next-icon {
+			background-image: url('https://res.cloudinary.com/calvin-cloud/image/upload/v1627227176/Front%20End/Group_1164_zb5vhd.svg');
+			width: 50px;
+			height: 50px;
+			right: 30px;
+			position: relative;
+		}
+	}
+
+	.container-carousel-category {
+		display: none;
+	}
+	.container-carousel-trending {
+		display: none;
+	}
+	.container-items {
+		h1 {
+			position: relative;
+			right: 2em;
+			font-size: 34px;
+		}
+		p {
+			padding-left: 1.6em;
+			position: relative;
+			right: 3.2em;
+			font-size: 20px;
+			color: #8e8e93;
+		}
+	}
+}
