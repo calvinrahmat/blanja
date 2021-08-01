@@ -69,7 +69,7 @@ const NavbarInit = () => {
 								</Container>
 							</Container>
 							<Container>
-								<Nav className="me-auto menu-before-login">
+								<Nav className="me-auto menu-before-login d-flex">
 									<Nav.Link>
 										<Container className="cart-icon">
 											<FaShoppingCart />
