@@ -29,6 +29,7 @@ const Login = ({ setAuth }) => {
 			console.error(error.message);
 		}
 	};
+
 	axios.interceptors.request.use(
 		(config) => {
 			console.log(

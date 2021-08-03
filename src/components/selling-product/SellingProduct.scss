@@ -1,0 +1,167 @@
+.photo-box {
+	height: 70px;
+	width: 70px;
+	display: flex;
+	align-items: center;
+	border-radius: 50%;
+	img {
+		width: 70px;
+		clip-path: circle();
+	}
+}
+.profile {
+	margin-top: 20px;
+	.profile-name {
+		font-size: 16px;
+	}
+
+	.update-profile {
+		font-size: 12px;
+	}
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: row;
+	.left-container {
+		width: 40%;
+		display: flex;
+		justify-content: center;
+
+		background-color: #f5f5f5;
+	}
+	.right-container {
+		background-color: #e5e5e5;
+	}
+}
+
+.photo-of-goods {
+	border: 1px solid #9b9b9b;
+	border-style: dashed;
+	height: 375px;
+	.goods {
+		height: 15rem;
+		display: flex;
+		border-bottom: 1px solid #9b9b9b;
+		.photos {
+			height: 70px;
+			width: 70px;
+			img {
+				width: 200px;
+			}
+		}
+	}
+	.button-container {
+		display: flex;
+		justify-content: center;
+		margin-bottom: 40px;
+
+		.upload-btn {
+			margin-top: 40px;
+			width: 160px;
+			border-radius: 24px;
+			background-color: white;
+			border: 1px solid #9b9b9b;
+			color: #9b9b9b;
+			height: 36px;
+		}
+	}
+}
+
+.sell-btn-container {
+	display: flex;
+
+	margin-top: 30px;
+	margin-bottom: 60px;
+	.sell-btn {
+		border-radius: 25px;
+		width: 128px;
+		height: 48px;
+		background-color: #db3022;
+		color: white;
+		border: none;
+	}
+}
+
+.inventory {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	height: 300px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	.title {
+		height: 84px;
+		background-color: white;
+		display: flex;
+		align-items: center;
+		font-size: 20px;
+		border-bottom: 1px solid #9b9b9b;
+		border-radius: 4px;
+	}
+	.name-of-goods {
+		height: 150px;
+		display: flex;
+		align-items: center;
+		background-color: white;
+		color: #9b9b9b;
+		border-radius: 4px;
+	}
+}
+
+.item-details-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	margin-bottom: 20px;
+	.form-group {
+		color: #9b9b9b;
+		margin-top: 30px;
+	}
+	.title {
+		height: 84px;
+		background-color: white;
+		display: flex;
+		align-items: center;
+		font-size: 20px;
+		border-bottom: 1px solid #9b9b9b;
+		border-radius: 4px;
+	}
+	.details {
+		background: white;
+		height: 350px;
+		border-radius: 4px;
+	}
+	h1 {
+		margin-top: 10px;
+		font-size: 14px;
+	}
+	.form-check-label {
+		font-size: 12px;
+	}
+}
+
+.photo-of-goods-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 20px;
+	background-color: white;
+	border-radius: 4px;
+	margin-top: 50px;
+	background-color: red;
+	.title {
+		height: 84px;
+		background-color: white;
+		border-radius: 4px;
+		display: flex;
+		align-items: center;
+		font-size: 20px;
+		border-bottom: 1px solid #9b9b9b;
+	}
+}
