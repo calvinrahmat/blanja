@@ -17,7 +17,7 @@ const Register = ({ setAuth }) => {
 
 		try {
 			const body = { email, pass, name };
-			axios
+			axios()
 				.post('http://localhost:7123/user/registration', body)
 				.then((res) => {
 					localStorage.setItem('token', res.data.data[0].pass);

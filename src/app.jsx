@@ -20,6 +20,8 @@ import CarouselTrending from './components/carousels/trending/CarouselTrending';
 import CarouselCategory from './components/carousels/category/CarouselCategory';
 import PopularItemCards from './components/cards/popular-item/PopularItemCards';
 import ProductPage from './components/product-page/ProductPage';
+import SellingProduct from './components/selling-product/SellingProduct';
+
 function App() {
 	const [isAuthenticated, setIsAuthenticated] = useState(false);
 	const setAuth = (boolean) => {
@@ -39,6 +41,16 @@ function App() {
 								<CarouselCategory />
 								<NewItemCards />
 								<PopularItemCards />
+							</Container>
+						)}
+					/>
+					<Route
+						exact
+						path="/selling"
+						render={() => (
+							<Container>
+								<NavbarInit />
+								<SellingProduct />
 							</Container>
 						)}
 					/>

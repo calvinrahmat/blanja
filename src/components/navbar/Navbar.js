@@ -70,17 +70,17 @@ const NavbarInit = () => {
 							</Container>
 							<Container>
 								<Nav className="me-auto menu-before-login d-flex">
-									<Nav.Link>
+									<Nav.Link href="/bag">
 										<Container className="cart-icon">
 											<FaShoppingCart />
 										</Container>
 									</Nav.Link>
-									<Nav.Link href="#home">
+									<Nav.Link href="/login">
 										<Button variant="danger" className="login-button">
 											Login
 										</Button>
 									</Nav.Link>
-									<Nav.Link>
+									<Nav.Link href="/register">
 										<Button className="signup-button">SignUp</Button>
 									</Nav.Link>
 								</Nav>

@@ -154,7 +154,7 @@
 	background-color: white;
 	border-radius: 4px;
 	margin-top: 50px;
-	background-color: red;
+
 	.title {
 		height: 84px;
 		background-color: white;
@@ -164,4 +164,24 @@
 		font-size: 20px;
 		border-bottom: 1px solid #9b9b9b;
 	}
+}
+
+.upload-image {
+	border: 1px solid #9b9b9b;
+	background-color: white;
+	border-radius: 24px;
+}
+
+.hidden {
+	display: none;
+}
+
+.image-item {
+	display: flex;
+	margin: 10px 0;
+}
+.image-item__btn-wrapper {
+	display: flex;
+	flex-direction: column;
+	margin-left: 10px;
 }
