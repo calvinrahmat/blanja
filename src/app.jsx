@@ -21,6 +21,7 @@ import CarouselCategory from './components/carousels/category/CarouselCategory';
 import PopularItemCards from './components/cards/popular-item/PopularItemCards';
 import ProductPage from './components/product-page/ProductPage';
 import SellingProduct from './components/selling-product/SellingProduct';
+import NavbarAfterLogin from './components/navbar/NavbarAfterLogin';
 
 function App() {
 	const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -87,7 +88,30 @@ function App() {
 							)
 						}
 					/>
-					<Route exact path="/bag" render={(props) => <Bag {...props} />} />
+
+					<Route
+						exact
+						path="/product"
+						render={(props) => <ProductPage {...props} />}
+					/>
+					<Route
+						exact
+						path="/bag"
+						render={(props) => (
+							// isAuthenticated ? (
+							// 	<Container>
+							// 		<NavbarAfterLogin />
+							// 		<Bag {...props} />
+							// 	</Container>
+							// ) : (
+							// 	<Redirect to="/login" />
+							// )
+							<Container>
+								<NavbarAfterLogin />
+								<Bag {...props} />
+							</Container>
+						)}
+					/>
 					<Route
 						exact
 						path="/product"
