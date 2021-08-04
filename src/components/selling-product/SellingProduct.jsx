@@ -19,7 +19,7 @@ const SellingProduct = () => {
 		description: '',
 	});
 	const [images, setImages] = useState([]);
-	const maxNumber = 4;
+	const maxNumber = 1;
 
 	const { nama, seller, kategori, harga, stock, status, img, description } =
 		inputs;
@@ -27,12 +27,16 @@ const SellingProduct = () => {
 	const onChange = (e) => {
 		setInputs({ ...inputs, [e.target.name]: e.target.value });
 	};
+
 	const onChangeImage = (imageList, addUpdateIndex) => {
 		// data for submit
 
 		console.log(imageList, addUpdateIndex);
-		setImages(imageList);
+		setImages(imageList[0]);
+		console.log(imageList);
 	};
+
+	//console.log(images[0].data_url);
 
 	const onSubmitForm = async (e) => {
 		e.preventDefault();
@@ -48,7 +52,7 @@ const SellingProduct = () => {
 				'Content-type': 'multipart/form-data',
 			};
 
-			axios.post(url, body, headers).then((res) => {
+			axios.post(urlTest, body, headers).then((res) => {
 				console.log(res.data);
 			});
 		} catch (error) {
@@ -147,7 +151,6 @@ const SellingProduct = () => {
 						<div className="photo-of-goods-wrapper">
 							<div className="container title">Photo of goods</div>
 							<ImageUploading
-								multiple
 								value={images}
 								onChange={onChangeImage}
 								maxNumber={maxNumber}
@@ -156,7 +159,7 @@ const SellingProduct = () => {
 								{({
 									imageList,
 									onImageUpload,
-									onImageRemoveAll,
+
 									onImageUpdate,
 									onImageRemove,
 									isDragging,
@@ -171,23 +174,17 @@ const SellingProduct = () => {
 									>
 										<div className="container goods">
 											<div className="photos">
-												{imageList.map((image, index) => (
-													<div key={index} className="image-item">
-														<img
-															src={image.data_url}
-															alt=""
-															className="image"
-														/>
-														<div className="image-item__btn-wrapper">
-															<button onClick={() => onImageUpdate(index)}>
-																Update
-															</button>
-															<button onClick={() => onImageRemove(index)}>
-																Remove
-															</button>
-														</div>
+												<div className="image-item">
+													<img src={images.data_url} alt="" className="image" />
+													<div className="image-item__btn-wrapper">
+														<button onClick={() => onImageUpdate()}>
+															Update
+														</button>
+														<button onClick={() => onImageRemove()}>
+															Remove
+														</button>
 													</div>
-												))}
+												</div>
 											</div>
 										</div>
 										<div className="button-container">
