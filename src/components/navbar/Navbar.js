@@ -23,10 +23,12 @@ const NavbarInit = () => {
 			<Navbar expand="lg">
 				<Container>
 					<Navbar.Brand href="#home" className="brand">
-						<img
-							src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627004541/Front%20End/logo_blanja_jtyc2a.svg"
-							alt=""
-						/>
+						<Nav.Link href="/home">
+							<img
+								src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627004541/Front%20End/logo_blanja_jtyc2a.svg"
+								alt=""
+							/>
+						</Nav.Link>
 					</Navbar.Brand>
 
 					<Navbar.Toggle aria-controls="navbar-collapse" />

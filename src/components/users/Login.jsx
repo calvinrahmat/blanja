@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const Login = ({ setAuth }) => {
@@ -48,25 +49,27 @@ const Login = ({ setAuth }) => {
 	return (
 		<>
 			<h1 className="text-center my-5">Login</h1>
-			<form onSubmit={onSubmitForm}>
-				<input
-					type="email"
-					name="email"
-					placeholder="email"
-					className="form-control my-3"
-					value={email}
-					onChange={(e) => onChange(e)}
-				/>
-				<input
-					type="password"
-					name="pass"
-					placeholder="password"
-					className="form-control my-3"
-					value={pass}
-					onChange={(e) => onChange(e)}
-				/>
-				<button className="btn btn-success btn-block">Submit</button>
-			</form>
+			<Container className="d-flex align-items-center justify-content-center ">
+				<form onSubmit={onSubmitForm}>
+					<input
+						type="email"
+						name="email"
+						placeholder="email"
+						className="form-control my-3 w-100"
+						value={email}
+						onChange={(e) => onChange(e)}
+					/>
+					<input
+						type="password"
+						name="pass"
+						placeholder="password"
+						className="form-control my-3 w-100"
+						value={pass}
+						onChange={(e) => onChange(e)}
+					/>
+					<button className="btn btn-success btn-block">Submit</button>
+				</form>
+			</Container>
 		</>
 	);
 };

@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.css';
-import './carousel.scss';
+import './carousel.scoped.scss';
 import { Link } from 'react-router-dom';
 
 const CarouselTrending = () => {

@@ -98,34 +98,6 @@
 		.menu-before-login {
 			display: block;
 		}
-
-		.menu-after-login {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			margin-left: auto;
-			width: 50%;
-
-			.menu-icon {
-				margin-top: auto;
-				margin-bottom: auto;
-				font-size: 20px;
-			}
-			.photo-box {
-				height: 30px;
-				width: 30px;
-				display: flex;
-				align-items: center;
-				border-radius: 50%;
-				img {
-					width: 30px;
-					clip-path: circle();
-				}
-			}
-		}
-		.menu-after-login {
-			display: none;
-		}
 	}
 	@media all and (max-width: '989px') {
 		.navbar-inside {

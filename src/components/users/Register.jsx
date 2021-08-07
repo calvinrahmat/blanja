@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { Container } from 'react-bootstrap';
 
 const Register = ({ setAuth }) => {
 	const [inputs, setInputs] = useState({
@@ -45,33 +46,35 @@ const Register = ({ setAuth }) => {
 	return (
 		<>
 			<h1 className="text-center my-5">Register</h1>
-			<form onSubmit={onSubmitForm}>
-				<input
-					type="email"
-					name="email"
-					placeholder="email"
-					className="form-control my-3"
-					value={email}
-					onChange={(e) => onChange(e)}
-				/>
-				<input
-					type="password"
-					name="pass"
-					placeholder="password"
-					className="form-control my-3"
-					value={pass}
-					onChange={(e) => onChange(e)}
-				/>
-				<input
-					type="text"
-					name="name"
-					placeholder="name"
-					className="form-control my-3"
-					value={name}
-					onChange={(e) => onChange(e)}
-				/>
-				<button className="btn btn-success btn-block">Submit</button>
-			</form>
+			<Container className="d-flex justify-content-center align-items-center">
+				<form onSubmit={onSubmitForm}>
+					<input
+						type="email"
+						name="email"
+						placeholder="email"
+						className="form-control my-3"
+						value={email}
+						onChange={(e) => onChange(e)}
+					/>
+					<input
+						type="password"
+						name="pass"
+						placeholder="password"
+						className="form-control my-3"
+						value={pass}
+						onChange={(e) => onChange(e)}
+					/>
+					<input
+						type="text"
+						name="name"
+						placeholder="name"
+						className="form-control my-3"
+						value={name}
+						onChange={(e) => onChange(e)}
+					/>
+					<button className="btn btn-success btn-block">Submit</button>
+				</form>
+			</Container>
 		</>
 	);
 };

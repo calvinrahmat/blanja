@@ -1,4 +1,4 @@
-import './carousel.scss';
+import './carousel.scoped.scss';
 import { Link } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 

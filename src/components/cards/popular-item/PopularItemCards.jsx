@@ -1,6 +1,6 @@
-import { Card, Col, Container } from 'react-bootstrap';
+import { Card, Col, Container, Nav } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import './PopularItemCards.scss';
+import './PopularItemCards.scoped.scss';
 import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -25,7 +25,10 @@ const PopularItemCards = () => {
 		return (
 			<Col>
 				<Card key={index} className="box">
-					<Card.Img className="img" variant="top" src={card.img} />
+					<Nav.Link href={`/product/${card.id}`}>
+						<Card.Img className="img" variant="top" src={card.img} />
+					</Nav.Link>
+
 					<Card.Body>
 						<Card.Title className="title">{card.nama}</Card.Title>
 						<Card.Title className="price">Rp {card.harga}</Card.Title>

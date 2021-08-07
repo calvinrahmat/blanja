@@ -1,0 +1,99 @@
+.title {
+	h1 {
+		top: 30px;
+		position: relative;
+		font-weight: bold;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 18px;
+		line-height: 18px;
+	}
+}
+
+.form-box {
+	width: 401px;
+	height: 526px;
+	position: relative;
+	margin: 6% auto;
+	background: transparent;
+	padding: 5px;
+	overflow: hidden;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	.button-box {
+		top: 40px;
+		width: 245px;
+		height: 48px;
+		margin-top: 60px;
+
+		.btn-customer {
+			width: 120px;
+			background: transparent;
+			box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.05);
+			border-radius: 0px 4px 4px 0px;
+			border: 1px solid #9b9b9b;
+			font-style: normal;
+			font-weight: 500;
+			font-size: 14px;
+
+			color: #9b9b9b;
+		}
+		.btn-seller {
+			width: 120px;
+			background: #db3022;
+			box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.05);
+			border-radius: 0px 4px 4px 0px;
+			border: none;
+		}
+	}
+
+	input {
+		border: 1px solid #9b9b9b;
+		box-sizing: border-box;
+		filter: drop-shadow(0px 1px 8px rgba(0, 0, 0, 0.05));
+		border-radius: 4px;
+	}
+
+	.btn-box {
+		.btn-login {
+			height: 48px;
+			width: 390px;
+			background: #db3022;
+			border-radius: 25px;
+			border: none;
+		}
+	}
+	p {
+		font-style: normal;
+		font-weight: normal;
+		font-size: 14px;
+		line-height: 14px;
+		color: #db3022;
+		display: flex;
+		left: 280px;
+		margin-top: 20px;
+		margin-bottom: 30px;
+		position: relative;
+	}
+	h2 {
+		font-style: normal;
+		font-weight: normal;
+		font-size: 14px;
+		line-height: 14px;
+		margin-top: 40px;
+		text-decoration: none;
+		color: black;
+	}
+
+	form {
+		margin-top: 40px;
+		input {
+			border: 1px solid #9b9b9b;
+			box-sizing: border-box;
+			filter: drop-shadow(0px 1px 8px rgba(0, 0, 0, 0.05));
+			border-radius: 4px;
+		}
+	}
+}

@@ -1,11 +1,13 @@
 import axios from 'axios';
-import './SellingProduct.scoped.scss';
+import './SellingProduct.scss';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import ImageUploading from 'react-images-uploading';
+import { useEffect } from 'react';
 
 const SellingProduct = () => {
 	const url = 'http://localhost:7123/seller/addProduct';
+	const updateUrl = 'http://localhost:7123/seller/updateProduct';
 	const urlTest = 'https://jsonplaceholder.typicode.com/posts';
 	const imageDefaultUrl =
 		'https://res.cloudinary.com/calvin-cloud/image/upload/v1627948168/Front%20End/no-image_daqikm.svg';
@@ -20,6 +22,7 @@ const SellingProduct = () => {
 	});
 	const [images, setImages] = useState([]);
 	const maxNumber = 1;
+	const [products, setProduct] = useState([]);
 
 	const { nama, seller, kategori, harga, stock, status, img, description } =
 		inputs;
@@ -52,13 +55,14 @@ const SellingProduct = () => {
 				'Content-type': 'multipart/form-data',
 			};
 
-			axios.post(url, body, headers).then((res) => {
+			axios.put(url, body, headers).then((res) => {
 				console.log(res.data);
 			});
 		} catch (error) {
 			console.error(error.message);
 		}
 	};
+
 	return (
 		<>
 			<div className="container d-flex wrapper">

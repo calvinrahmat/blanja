@@ -1,3 +1,10 @@
+body {
+	font-family: metropolis;
+	text-align: center;
+	margin: 0;
+	font-size: 12;
+}
+
 .form-box {
 	width: 350px;
 	height: 526px;
@@ -36,6 +43,7 @@
 	height: 100%;
 	background: #db3022;
 	border-radius: 4px;
+	-webkit-transition: 0.5s;
 	transition: 0.5s;
 }
 
@@ -43,6 +51,7 @@
 	top: 225px;
 	position: absolute;
 	width: 280px;
+	-webkit-transition: 0.5s;
 	transition: 0.5s;
 }
 
@@ -134,3 +143,4 @@
 	color: red;
 	text-decoration: none;
 }
+/*# sourceMappingURL=style-login.css.map */

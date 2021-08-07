@@ -22,6 +22,7 @@ import PopularItemCards from './components/cards/popular-item/PopularItemCards';
 import ProductPage from './components/product-page/ProductPage';
 import SellingProduct from './components/selling-product/SellingProduct';
 import NavbarAfterLogin from './components/navbar/NavbarAfterLogin';
+import LoginUser from './components/logins/LoginUser.jsx';
 
 function App() {
 	const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -34,17 +35,28 @@ function App() {
 				<Switch>
 					<Route
 						exact
-						path="/"
-						render={() => (
-							<Container>
-								<NavbarInit />
-								<CarouselTrending />
-								<CarouselCategory />
-								<NewItemCards />
-								<PopularItemCards />
-							</Container>
-						)}
+						path="/home"
+						render={() =>
+							!isAuthenticated ? (
+								<Container>
+									<NavbarInit />
+									<CarouselTrending />
+									<CarouselCategory />
+									<NewItemCards />
+									<PopularItemCards />
+								</Container>
+							) : (
+								<Container>
+									<NavbarAfterLogin />
+									<CarouselTrending />
+									<CarouselCategory />
+									<NewItemCards />
+									<PopularItemCards />
+								</Container>
+							)
+						}
 					/>
+
 					<Route
 						exact
 						path="/selling"
@@ -60,9 +72,11 @@ function App() {
 						path="/login"
 						render={(props) =>
 							!isAuthenticated ? (
-								<Login {...props} setAuth={setAuth} />
+								<Container>
+									<LoginUser {...props} setAuth={setAuth} />
+								</Container>
 							) : (
-								<Redirect to="/" />
+								<Redirect to="/home" />
 							)
 						}
 					/>
@@ -91,8 +105,13 @@ function App() {
 
 					<Route
 						exact
-						path="/product"
-						render={(props) => <ProductPage {...props} />}
+						path="/product/:id"
+						render={(props) => (
+							<Container>
+								<NavbarInit />
+								<ProductPage {...props} />
+							</Container>
+						)}
 					/>
 					<Route
 						exact
@@ -113,8 +132,7 @@ function App() {
 						)}
 					/>
 					<Route
-						exact
-						path="/product"
+						path="/products/:id"
 						render={(props) => <ProductPage {...props} />}
 					/>
 				</Switch>

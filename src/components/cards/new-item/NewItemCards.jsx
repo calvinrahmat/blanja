@@ -1,12 +1,12 @@
-import { Card, Col, Container } from 'react-bootstrap';
+import { Card, Col, Container, Nav } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import './NewItemCards.scss';
+import './NewItemCards.scoped.scss';
 import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
 const NewItemCards = () => {
-	const url = 'http://localhost:7123/products';
+	const url = 'http://localhost:7123/products/';
 
 	const [products, setProduct] = useState([]);
 
@@ -17,7 +17,7 @@ const NewItemCards = () => {
 			data.map((val) => {
 				value.push(val);
 			});
-			setProduct(value);
+			if (value) setProduct(value);
 		});
 	}, [url]);
 
@@ -25,7 +25,10 @@ const NewItemCards = () => {
 		return (
 			<Col>
 				<Card key={index} className="box">
-					<Card.Img className="img" variant="top" src={card.img} />
+					<Nav.Link href={`/product/${card.id}`}>
+						<Card.Img className="img" variant="top" src={card.img} />
+					</Nav.Link>
+
 					<Card.Body>
 						<Card.Title className="title">{card.nama}</Card.Title>
 						<Card.Title className="price">Rp {card.harga}</Card.Title>
