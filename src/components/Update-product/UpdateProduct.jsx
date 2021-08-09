@@ -1,7 +1,8 @@
 import axios from 'axios';
-import './SellingProduct.scoped.scss';
+import './UpdateProduct.scoped.scss';
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import ImageUploading from 'react-images-uploading';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
@@ -12,8 +13,8 @@ const schema = yup.object().shape({
 	product_desc: yup.string(),
 });
 
-const SellingProduct = () => {
-	const url = `${process.env.REACT_APP_API}/seller/addProduct`;
+const UpdateProduct = () => {
+	const url = 'http://localhost:7123/seller/updateProduct';
 	const getProductUrl = 'http://localhost:7123/products/442';
 	const [products, setProduct] = useState([]);
 
@@ -25,11 +26,11 @@ const SellingProduct = () => {
 			formData.append('harga', data.harga);
 			formData.append('stock', data.stock);
 			formData.append('product_desc', data.product_desc);
-
+			formData.append('id', data.id);
 			const headers = {
 				'Content-type': 'multipart/form-data',
 			};
-			axios.post(url, formData, headers).then((res) => {
+			axios.put(url, formData, headers).then((res) => {
 				console.log(res.data);
 			});
 		} catch (error) {
@@ -41,10 +42,23 @@ const SellingProduct = () => {
 		register,
 		handleSubmit,
 		formState: { errors },
+		reset,
 	} = useForm({
 		resolver: yupResolver(schema),
 	});
 
+	useEffect(() => {
+		axios.get(getProductUrl).then((res) => {
+			const { data } = res.data;
+			const value = [];
+			data.map((val) => {
+				value.push(val);
+			});
+
+			setProduct(value[0]);
+			reset(res.data);
+		});
+	}, [reset]);
 	return (
 		<>
 			<div className="container d-flex wrapper">
@@ -78,7 +92,14 @@ const SellingProduct = () => {
 									<input
 										className="form-control"
 										type="text"
+										defaultValue={products.nama}
 										{...register('nama')}
+									/>
+									<input
+										className="form-control id"
+										type="number"
+										defaultValue={products.id}
+										{...register('id')}
 									/>
 									<p>{errors.nama?.message}</p>
 								</div>
@@ -92,6 +113,7 @@ const SellingProduct = () => {
 									<input
 										className="form-control"
 										type="number"
+										defaultValue={products.harga}
 										{...register('harga')}
 									/>
 									<p>{errors.harga?.message}</p>
@@ -101,6 +123,7 @@ const SellingProduct = () => {
 									<input
 										className="form-control"
 										type="number"
+										defaultValue={products.stock}
 										{...register('stock')}
 									/>
 								</div>
@@ -143,6 +166,7 @@ const SellingProduct = () => {
 									className="form-control"
 									id="exampleFormControlTextarea1"
 									rows={10}
+									defaultValue={products.product_desc}
 									{...register('product_desc')}
 								/>
 								<p>{errors.product_desc?.message}</p>
@@ -157,4 +181,4 @@ const SellingProduct = () => {
 		</>
 	);
 };
-export default SellingProduct;
+export default UpdateProduct;

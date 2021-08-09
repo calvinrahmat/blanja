@@ -15,7 +15,7 @@ import {
 	FaEnvelope,
 } from 'react-icons/fa';
 
-import './Navbar.scss';
+import './Navbar.scoped.scss';
 
 const NavbarInit = () => {
 	return (
@@ -33,7 +33,7 @@ const NavbarInit = () => {
 
 					<Navbar.Toggle aria-controls="navbar-collapse" />
 
-					<Navbar.Collapse id="navbar-collapse-before-login">
+					<Navbar.Collapse>
 						<div className="navbar-mobile">
 							<ul>
 								<li>
@@ -84,29 +84,6 @@ const NavbarInit = () => {
 									</Nav.Link>
 									<Nav.Link href="/register">
 										<Button className="signup-button">SignUp</Button>
-									</Nav.Link>
-								</Nav>
-								<Nav className="me-auto menu-after-login">
-									<Nav.Link>
-										<Container className="menu-icon">
-											<FaShoppingCart />
-										</Container>
-									</Nav.Link>
-									<Nav.Link>
-										<Container className="menu-icon">
-											<FaBell />
-										</Container>
-									</Nav.Link>
-									<Nav.Link>
-										<Container className="menu-icon">
-											<FaEnvelope />
-										</Container>
-									</Nav.Link>
-									<Nav.Link className="photo-box">
-										<img
-											src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627339637/Front%20End/profile_yzozml.jpg"
-											alt="profile"
-										/>
 									</Nav.Link>
 								</Nav>
 							</Container>

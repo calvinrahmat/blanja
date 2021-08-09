@@ -27,7 +27,7 @@ const Login = ({ setAuth }) => {
 				}
 			});
 		} catch (error) {
-			console.error(error.message);
+			alert(error.message);
 		}
 	};
 

@@ -1,0 +1,28 @@
+.product-table {
+	border: 1px solid #d4d4d4;
+	height: 412px;
+	border-radius: 4px;
+	.header {
+		background: #f7f7f7;
+		padding-top: 20px;
+		padding-bottom: 20px;
+		padding-left: 30px;
+		.title {
+			font-weight: 500;
+			font-size: 14px;
+			color: #9b9b9b;
+		}
+	}
+	.product-list {
+		padding-top: 20px;
+		padding-bottom: 20px;
+		padding-left: 30px;
+	}
+	.edit-btn {
+		border: 1px solid #d4d4d4;
+		background: transparent;
+		color: black;
+		width: 50px;
+		border-radius: 10px;
+	}
+}

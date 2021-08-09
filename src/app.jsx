@@ -6,23 +6,23 @@ import {
 	Redirect,
 } from 'react-router-dom';
 import './index.scss';
-import NavbarInit from './components/navbar/Navbar';
 import 'bootstrap/dist/css/bootstrap.css';
 
-import { Component } from 'react';
 import Dashboard from './components/users/Dashboard';
-import Login from './components/users/Login';
+
 import Register from './components/users/Register';
-import NewItemCards from './components/cards/new-item/NewItemCards.jsx';
-import Bag from './components/bag/Bag';
+
 import { Container } from 'react-bootstrap';
-import CarouselTrending from './components/carousels/trending/CarouselTrending';
-import CarouselCategory from './components/carousels/category/CarouselCategory';
-import PopularItemCards from './components/cards/popular-item/PopularItemCards';
-import ProductPage from './components/product-page/ProductPage';
-import SellingProduct from './components/selling-product/SellingProduct';
-import NavbarAfterLogin from './components/navbar/NavbarAfterLogin';
-import LoginUser from './components/logins/LoginUser.jsx';
+
+import {
+	Login,
+	Home,
+	BagPage,
+	AddProduct,
+	ProductPreview,
+	EditProduct,
+} from './pages';
+import ProductInventory from './pages/ProductInventory/ProductInventory';
 
 function App() {
 	const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -33,37 +33,14 @@ function App() {
 		<>
 			<Router>
 				<Switch>
-					<Route
-						exact
-						path="/home"
-						render={() =>
-							!isAuthenticated ? (
-								<Container>
-									<NavbarInit />
-									<CarouselTrending />
-									<CarouselCategory />
-									<NewItemCards />
-									<PopularItemCards />
-								</Container>
-							) : (
-								<Container>
-									<NavbarAfterLogin />
-									<CarouselTrending />
-									<CarouselCategory />
-									<NewItemCards />
-									<PopularItemCards />
-								</Container>
-							)
-						}
-					/>
+					<Route exact path="/home" render={() => <Home />} />
 
 					<Route
 						exact
-						path="/selling"
+						path="/seller/add-product"
 						render={() => (
 							<Container>
-								<NavbarInit />
-								<SellingProduct />
+								<AddProduct />
 							</Container>
 						)}
 					/>
@@ -73,7 +50,7 @@ function App() {
 						render={(props) =>
 							!isAuthenticated ? (
 								<Container>
-									<LoginUser {...props} setAuth={setAuth} />
+									<Login {...props} setAuth={setAuth} />
 								</Container>
 							) : (
 								<Redirect to="/home" />
@@ -108,8 +85,25 @@ function App() {
 						path="/product/:id"
 						render={(props) => (
 							<Container>
-								<NavbarInit />
-								<ProductPage {...props} />
+								<ProductPreview {...props} />
+							</Container>
+						)}
+					/>
+					<Route
+						exact
+						path="/seller/inventory"
+						render={(props) => (
+							<Container>
+								<ProductInventory {...props} />
+							</Container>
+						)}
+					/>
+					<Route
+						exact
+						path="/seller/edit-product"
+						render={(props) => (
+							<Container>
+								<EditProduct {...props} />
 							</Container>
 						)}
 					/>
@@ -126,14 +120,9 @@ function App() {
 							// 	<Redirect to="/login" />
 							// )
 							<Container>
-								<NavbarAfterLogin />
-								<Bag {...props} />
+								<BagPage {...props} />
 							</Container>
 						)}
-					/>
-					<Route
-						path="/products/:id"
-						render={(props) => <ProductPage {...props} />}
 					/>
 				</Switch>
 			</Router>
