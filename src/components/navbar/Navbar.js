@@ -7,13 +7,7 @@ import {
 	Button,
 	Form,
 } from 'react-bootstrap';
-import {
-	FaSearch,
-	FaFilter,
-	FaShoppingCart,
-	FaBell,
-	FaEnvelope,
-} from 'react-icons/fa';
+import { FaSearch, FaFilter, FaShoppingCart } from 'react-icons/fa';
 
 import './Navbar.scoped.scss';
 

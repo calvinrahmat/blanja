@@ -4,14 +4,22 @@ import './Form.scoped.scss';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import axios from 'axios';
+import { loginPending, loginSuccess, loginFail } from './loginSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { Spinner, Alert } from 'react-bootstrap';
+import { useHistory } from 'react-router';
+import { getUserProfile } from '../Home/userAction';
 
 const schema = yup.object().shape({
 	email: yup.string().email('please input valid email').required(),
 	pass: yup.string().min(5).required(),
 });
-const url = 'http://localhost:7123/login/customer';
+const url = `${process.env.REACT_APP_API}/login/customer`;
 
 const Form = () => {
+	const dispatch = useDispatch();
+	const history = useHistory();
+	const { isLoading, error } = useSelector((state) => state.login);
 	const {
 		register,
 		handleSubmit,
@@ -21,11 +29,22 @@ const Form = () => {
 	const onSubmit = (data) => {
 		try {
 			axios.post(url, data).then((res) => {
-				console.log(res.data);
+				const { msg, token } = res.data.data[0];
+				console.log(msg);
+				if (msg === 'Cannot login: wrong password or email') {
+					dispatch(loginFail('invalid password or email'));
+				} else if (msg === 'Login Success') {
+					sessionStorage.setItem('token', token);
+					dispatch(loginSuccess());
+					dispatch(getUserProfile());
+					history.push('/home');
+				}
 			});
 		} catch (error) {
+			dispatch(loginFail(error.message));
 			console.log(error.message);
 		}
+		dispatch(loginPending());
 	};
 	return (
 		<div>
@@ -34,6 +53,7 @@ const Form = () => {
 				className="input-group"
 				onSubmit={handleSubmit(onSubmit)}
 			>
+				{error && <Alert variant="danger">{error.message}</Alert>}
 				<input
 					type="email"
 					placeholder="Email"
@@ -52,6 +72,7 @@ const Form = () => {
 				<p>Forgot password?</p>
 				<div className="btn-box">
 					<button className="btn btn-primary btn-login">Login</button>
+					{isLoading && <Spinner variant="primary" animation="border" />}
 				</div>
 			</form>
 		</div>

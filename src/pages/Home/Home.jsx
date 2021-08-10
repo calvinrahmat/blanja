@@ -6,11 +6,13 @@ import NavbarInit from '../../components/navbar/Navbar';
 import NavbarAfterLogin from '../../components/navbar/NavbarAfterLogin';
 import './Home.scoped.scss';
 import { Container } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
 
 const Home = () => {
+	const dispatch = useDispatch();
 	return (
 		<div>
-			<NavbarAfterLogin />
+			<NavbarInit />
 			<Container className="wrapper">
 				<CarouselTrending />
 				<CarouselCategory />

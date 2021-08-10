@@ -15,8 +15,12 @@ import {
 	FaEnvelope,
 } from 'react-icons/fa';
 import './NavbarAfterLogin.scoped.scss';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
+import { logout } from '../../components/Logins/loginSlice';
 
 const NavbarAfterLogin = () => {
+	const dispatch = useDispatch();
 	return (
 		<Container className="navbar">
 			<Navbar expand="lg">
@@ -93,6 +97,14 @@ const NavbarAfterLogin = () => {
 												src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627339637/Front%20End/profile_yzozml.jpg"
 												alt="profile"
 											/>
+										</Nav.Link>
+										<Nav.Link href="/login">
+											<Button
+												className="signup-button"
+												onClick={() => dispatch(logout())}
+											>
+												Logout
+											</Button>
 										</Nav.Link>
 									</Nav>
 								</Container>
