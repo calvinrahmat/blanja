@@ -1,6 +1,5 @@
 import axios from 'axios';
 import './SellingProduct.scoped.scss';
-import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -14,8 +13,6 @@ const schema = yup.object().shape({
 
 const SellingProduct = () => {
 	const url = `${process.env.REACT_APP_API}/seller/addProduct`;
-	const getProductUrl = 'http://localhost:7123/products/442';
-	const [products, setProduct] = useState([]);
 
 	const onSubmitForm = async (data) => {
 		try {

@@ -1,12 +1,11 @@
 import ProductPage from '../../components/Product/Product';
-
 import React from 'react';
-import NavbarInit from '../../components/navbar/Navbar';
+import NavbarHeader from '../../components/Navbar/NavbarHeader';
 
 const ProductPreview = () => {
 	return (
 		<div>
-			<NavbarInit />
+			<NavbarHeader />
 			<ProductPage />
 		</div>
 	);

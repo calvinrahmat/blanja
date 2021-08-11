@@ -1,11 +1,11 @@
 import React from 'react';
-import Bag from '../../components/bag/Bag';
-import NavbarAfterLogin from '../../components/navbar/NavbarAfterLogin';
+import Bag from '../../components/Bag/Bag';
+import NavbarHeader from '../../components/Navbar/NavbarHeader';
 
 const BagPage = () => {
 	return (
 		<div>
-			<NavbarAfterLogin />
+			<NavbarHeader />
 			<Bag />
 		</div>
 	);

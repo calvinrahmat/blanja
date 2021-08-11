@@ -7,13 +7,7 @@ import {
 } from 'react-router-dom';
 import './index.scss';
 import 'bootstrap/dist/css/bootstrap.css';
-
-import Dashboard from './components/users/Dashboard';
-
-import Register from './components/users/Register';
-
 import { Container } from 'react-bootstrap';
-
 import {
 	Login,
 	Home,
@@ -33,6 +27,7 @@ function App() {
 		<>
 			<Router>
 				<Switch>
+					<Route exact path="/" render={() => <Home />} />
 					<Route exact path="/home" render={() => <Home />} />
 
 					<Route
@@ -54,28 +49,6 @@ function App() {
 								</Container>
 							) : (
 								<Redirect to="/home" />
-							)
-						}
-					/>
-					<Route
-						exact
-						path="/register"
-						render={(props) =>
-							!isAuthenticated ? (
-								<Register {...props} setAuth={setAuth} />
-							) : (
-								<Redirect to="/dashboard" />
-							)
-						}
-					/>
-					<Route
-						exact
-						path="/dashboard"
-						render={(props) =>
-							isAuthenticated ? (
-								<Dashboard {...props} setAuth={setAuth} />
-							) : (
-								<Redirect to="/login" />
 							)
 						}
 					/>
@@ -111,14 +84,6 @@ function App() {
 						exact
 						path="/bag"
 						render={(props) => (
-							// isAuthenticated ? (
-							// 	<Container>
-							// 		<NavbarAfterLogin />
-							// 		<Bag {...props} />
-							// 	</Container>
-							// ) : (
-							// 	<Redirect to="/login" />
-							// )
 							<Container>
 								<BagPage {...props} />
 							</Container>

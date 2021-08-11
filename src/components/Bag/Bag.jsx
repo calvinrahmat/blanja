@@ -46,48 +46,42 @@ const Bag = () => {
 
 	const onSubmit = (data) => console.log(data);
 
-	const renderItem = (item, index) => {
+	const renderItem = (item) => {
 		return (
-			<>
-				{console.log(item.img)}
-				<div key={index} className="item1-container">
-					<div className="wrap-checkbox-item">
-						<div className="check-box">
-							<input
-								type="checkbox"
-								defaultChecked="true"
-								{...register(`checkItem`)}
-							/>
-						</div>
-						<div className="photo-box-bag">
-							<img className="product-img-bag" src={item.img} alt="item-1" />
-						</div>
-						<div className="item-desc">
-							<h1>{item.nama}</h1>
-							<p>{item.seller}</p>
-						</div>
+			<div key={item.id} className="item1-container">
+				<div className="wrap-checkbox-item">
+					<div className="check-box">
+						<input
+							type="checkbox"
+							defaultChecked="true"
+							{...register(`checkItem`)}
+						/>
 					</div>
-					<div className="button-container">
-						<div className="button-remove">
-							<button
-								className="material-icons remove-icon"
-								onClick={reduceItem}
-							>
-								remove
-							</button>
-						</div>
-						<h1>{count}</h1>
-						<div className="button-remove">
-							<div className="material-icons add-icon" onClick={addItem}>
-								add
-							</div>
-						</div>
+					<div className="photo-box-bag">
+						<img className="product-img-bag" src={item.img} alt="item-1" />
 					</div>
-					<div className="price">
-						<h1>{item.harga}</h1>
+					<div className="item-desc">
+						<h1>{item.nama}</h1>
+						<p>{item.seller}</p>
 					</div>
 				</div>
-			</>
+				<div className="button-container">
+					<div className="button-remove">
+						<button className="material-icons remove-icon" onClick={reduceItem}>
+							remove
+						</button>
+					</div>
+					<h1>{count}</h1>
+					<div className="button-remove">
+						<div className="material-icons add-icon" onClick={addItem}>
+							add
+						</div>
+					</div>
+				</div>
+				<div className="price">
+					<h1>{item.harga}</h1>
+				</div>
+			</div>
 		);
 	};
 
@@ -118,22 +112,6 @@ const Bag = () => {
 						<div className="items-container-bag">
 							<div>{products.map(renderItem)}</div>
 						</div>
-						{/* <div className="shopping-summary-mobile">
-							<div className="shopping-summary">
-								<h1>Shoppping summary</h1>
-								<div className="total-price">
-									<div className="total-price-text">
-										<p>Total price</p>
-									</div>
-									<div className="price">
-										<h1>{price}</h1>
-									</div>
-								</div>
-								<div className="button">
-									<button className="btn btn-primary buy-button">Buy</button>
-								</div>
-							</div>
-						</div> */}
 					</div>
 					<div className="container right-container-bag">
 						<div className="shopping-summary">

@@ -6,12 +6,12 @@ const Login = ({ setAuth }) => {
 	return (
 		<>
 			<div className="form-box">
-				<a href="./index.htm">
+				<Link to href="/home">
 					<img
 						src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627004541/Front%20End/logo_blanja_jtyc2a.svg"
 						alt="logo blanja"
 					/>
-				</a>
+				</Link>
 
 				<div className="title">
 					<h1>Please login with your account</h1>
@@ -22,7 +22,7 @@ const Login = ({ setAuth }) => {
 				</div>
 				<Form />
 
-				<Link href="/register" style={{ textDecoration: 'none' }}>
+				<Link to href="/register" style={{ textDecoration: 'none' }}>
 					<h2>Don't have a Blanja account? Register</h2>
 				</Link>
 			</div>

@@ -1,13 +1,13 @@
-import NavbarAfterLogin from '../../components/navbar/NavbarAfterLogin';
 import { Container } from 'react-bootstrap';
 import SideBar from '../../components/SideBar/SideBar';
 import './ProductInventory.scope.scss';
 import MyProduct from '../../components/Product-Inventory/MyProduct';
+import NavbarHeader from '../../components/Navbar/NavbarHeader';
 
 const ProductInventory = () => {
 	return (
 		<div>
-			<NavbarAfterLogin />
+			<NavbarHeader />
 			<Container className="big-container">
 				<Container className="left-container">
 					<SideBar />

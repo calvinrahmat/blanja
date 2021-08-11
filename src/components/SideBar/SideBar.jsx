@@ -1,5 +1,4 @@
 import './SideBar.scope.scss';
-import { FaHome } from 'react-icons/fa';
 
 const SideBar = () => {
 	return (

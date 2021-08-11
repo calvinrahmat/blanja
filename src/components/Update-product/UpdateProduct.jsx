@@ -2,7 +2,6 @@ import axios from 'axios';
 import './UpdateProduct.scoped.scss';
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import ImageUploading from 'react-images-uploading';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
@@ -52,7 +51,7 @@ const UpdateProduct = () => {
 			const { data } = res.data;
 			const value = [];
 			data.map((val) => {
-				value.push(val);
+				return value.push(val);
 			});
 
 			setProduct(value[0]);

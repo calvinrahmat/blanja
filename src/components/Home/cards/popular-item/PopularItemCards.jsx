@@ -1,9 +1,10 @@
-import { Card, Col, Container, Nav } from 'react-bootstrap';
+import { Card, Col, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import './PopularItemCards.scoped.scss';
 import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const PopularItemCards = () => {
 	const url = `${process.env.REACT_APP_API}/products`;
@@ -15,19 +16,19 @@ const PopularItemCards = () => {
 			const { data } = res.data;
 			const value = [];
 			data.map((val) => {
-				value.push(val);
+				return value.push(val);
 			});
 			setProduct(value);
 		});
 	}, [url]);
 
-	const renderCard = (card, index) => {
+	const renderCard = (card) => {
 		return (
-			<Col>
-				<Card key={index} className="box">
-					<Nav.Link href={`/product/${card.id}`}>
+			<Col key={card.id}>
+				<Card className="box">
+					<Link to={`/product/${card.id}`}>
 						<Card.Img className="img" variant="top" src={card.img} />
-					</Nav.Link>
+					</Link>
 
 					<Card.Body>
 						<Card.Title className="title">{card.nama}</Card.Title>

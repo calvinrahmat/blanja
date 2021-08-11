@@ -2,17 +2,15 @@ import CarouselTrending from '../../components/Home/carousels/trending/CarouselT
 import CarouselCategory from '../../components/Home/carousels/category/CarouselCategory';
 import PopularItemCards from '../../components/Home/cards/popular-item/PopularItemCards';
 import NewItemCards from '../../components/Home/cards/new-item/NewItemCards';
-import NavbarInit from '../../components/navbar/Navbar';
-import NavbarAfterLogin from '../../components/navbar/NavbarAfterLogin';
 import './Home.scoped.scss';
 import { Container } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import NavbarHeader from '../../components/Navbar/NavbarHeader';
 
 const Home = () => {
-	const dispatch = useDispatch();
 	return (
 		<div>
-			<NavbarInit />
+			<NavbarHeader />
 			<Container className="wrapper">
 				<CarouselTrending />
 				<CarouselCategory />

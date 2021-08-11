@@ -1,11 +1,12 @@
 import React from 'react';
-import NavbarAfterLogin from '../../components/navbar/NavbarAfterLogin';
+import NavbarHeader from '../../components/Navbar/NavbarHeader';
+
 import UpdateProduct from '../../components/Update-product/UpdateProduct';
 
 const EditProduct = () => {
 	return (
 		<div>
-			<NavbarAfterLogin />
+			<NavbarHeader />
 			<UpdateProduct />
 		</div>
 	);

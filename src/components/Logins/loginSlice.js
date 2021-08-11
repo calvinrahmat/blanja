@@ -4,6 +4,7 @@ const initialState = {
 	isLoading: false,
 	isAuth: false,
 	error: '',
+	token: '',
 };
 
 const loginSlice = createSlice({
@@ -24,6 +25,7 @@ const loginSlice = createSlice({
 		},
 		logout: (state) => {
 			state.isAuth = false;
+			state.token = '';
 		},
 	},
 });

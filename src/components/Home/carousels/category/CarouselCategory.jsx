@@ -1,5 +1,5 @@
 import './carousel.scoped.scss';
-import { Link } from 'react-router-dom';
+
 import { Container } from 'react-bootstrap';
 
 const CarouselCategory = () => {
@@ -15,35 +15,30 @@ const CarouselCategory = () => {
 								<div className="flexbox-container">
 									<img
 										className="d-block"
-										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627134527/Front%20End/Kategori/T-Shirt_kbhxdg.svg"
 										alt="kategori"
 									/>
 
 									<img
 										className="d-block"
-										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627134527/Front%20End/Kategori/Short_dyep9b.svg"
 										alt="kategori"
 									/>
 
 									<img
 										className="d-block"
-										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627134532/Front%20End/Kategori/Pants_vfy0xa.svg"
 										alt="kategori"
 									/>
 
 									<img
 										className="d-block"
-										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627134529/Front%20End/Kategori/Shoes_ziteoh.svg"
 										alt="kategori"
 									/>
 
 									<img
 										className="d-block"
-										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627229207/Front%20End/Kategori/Group_1236_vaxxb6.svg"
 										alt="kategori"
 									/>
@@ -53,35 +48,30 @@ const CarouselCategory = () => {
 								<div className="flexbox-container">
 									<img
 										className="d-block"
-										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627229205/Front%20End/Kategori/Group_1237_la2pkm.svg"
 										alt="kategori"
 									/>
 
 									<img
 										className="d-block"
-										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627229206/Front%20End/Kategori/Group_1235_wpjjc6.svg"
 										alt="kategori"
 									/>
 
 									<img
 										className="d-block"
-										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627229209/Front%20End/Kategori/Group_1243_dhyf6s.svg"
 										alt="kategori"
 									/>
 
 									<img
 										className="d-block"
-										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627229212/Front%20End/Kategori/Group_1245_lkzbsg.svg"
 										alt="kategori"
 									/>
 
 									<img
 										className="d-block"
-										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627229206/Front%20End/Kategori/Group_1240_wtoabp.svg"
 										alt="kategori"
 									/>
@@ -119,14 +109,12 @@ const CarouselCategory = () => {
 								<div className="flexbox-container">
 									<img
 										className="d-block"
-										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627134527/Front%20End/Kategori/T-Shirt_kbhxdg.svg"
 										alt=""
 									/>
 
 									<img
 										className="d-block"
-										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627134527/Front%20End/Kategori/Short_dyep9b.svg"
 										alt=""
 									/>
@@ -136,14 +124,12 @@ const CarouselCategory = () => {
 								<div className="flexbox-container">
 									<img
 										className="d-block"
-										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627134532/Front%20End/Kategori/Pants_vfy0xa.svg"
 										alt=""
 									/>
 
 									<img
 										className="d-block"
-										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627134529/Front%20End/Kategori/Shoes_ziteoh.svg"
 										alt=""
 									/>
@@ -153,14 +139,12 @@ const CarouselCategory = () => {
 								<div className="flexbox-container">
 									<img
 										className="d-block"
-										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627229207/Front%20End/Kategori/Group_1236_vaxxb6.svg"
 										alt=""
 									/>
 
 									<img
 										className="d-block"
-										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627229205/Front%20End/Kategori/Group_1237_la2pkm.svg"
 										alt=""
 									/>
@@ -170,14 +154,12 @@ const CarouselCategory = () => {
 								<div className="flexbox-container">
 									<img
 										className="d-block"
-										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627229206/Front%20End/Kategori/Group_1235_wpjjc6.svg"
 										alt=""
 									/>
 
 									<img
 										className="d-block"
-										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627229209/Front%20End/Kategori/Group_1243_dhyf6s.svg"
 										alt=""
 									/>
@@ -187,14 +169,12 @@ const CarouselCategory = () => {
 								<div className="flexbox-container">
 									<img
 										className="d-block"
-										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627229212/Front%20End/Kategori/Group_1245_lkzbsg.svg"
 										alt=""
 									/>
 
 									<img
 										className="d-block"
-										w-100
 										src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627229206/Front%20End/Kategori/Group_1240_wtoabp.svg"
 										alt=""
 									/>

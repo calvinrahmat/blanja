@@ -1,7 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import './carousel.scoped.scss';
 import { Container } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 
 const CarouselTrending = () => {
 	return (
@@ -39,7 +38,6 @@ const CarouselTrending = () => {
 									<figure className="box crop-to-fit">
 										<img
 											className="d-block"
-											w-100
 											src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627428406/Front%20End/16272681944df002a92e7bc072790025f951f3ad5e_yfkua3.webp"
 											alt=""
 										/>
@@ -47,7 +45,6 @@ const CarouselTrending = () => {
 									<figure className="box crop-to-fit">
 										<img
 											className="d-block"
-											w-100
 											src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627400645/Front%20End/16272720384ac3f38c08f445eed671f51176599cae_curknu.webp"
 											alt=""
 										/>
@@ -59,7 +56,6 @@ const CarouselTrending = () => {
 									<figure className="box crop-to-fit">
 										<img
 											className="d-block"
-											w-100
 											src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627428413/Front%20End/1626939862394fb323cf8c417afa63460190bc7e4d_ghtbky.jpg"
 											alt=""
 										/>
@@ -67,7 +63,6 @@ const CarouselTrending = () => {
 									<figure className="box crop-to-fit">
 										<img
 											className="d-block"
-											w-100
 											src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627400645/Front%20End/162727133199ad9043013a3c37b4d93ed28c688fa7_oielsb.webp"
 											alt=""
 										/>
@@ -144,7 +139,6 @@ const CarouselTrending = () => {
 									<figure className="box crop-to-fit">
 										<img
 											className="d-block"
-											w-100
 											src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627400645/Front%20End/16273735026ee69087d28bc1cb110d87d5f9d163bb_es8nb0.webp"
 											alt=""
 										/>
@@ -156,7 +150,6 @@ const CarouselTrending = () => {
 									<figure className="box crop-to-fit">
 										<img
 											className="d-block"
-											w-100
 											src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627400645/Front%20End/16272720384ac3f38c08f445eed671f51176599cae_curknu.webp"
 											alt=""
 										/>
@@ -168,7 +161,6 @@ const CarouselTrending = () => {
 									<figure className="box crop-to-fit">
 										<img
 											className="d-block"
-											w-100
 											src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627400645/Front%20End/1625554467e9b382bc3959f89e8641db3db4dcca76_olrbo4.webp"
 											alt=""
 										/>
@@ -180,7 +172,6 @@ const CarouselTrending = () => {
 									<figure className="box crop-to-fit">
 										<img
 											className="d-block"
-											w-100
 											src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627400645/Front%20End/162727133199ad9043013a3c37b4d93ed28c688fa7_oielsb.webp"
 											alt=""
 										/>

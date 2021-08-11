@@ -1,11 +1,10 @@
-import { Container, Nav } from 'react-bootstrap';
 import './Product.scoped.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import QueryString from 'qs';
-import { render } from '@testing-library/react';
+import { Link } from 'react-router-dom';
 
 const Product = () => {
 	let { id } = useParams();
@@ -14,7 +13,6 @@ const Product = () => {
 	const urlDeleteProduct = `http://localhost:7123/seller/delete`;
 
 	const [count, setCount] = useState(1);
-	const [total, setTotal] = useState('');
 	const [products, setProduct] = useState([]);
 
 	const addCount = () => {
@@ -29,7 +27,7 @@ const Product = () => {
 			const { data } = res.data;
 			const value = [];
 			data.map((val) => {
-				value.push(val);
+				return value.push(val);
 			});
 			setProduct(value[0]);
 			console.log(value);
@@ -129,7 +127,7 @@ const Product = () => {
 								className="btn btn-danger buy-btn"
 								onClick={(e) => deleteProduct(e)}
 							>
-								<Nav.Link href="/home">Delete</Nav.Link>
+								<Link to="/home">Delete</Link>
 							</button>
 						</container>
 					</div>
