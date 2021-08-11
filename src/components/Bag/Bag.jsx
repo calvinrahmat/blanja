@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
+import BagList from './BagList';
 
 const Bag = () => {
 	const url = 'http://localhost:7123/bag';
@@ -110,7 +111,9 @@ const Bag = () => {
 							</div>
 						</div>
 						<div className="items-container-bag">
-							<div>{products.map(renderItem)}</div>
+							<div>
+								<BagList products={products} />
+							</div>
 						</div>
 					</div>
 					<div className="container right-container-bag">

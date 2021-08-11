@@ -4,5 +4,14 @@ import BagPage from './Bag/BagPage';
 import AddProduct from './AddProduct/AddProduct';
 import ProductPreview from './ProductPreview/ProductPreview';
 import EditProduct from './EditProduct/EditProduct';
+import Register from './Register/register';
 
-export { Login, Home, BagPage, AddProduct, ProductPreview, EditProduct };
+export {
+	Login,
+	Home,
+	BagPage,
+	AddProduct,
+	ProductPreview,
+	EditProduct,
+	Register,
+};

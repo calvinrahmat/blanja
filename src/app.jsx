@@ -15,6 +15,7 @@ import {
 	AddProduct,
 	ProductPreview,
 	EditProduct,
+	Register,
 } from './pages';
 import ProductInventory from './pages/ProductInventory/ProductInventory';
 
@@ -52,6 +53,7 @@ function App() {
 							)
 						}
 					/>
+					<Route exact path="/register" render={(props) => <Register />} />
 
 					<Route
 						exact
