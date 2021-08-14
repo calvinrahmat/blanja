@@ -4,19 +4,18 @@ import PopularItemCards from '../../components/Home/cards/popular-item/PopularIt
 import NewItemCards from '../../components/Home/cards/new-item/NewItemCards';
 import './Home.scoped.scss';
 import { Container } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
 import NavbarHeader from '../../components/Navbar/NavbarHeader';
 
 const Home = () => {
 	return (
 		<div>
 			<NavbarHeader />
-			<Container className="wrapper">
-				<CarouselTrending />
-				<CarouselCategory />
+			<div className="wrapper">
+				<CarouselTrending className="carousel-trending" />
+				<CarouselCategory className="carousel-category" />
 				<NewItemCards />
 				<PopularItemCards />
-			</Container>
+			</div>
 		</div>
 	);
 };

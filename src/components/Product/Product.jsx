@@ -4,14 +4,11 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import QueryString from 'qs';
-import { Link } from 'react-router-dom';
 
 const Product = () => {
 	let { id } = useParams();
 	const url = `${process.env.REACT_APP_API}/products/${id}`;
-	const urlAddToBag = 'http://localhost:7123/products/addToBag/';
-	const urlDeleteProduct = `http://localhost:7123/seller/delete`;
-
+	const urlAddToBag = `${process.env.REACT_APP_API}/products/addToBag/`;
 	const [count, setCount] = useState(1);
 	const [products, setProduct] = useState([]);
 
@@ -54,29 +51,11 @@ const Product = () => {
 		}
 	};
 
-	const deleteProduct = async (e) => {
-		e.preventDefault();
-		try {
-			const body = QueryString.stringify({
-				id: products.id,
-			});
-			console.log(body);
-
-			axios
-				.delete(urlDeleteProduct, { params: { id: products.id } })
-				.then((res) => {
-					console.log(`delete product: ${res.data}`);
-				});
-		} catch (error) {
-			console.error(error.message);
-		}
-	};
-
 	return (
 		<>
 			<div className="container-lg wrapper-product">
 				<div className="container-lg product-container">
-					<div className="container left-container-product">
+					<div className="container left-	-product">
 						<div className="box-product">
 							<figure className="box crop-to-fit-product">
 								<img src={products.img} alt="" />
@@ -113,7 +92,7 @@ const Product = () => {
 								<h1>+</h1>
 							</button>
 						</div>
-						<container className="buttons-product">
+						<div className="buttons-product">
 							<button className="btn btn-primary chat-btn">Chat</button>
 							<button
 								className="btn btn-primary to-bag-btn"
@@ -122,14 +101,7 @@ const Product = () => {
 								Add to bag
 							</button>
 							<button className="btn btn-primary buy-btn">Buy Now</button>
-
-							<button
-								className="btn btn-danger buy-btn"
-								onClick={(e) => deleteProduct(e)}
-							>
-								<Link to="/home">Delete</Link>
-							</button>
-						</container>
+						</div>
 					</div>
 				</div>
 				<div className="container-fluid d-flex flex-column md description">

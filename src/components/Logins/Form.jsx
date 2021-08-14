@@ -30,6 +30,8 @@ const Form = () => {
 		try {
 			axios.post(url, data).then((res) => {
 				const { msg, token } = res.data.data[0];
+				console.log(res.data.data[0]);
+
 				console.log(msg);
 				if (msg === 'Cannot login: wrong password or email') {
 					dispatch(loginFail('invalid password or email'));
@@ -68,7 +70,6 @@ const Form = () => {
 					{...register('pass')}
 				/>
 				<h3 className="error">{errors.pass?.message}</h3>
-
 				<p>Forgot password?</p>
 				<div className="btn-box">
 					<button className="btn btn-primary btn-login">Login</button>

@@ -2,11 +2,11 @@ import { Link } from 'react-router-dom';
 import Form from '../../components/Logins/Form';
 import './login.scoped.scss';
 
-const Login = ({ setAuth }) => {
+const Login = () => {
 	return (
 		<>
 			<div className="form-box">
-				<Link to href="/home">
+				<Link to="/home">
 					<img
 						src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627004541/Front%20End/logo_blanja_jtyc2a.svg"
 						alt="logo blanja"
@@ -22,7 +22,7 @@ const Login = ({ setAuth }) => {
 				</div>
 				<Form />
 
-				<Link to href="/register" style={{ textDecoration: 'none' }}>
+				<Link to="/register" style={{ textDecoration: 'none' }}>
 					<h2>Don't have a Blanja account? Register</h2>
 				</Link>
 			</div>

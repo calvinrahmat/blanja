@@ -2,11 +2,16 @@
 	border: 1px solid #d4d4d4;
 	height: 412px;
 	border-radius: 4px;
+	overflow: scroll;
+	height: 50vh;
 	.header {
 		background: #f7f7f7;
 		padding-top: 20px;
 		padding-bottom: 20px;
 		padding-left: 30px;
+		position: -webkit-sticky;
+		position: sticky;
+		top: 0;
 		.title {
 			font-weight: 500;
 			font-size: 14px;
@@ -23,6 +28,13 @@
 		background: transparent;
 		color: black;
 		width: 50px;
+		border-radius: 10px;
+	}
+	.delete-btn {
+		border: 1px solid #d4d4d4;
+
+		color: white;
+		width: 70px;
 		border-radius: 10px;
 	}
 }

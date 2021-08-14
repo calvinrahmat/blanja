@@ -26,14 +26,11 @@
 	justify-content: center;
 	align-items: center;
 	width: 200px;
-	height: 1000px;
+	height: 600px;
 }
 
 .title {
-	color: red;
-	text-overflow: ellipsis;
-	overflow: hidden;
-	white-space: nowrap;
+	color: black;
 }
 .price {
 	color: #db3022;
@@ -57,7 +54,5 @@
 	}
 }
 
-h2 {
-	font-size: 20px;
-	color: #9b9b9b;
+.img {
 }

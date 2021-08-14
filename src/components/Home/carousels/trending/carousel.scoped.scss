@@ -3,15 +3,15 @@
 }
 .container-carousel-trending {
 	padding-top: 50px;
-	width: 100%;
+	width: 80%;
 	margin-right: auto;
 	margin-left: auto;
+	overflow: hidden;
 	//background: blue;
 	.flexbox-container {
 		display: flex;
 		justify-content: space-around;
-		margin-left: auto;
-		margin-right: auto;
+
 		//background: lightblue;
 	}
 	.box {
@@ -66,7 +66,6 @@
 		margin-right: auto;
 		margin-left: auto;
 
-		width: 70vh;
 		.flexbox-container {
 			display: flex;
 			justify-content: space-evenly;

@@ -1,10 +1,4 @@
-import { useState } from 'react';
-import {
-	BrowserRouter as Router,
-	Switch,
-	Route,
-	Redirect,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './index.scss';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Container } from 'react-bootstrap';
@@ -20,17 +14,30 @@ import {
 import ProductInventory from './pages/ProductInventory/ProductInventory';
 
 function App() {
-	const [isAuthenticated, setIsAuthenticated] = useState(false);
-	const setAuth = (boolean) => {
-		setIsAuthenticated(boolean);
-	};
 	return (
 		<>
 			<Router>
 				<Switch>
 					<Route exact path="/" render={() => <Home />} />
 					<Route exact path="/home" render={() => <Home />} />
-
+					<Route
+						exact
+						path="/login"
+						render={() => (
+							<Container>
+								<Login />
+							</Container>
+						)}
+					/>
+					<Route
+						exact
+						path="/search/nama:nama"
+						render={() => (
+							<Container>
+								<searchPage />
+							</Container>
+						)}
+					/>
 					<Route
 						exact
 						path="/seller/add-product"
@@ -40,54 +47,42 @@ function App() {
 							</Container>
 						)}
 					/>
-					<Route
-						exact
-						path="/login"
-						render={(props) =>
-							!isAuthenticated ? (
-								<Container>
-									<Login {...props} setAuth={setAuth} />
-								</Container>
-							) : (
-								<Redirect to="/home" />
-							)
-						}
-					/>
-					<Route exact path="/register" render={(props) => <Register />} />
+
+					<Route exact path="/register" render={() => <Register />} />
 
 					<Route
 						exact
 						path="/product/:id"
-						render={(props) => (
+						render={() => (
 							<Container>
-								<ProductPreview {...props} />
+								<ProductPreview />
 							</Container>
 						)}
 					/>
 					<Route
 						exact
 						path="/seller/inventory"
-						render={(props) => (
+						render={() => (
 							<Container>
-								<ProductInventory {...props} />
+								<ProductInventory />
 							</Container>
 						)}
 					/>
 					<Route
 						exact
-						path="/seller/edit-product"
-						render={(props) => (
+						path="/seller/edit-product/:id"
+						render={() => (
 							<Container>
-								<EditProduct {...props} />
+								<EditProduct />
 							</Container>
 						)}
 					/>
 					<Route
 						exact
 						path="/bag"
-						render={(props) => (
+						render={() => (
 							<Container>
-								<BagPage {...props} />
+								<BagPage />
 							</Container>
 						)}
 					/>

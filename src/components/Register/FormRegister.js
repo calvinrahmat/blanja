@@ -4,9 +4,6 @@ import './FormRegister.scoped.scss';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import axios from 'axios';
-
-import { useDispatch, useSelector } from 'react-redux';
-
 import { useHistory } from 'react-router';
 
 const schema = yup.object().shape({
@@ -15,12 +12,10 @@ const schema = yup.object().shape({
 	pass: yup.string().min(5).required(),
 	confirmPass: yup.string().oneOf([yup.ref('pass'), null]),
 });
-const url = `${process.env.REACT_APP_API}/login/customer`;
+const url = `${process.env.REACT_APP_API}/user/registration`;
 
 const FormRegister = () => {
-	const dispatch = useDispatch();
 	const history = useHistory();
-	const { isLoading, error } = useSelector((state) => state.login);
 	const {
 		register,
 		handleSubmit,
@@ -28,7 +23,15 @@ const FormRegister = () => {
 	} = useForm({ resolver: yupResolver(schema) });
 
 	const onSubmit = (data) => {
-		console.log(data);
+		try {
+			axios.post(url, data).then((res) => {
+				res.data.data[0].msg
+					? alert('email sudah terdaftar !')
+					: history.push('/login');
+			});
+		} catch (error) {
+			console.log(error.message);
+		}
 	};
 	return (
 		<div>

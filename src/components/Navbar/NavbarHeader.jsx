@@ -8,11 +8,9 @@ import { useSelector } from 'react-redux';
 import MenusBeforeLogin from './MenusBeforeLogin';
 
 const NavbarHeader = () => {
-	const { user } = useSelector((state) => state.user);
 	const { isAuth } = useSelector((state) => state.login);
 	return (
-		<Container className="navbar">
-			<h1>{user.name}</h1>
+		<div className="navbar">
 			<Navbar expand="lg">
 				<Container>
 					<Navbar.Brand className="brand">
@@ -52,7 +50,7 @@ const NavbarHeader = () => {
 					</Container>
 				</Container>
 			</Navbar>
-		</Container>
+		</div>
 	);
 };
 

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import FormRegister from '../../components/Register/FormRegister.js';
 import './register.scoped.scss';
 
-const Register = ({ setAuth }) => {
+const Register = () => {
 	return (
 		<>
 			<div className="form-box">

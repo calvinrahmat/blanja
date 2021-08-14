@@ -65,7 +65,7 @@ const SellingProduct = () => {
 				</div>
 
 				<div className="container right-container">
-					<h1>Edit Product</h1>
+					<h1>Add New Product</h1>
 					<form onSubmit={handleSubmit(onSubmitForm)}>
 						<div className="container inventory">
 							<div className="container title">Inventory</div>

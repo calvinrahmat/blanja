@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { useParams } from 'react-router';
 
 const schema = yup.object().shape({
 	nama: yup.string().required('nama produk harus diisi'),
@@ -13,8 +14,9 @@ const schema = yup.object().shape({
 });
 
 const UpdateProduct = () => {
+	let { id } = useParams();
 	const url = 'http://localhost:7123/seller/updateProduct';
-	const getProductUrl = 'http://localhost:7123/products/442';
+	const getProductUrl = `${process.env.REACT_APP_API}/products/${id}`;
 	const [products, setProduct] = useState([]);
 
 	const onSubmitForm = async (data) => {
@@ -57,7 +59,7 @@ const UpdateProduct = () => {
 			setProduct(value[0]);
 			reset(res.data);
 		});
-	}, [reset]);
+	}, [getProductUrl, reset]);
 	return (
 		<>
 			<div className="container d-flex wrapper">
@@ -171,8 +173,10 @@ const UpdateProduct = () => {
 								<p>{errors.product_desc?.message}</p>
 							</div>
 						</div>
-						<div className="sell-btn-container">
-							<button className="btn-primary sell-btn">Save</button>
+						<div className="btn-group">
+							<div className="sell-btn-container">
+								<button className="btn-primary sell-btn">Save</button>
+							</div>
 						</div>
 					</form>
 				</div>

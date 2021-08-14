@@ -6,8 +6,9 @@ import { useDispatch } from 'react-redux';
 import { logout } from '../Logins/loginSlice';
 import { Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-
+import { useSelector } from 'react-redux';
 const MenusAfterLogin = () => {
+	const { user } = useSelector((state) => state.user);
 	const dispatch = useDispatch();
 	return (
 		<div>
@@ -40,6 +41,9 @@ const MenusAfterLogin = () => {
 						<Dropdown.Menu>
 							<Dropdown.Item onClick={() => dispatch(logout())}>
 								Logout
+							</Dropdown.Item>
+							<Dropdown.Item onClick={() => dispatch(logout())}>
+								{`${user.name}'s Profile`}
 							</Dropdown.Item>
 						</Dropdown.Menu>
 					</Dropdown>

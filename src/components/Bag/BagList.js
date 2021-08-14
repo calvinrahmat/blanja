@@ -24,6 +24,7 @@ const BagList = (props) => {
 						<div className="check-box">
 							<input
 								type="checkbox"
+								className="checkBox"
 								defaultChecked="true"
 								{...register(`checkItem`)}
 							/>
@@ -40,14 +41,17 @@ const BagList = (props) => {
 						<div className="button-remove">
 							<button
 								className="material-icons remove-icon"
-								onClick={reduceItem}
+								onClick={(e) => reduceItem(e)}
 							>
 								remove
 							</button>
 						</div>
 						<h1>{count}</h1>
 						<div className="button-remove">
-							<div className="material-icons add-icon" onClick={addItem}>
+							<div
+								className="material-icons add-icon"
+								onClick={(e) => addItem(e)}
+							>
 								add
 							</div>
 						</div>

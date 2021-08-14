@@ -1,12 +1,15 @@
 import React from 'react';
 import Bag from '../../components/Bag/Bag';
 import NavbarHeader from '../../components/Navbar/NavbarHeader';
+import './BagPage.scoped.scss';
 
 const BagPage = () => {
 	return (
 		<div>
 			<NavbarHeader />
-			<Bag />
+			<div className="wrapper">
+				<Bag />
+			</div>
 		</div>
 	);
 };

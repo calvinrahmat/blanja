@@ -4,10 +4,13 @@ import './PopularItemCards.scoped.scss';
 import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import './SearchItemCard.scss';
 
-const PopularItemCards = () => {
-	const url = `${process.env.REACT_APP_API}/products`;
+const SearchProduct = () => {
+	let { nama } = useParams();
+	const url = `${process.env.REACT_APP_API}/products/`;
 
 	const [products, setProduct] = useState([]);
 
@@ -26,24 +29,10 @@ const PopularItemCards = () => {
 		return (
 			<Col key={card.id}>
 				<Card className="box">
-					<Link to={`/product/${card.id}`}>
-						<Card.Img className="img" variant="top" src={card.img} />
-					</Link>
+					<Card.Img className="img" variant="top" src={card.img} />
 
 					<Card.Body>
-						<Card.Title
-							className="title"
-							style={{
-								overflow: 'hidden',
-
-								textOverflow: 'ellipsis',
-								fontSize: '18px',
-								width: '150px',
-								height: '100px',
-							}}
-						>
-							{card.nama}
-						</Card.Title>
+						<Card.Title className="title">{card.nama}</Card.Title>
 						<Card.Title className="price">Rp {card.harga}</Card.Title>
 						<Card.Title className="seller"> {card.seller}</Card.Title>
 					</Card.Body>
@@ -63,4 +52,4 @@ const PopularItemCards = () => {
 	);
 };
 
-export default PopularItemCards;
+export default SearchProduct;

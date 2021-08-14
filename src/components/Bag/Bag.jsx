@@ -1,8 +1,6 @@
 import './bag.scoped.scss';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { Container } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import BagList from './BagList';
 
@@ -11,80 +9,20 @@ const Bag = () => {
 
 	//const [isChecked, setIsChecked] = useState(false);
 	const [products, setProduct] = useState([]);
-	const [checkedState, setCheckedState] = useState(
-		new Array(products.length).fill(false)
-	);
 
 	useEffect(() => {
 		axios.get(url).then((res) => {
 			const { data } = res.data;
 			const value = [];
 			data.map((val) => {
-				value.push(val);
+				return value.push(val);
 			});
 			setProduct(value);
 		});
 	}, [url]);
 	const totalProducts = products.length;
 
-	const [total, setTotal] = useState(0);
-	const handleOnChange = (event) => {};
-	const {
-		register,
-		handleSubmit,
-		watch,
-		formState: { errors },
-	} = useForm();
-	const [price, setPrice1] = useState('');
-	const [count, setCount] = useState(1);
-	const addItem = () => {
-		setCount((prevCount) => prevCount + 1);
-	};
-	const reduceItem = () => {
-		if (count > 1) setCount((prevCount) => prevCount - 1);
-	};
-	let grandTotal = price * count;
-
-	const onSubmit = (data) => console.log(data);
-
-	const renderItem = (item) => {
-		return (
-			<div key={item.id} className="item1-container">
-				<div className="wrap-checkbox-item">
-					<div className="check-box">
-						<input
-							type="checkbox"
-							defaultChecked="true"
-							{...register(`checkItem`)}
-						/>
-					</div>
-					<div className="photo-box-bag">
-						<img className="product-img-bag" src={item.img} alt="item-1" />
-					</div>
-					<div className="item-desc">
-						<h1>{item.nama}</h1>
-						<p>{item.seller}</p>
-					</div>
-				</div>
-				<div className="button-container">
-					<div className="button-remove">
-						<button className="material-icons remove-icon" onClick={reduceItem}>
-							remove
-						</button>
-					</div>
-					<h1>{count}</h1>
-					<div className="button-remove">
-						<div className="material-icons add-icon" onClick={addItem}>
-							add
-						</div>
-					</div>
-				</div>
-				<div className="price">
-					<h1>{item.harga}</h1>
-				</div>
-			</div>
-		);
-	};
+	const { register } = useForm();
 
 	return (
 		<>
@@ -124,7 +62,7 @@ const Bag = () => {
 									<p>Total price</p>
 								</div>
 								<div className="price">
-									<h1>{grandTotal}</h1>
+									<h1>grandTotal</h1>
 								</div>
 							</div>
 							<button className="btn btn-primary justify-content-center buy-button">

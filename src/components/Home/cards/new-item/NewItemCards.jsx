@@ -4,17 +4,16 @@ import './NewItemCards.scoped.scss';
 import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const NewItemCards = () => {
-	const { search } = useSelector((state) => state.search);
-	console.log(search);
+	const { search } = useSelector((state) => state.search.search);
 	const url = `${process.env.REACT_APP_API}/products/search/nama`;
 	const [products, setProduct] = useState([]);
 
 	useEffect(() => {
-		axios.get(url, { params: { p: 'shirt' } }).then((res) => {
+		axios.get(url, { params: { p: search } }).then((res) => {
 			const { data } = res.data;
 			const value = [];
 
@@ -23,9 +22,7 @@ const NewItemCards = () => {
 			});
 			if (value) setProduct(value);
 		});
-	}, [url]);
-
-	console.log(products);
+	}, [url, search]);
 
 	const renderCard = (card) => {
 		return (
@@ -35,9 +32,28 @@ const NewItemCards = () => {
 						<Card.Img className="img" variant="top" src={card.img} />
 					</Link>
 
-					<Card.Body>
-						<Card.Title className="title">{card.nama}</Card.Title>
-						<Card.Title className="price">Rp {card.harga}</Card.Title>
+					<Card.Body className="cardBody">
+						<Card.Title
+							className="title"
+							style={{
+								overflow: 'hidden',
+
+								textOverflow: 'ellipsis',
+								fontSize: '18px',
+								width: '150px',
+								height: '100px',
+							}}
+						>
+							{card.nama}
+						</Card.Title>
+						<Card.Title
+							className="price"
+							style={{
+								fontSize: '18px',
+							}}
+						>
+							Rp {card.harga}
+						</Card.Title>
 						<Card.Title className="seller"> {card.seller}</Card.Title>
 					</Card.Body>
 				</Card>
