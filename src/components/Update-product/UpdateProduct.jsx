@@ -1,8 +1,10 @@
 import axios from 'axios';
-import './SellingProduct.scoped.scss';
+import './UpdateProduct.scoped.scss';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { useParams } from 'react-router';
 
 const schema = yup.object().shape({
 	nama: yup.string().required('nama produk harus diisi'),
@@ -11,8 +13,11 @@ const schema = yup.object().shape({
 	product_desc: yup.string(),
 });
 
-const SellingProduct = () => {
-	const url = `${process.env.REACT_APP_API}/seller/addProduct`;
+const UpdateProduct = () => {
+	let { id } = useParams();
+	const url = 'http://localhost:7123/seller/updateProduct';
+	const getProductUrl = `${process.env.REACT_APP_API}/products/${id}`;
+	const [products, setProduct] = useState([]);
 
 	const onSubmitForm = async (data) => {
 		try {
@@ -22,11 +27,11 @@ const SellingProduct = () => {
 			formData.append('harga', data.harga);
 			formData.append('stock', data.stock);
 			formData.append('product_desc', data.product_desc);
-
+			formData.append('id', data.id);
 			const headers = {
 				'Content-type': 'multipart/form-data',
 			};
-			axios.post(url, formData, headers).then((res) => {
+			axios.put(url, formData, headers).then((res) => {
 				console.log(res.data);
 			});
 		} catch (error) {
@@ -38,10 +43,23 @@ const SellingProduct = () => {
 		register,
 		handleSubmit,
 		formState: { errors },
+		reset,
 	} = useForm({
 		resolver: yupResolver(schema),
 	});
 
+	useEffect(() => {
+		axios.get(getProductUrl).then((res) => {
+			const { data } = res.data;
+			const value = [];
+			data.map((val) => {
+				return value.push(val);
+			});
+
+			setProduct(value[0]);
+			reset(res.data);
+		});
+	}, [getProductUrl, reset]);
 	return (
 		<>
 			<div className="container d-flex wrapper">
@@ -65,7 +83,7 @@ const SellingProduct = () => {
 				</div>
 
 				<div className="container right-container">
-					<h1>Add New Product</h1>
+					<h1>Edit Product</h1>
 					<form onSubmit={handleSubmit(onSubmitForm)}>
 						<div className="container inventory">
 							<div className="container title">Inventory</div>
@@ -75,7 +93,14 @@ const SellingProduct = () => {
 									<input
 										className="form-control"
 										type="text"
+										defaultValue={products.nama}
 										{...register('nama')}
+									/>
+									<input
+										className="form-control id"
+										type="number"
+										defaultValue={products.id}
+										{...register('id')}
 									/>
 									<p>{errors.nama?.message}</p>
 								</div>
@@ -89,6 +114,7 @@ const SellingProduct = () => {
 									<input
 										className="form-control"
 										type="number"
+										defaultValue={products.harga}
 										{...register('harga')}
 									/>
 									<p>{errors.harga?.message}</p>
@@ -98,6 +124,7 @@ const SellingProduct = () => {
 									<input
 										className="form-control"
 										type="number"
+										defaultValue={products.stock}
 										{...register('stock')}
 									/>
 								</div>
@@ -140,13 +167,16 @@ const SellingProduct = () => {
 									className="form-control"
 									id="exampleFormControlTextarea1"
 									rows={10}
+									defaultValue={products.product_desc}
 									{...register('product_desc')}
 								/>
 								<p>{errors.product_desc?.message}</p>
 							</div>
 						</div>
-						<div className="sell-btn-container">
-							<button className="btn-primary sell-btn">Save</button>
+						<div className="btn-group">
+							<div className="sell-btn-container">
+								<button className="btn-primary sell-btn">Save</button>
+							</div>
 						</div>
 					</form>
 				</div>
@@ -154,4 +184,4 @@ const SellingProduct = () => {
 		</>
 	);
 };
-export default SellingProduct;
+export default UpdateProduct;

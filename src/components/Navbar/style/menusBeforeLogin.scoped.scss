@@ -1,0 +1,26 @@
+.menu-before-login {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-left: auto;
+	width: 50%;
+	.cart-icon {
+		margin-top: auto;
+		margin-bottom: auto;
+		font-size: 20px;
+		color: #8e8e93;
+	}
+
+	.login-button {
+		width: 100px;
+		border-radius: 25px;
+	}
+	.signup-button {
+		margin-left: 0.5em;
+		width: 100px;
+		border-radius: 25px;
+		background-color: transparent;
+		border: 1px solid #8e8e93;
+		color: #8e8e93;
+	}
+}

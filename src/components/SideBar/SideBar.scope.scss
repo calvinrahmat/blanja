@@ -1,0 +1,31 @@
+.photo-box {
+	height: 70px;
+	width: 70px;
+	display: flex;
+	align-items: center;
+	border-radius: 50%;
+	img {
+		width: 70px;
+		clip-path: circle();
+	}
+}
+.profile {
+	margin-top: 20px;
+	.profile-name {
+		font-size: 16px;
+	}
+
+	.update-profile {
+		font-size: 12px;
+	}
+}
+
+.side-navbar {
+	margin-top: 78px;
+	ul {
+		margin: 28px;
+	}
+	li {
+		list-style: none;
+	}
+}
