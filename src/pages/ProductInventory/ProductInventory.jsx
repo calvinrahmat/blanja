@@ -1,4 +1,3 @@
-import { Container } from 'react-bootstrap';
 import SideBar from '../../components/SideBar/SideBar';
 import './ProductInventory.scope.scss';
 import MyProduct from '../../components/Product-Inventory/MyProduct';
@@ -8,14 +7,14 @@ const ProductInventory = () => {
 	return (
 		<div>
 			<NavbarHeader />
-			<Container className="big-container">
-				<Container className="left-container">
+			<div className="big-container">
+				<div className="left-container">
 					<SideBar />
-				</Container>
-				<Container className="right-container">
+				</div>
+				<div className="right-container">
 					<MyProduct />
-				</Container>
-			</Container>
+				</div>
+			</div>
 		</div>
 	);
 };

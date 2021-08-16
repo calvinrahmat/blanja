@@ -15,7 +15,7 @@ const schema = yup.object().shape({
 
 const UpdateProduct = () => {
 	let { id } = useParams();
-	const url = 'http://localhost:7123/seller/updateProduct';
+	const url = `${process.env.REACT_APP_API}/seller/updateProduct`;
 	const getProductUrl = `${process.env.REACT_APP_API}/products/${id}`;
 	const [products, setProduct] = useState([]);
 
@@ -62,27 +62,8 @@ const UpdateProduct = () => {
 	}, [getProductUrl, reset]);
 	return (
 		<>
-			<div className="container d-flex wrapper">
-				<div className="container left-container">
-					<div className="container d-flex profile">
-						<div className="profile" />
-						<div className="photo-box">
-							<img
-								src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627339637/Front%20End/profile_yzozml.jpg"
-								alt="profile"
-							/>
-						</div>
-						<div className="container profile">
-							<h1 className="profile-name">Johanes Mikael</h1>
-							<div className="d-grid gap-2 d-flex update-profile">
-								<i className="fa fa-pencil" aria-hidden="true" />
-								<p className="update-profile">Ubah Profile</p>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div className="container right-container">
+			<div className="wrapper">
+				<div className=" right-container">
 					<h1>Edit Product</h1>
 					<form onSubmit={handleSubmit(onSubmitForm)}>
 						<div className="container inventory">
@@ -129,30 +110,32 @@ const UpdateProduct = () => {
 									/>
 								</div>
 								<p>{errors.stock?.message}</p>
-								<h1>Stock</h1>
-								<div className="form-check form-check-inline">
-									<input
-										className="form-check-input"
-										type="radio"
-										name="inlineRadioOptions"
-										id="baru-radio"
-										defaultValue="baru"
-									/>
-									<label className="form-check-label" htmlFor="inlineRadio1">
-										Baru
-									</label>
-								</div>
-								<div className="form-check form-check-inline">
-									<input
-										className="form-check-input"
-										type="radio"
-										name="inlineRadioOptions"
-										id="bekas-radio"
-										defaultValue="bekas"
-									/>
-									<label className="form-check-label" htmlFor="inlineRadio2">
-										Bekas
-									</label>
+								<div className="form-group-kondisi">
+									<label htmlFor="kondisi">Kondisi</label>
+									<div className="form-check form-check-inline">
+										<input
+											className="form-check-input"
+											type="radio"
+											name="inlineRadioOptions"
+											id="baru-radio"
+											defaultValue="baru"
+										/>
+										<label className="form-check-label" htmlFor="inlineRadio1">
+											Baru
+										</label>
+									</div>
+									<div className="form-check form-check-inline">
+										<input
+											className="form-check-input"
+											type="radio"
+											name="inlineRadioOptions"
+											id="bekas-radio"
+											defaultValue="bekas"
+										/>
+										<label className="form-check-label" htmlFor="inlineRadio2">
+											Bekas
+										</label>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -161,7 +144,7 @@ const UpdateProduct = () => {
 							<input type="file" {...register('img')}></input>
 						</div>
 						<div className="container description">
-							<h1>Description</h1>
+							<div className="title">Description</div>
 							<div className="form-group">
 								<textarea
 									className="form-control"

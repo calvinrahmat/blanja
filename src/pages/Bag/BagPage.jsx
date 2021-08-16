@@ -5,7 +5,7 @@ import './BagPage.scoped.scss';
 
 const BagPage = () => {
 	return (
-		<div>
+		<div className="bigWrapper">
 			<NavbarHeader />
 			<div className="wrapper">
 				<Bag />

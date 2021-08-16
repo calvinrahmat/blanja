@@ -1,5 +1,4 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
 import './MyProduct.scope.scss';
 import { FaSearch } from 'react-icons/fa';
 import AllItems from './AllItems/AllItems';
@@ -7,10 +6,10 @@ import AllItems from './AllItems/AllItems';
 const MyProduct = () => {
 	return (
 		<div>
-			<Container className="wrapper">
-				<Container className="header-title">
+			<div className="wrapper">
+				<div className="header-title">
 					<h1>My Product</h1>
-				</Container>
+				</div>
 
 				<div className="menus">
 					<ul>
@@ -26,10 +25,10 @@ const MyProduct = () => {
 					</div>
 					<input type="text" className="search-bar" placeholder="Search" />
 				</div>
-				<Container className="all-items">
+				<div className="all-items">
 					<AllItems />
-				</Container>
-			</Container>
+				</div>
+			</div>
 		</div>
 	);
 };

@@ -2,8 +2,8 @@ import './SideBar.scope.scss';
 
 const SideBar = () => {
 	return (
-		<div>
-			<div className="container d-flex profile">
+		<div className="sidebar-nav">
+			<div className=" d-flex profile">
 				<div className="photo-box">
 					<img
 						src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627339637/Front%20End/profile_yzozml.jpg"
@@ -18,7 +18,7 @@ const SideBar = () => {
 					</div>
 				</div>
 			</div>
-			<div className="container side-navbar">
+			<div className=" menus">
 				<ul>
 					<ul>Store</ul>
 					<ul>

@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './index.scss';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Container } from 'react-bootstrap';
 import {
 	Login,
 	Home,
@@ -20,72 +19,28 @@ function App() {
 				<Switch>
 					<Route exact path="/" render={() => <Home />} />
 					<Route exact path="/home" render={() => <Home />} />
-					<Route
-						exact
-						path="/login"
-						render={() => (
-							<Container>
-								<Login />
-							</Container>
-						)}
-					/>
-					<Route
-						exact
-						path="/search/nama:nama"
-						render={() => (
-							<Container>
-								<searchPage />
-							</Container>
-						)}
-					/>
+					<Route exact path="/login" render={() => <Login />} />
+					<Route exact path="/search/nama:nama" render={() => <searchPage />} />
 					<Route
 						exact
 						path="/seller/add-product"
-						render={() => (
-							<Container>
-								<AddProduct />
-							</Container>
-						)}
+						render={() => <AddProduct />}
 					/>
 
 					<Route exact path="/register" render={() => <Register />} />
 
-					<Route
-						exact
-						path="/product/:id"
-						render={() => (
-							<Container>
-								<ProductPreview />
-							</Container>
-						)}
-					/>
+					<Route exact path="/product/:id" render={() => <ProductPreview />} />
 					<Route
 						exact
 						path="/seller/inventory"
-						render={() => (
-							<Container>
-								<ProductInventory />
-							</Container>
-						)}
+						render={() => <ProductInventory />}
 					/>
 					<Route
 						exact
 						path="/seller/edit-product/:id"
-						render={() => (
-							<Container>
-								<EditProduct />
-							</Container>
-						)}
+						render={() => <EditProduct />}
 					/>
-					<Route
-						exact
-						path="/bag"
-						render={() => (
-							<Container>
-								<BagPage />
-							</Container>
-						)}
-					/>
+					<Route exact path="/bag" render={() => <BagPage />} />
 				</Switch>
 			</Router>
 		</>

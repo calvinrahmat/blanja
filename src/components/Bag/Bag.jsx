@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import BagList from './BagList';
 
 const Bag = () => {
-	const url = 'http://localhost:7123/bag';
+	const url = `${process.env.REACT_APP_API}/bag`;
 
 	//const [isChecked, setIsChecked] = useState(false);
 	const [products, setProduct] = useState([]);

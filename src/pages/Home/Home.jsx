@@ -3,7 +3,6 @@ import CarouselCategory from '../../components/Home/carousels/category/CarouselC
 import PopularItemCards from '../../components/Home/cards/popular-item/PopularItemCards';
 import NewItemCards from '../../components/Home/cards/new-item/NewItemCards';
 import './Home.scoped.scss';
-import { Container } from 'react-bootstrap';
 import NavbarHeader from '../../components/Navbar/NavbarHeader';
 
 const Home = () => {
