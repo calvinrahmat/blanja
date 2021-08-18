@@ -5,7 +5,6 @@ import './style/Tools.scoped.scss';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { searchSuccess } from './searchSlice';
-import { useSelector } from 'react-redux';
 
 const Tools = () => {
 	const dispatch = useDispatch();
@@ -14,8 +13,6 @@ const Tools = () => {
 		console.log(data);
 		dispatch(searchSuccess(data));
 	};
-	const { search } = useSelector((state) => state.search.search);
-	console.log(search);
 	return (
 		<div>
 			<Container className="tools">
