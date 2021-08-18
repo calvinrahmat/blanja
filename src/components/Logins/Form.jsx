@@ -33,14 +33,15 @@ const Form = () => {
 				console.log(res.data.data[0]);
 
 				console.log(msg);
-				if (msg === 'Cannot login: wrong password or email') {
-					dispatch(loginFail('invalid password or email'));
-				} else if (msg === 'Login Success') {
+				if (msg === 'Login Success') {
 					sessionStorage.setItem('token', token);
 					dispatch(loginSuccess());
 					dispatch(getEmail(email));
 					dispatch(getUserProfile(email));
 					history.push('/home');
+				} else {
+					dispatch(loginFail('invalid password or email'));
+					alert('wrong password or email');
 				}
 			});
 		} catch (error) {
@@ -56,7 +57,6 @@ const Form = () => {
 				className="input-group"
 				onSubmit={handleSubmit(onSubmit)}
 			>
-				{error && <Alert variant="danger">{error.message}</Alert>}
 				<input
 					type="email"
 					placeholder="Email"
@@ -73,8 +73,13 @@ const Form = () => {
 				<h3 className="error">{errors.pass?.message}</h3>
 				<p>Forgot password?</p>
 				<div className="btn-box">
-					<button className="btn btn-primary btn-login">Login</button>
-					{isLoading && <Spinner variant="primary" animation="border" />}
+					<button className="btn btn-primary btn-login">
+						{isLoading ? (
+							<Spinner variant="primary" animation="border" />
+						) : (
+							<span>Login</span>
+						)}
+					</button>
 				</div>
 			</form>
 		</div>
