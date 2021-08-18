@@ -15,7 +15,7 @@ const userSlice = createSlice({
 			state.error = payload;
 		},
 		searchClear: (state) => {
-			state.clear = '';
+			state.search = '';
 		},
 	},
 });

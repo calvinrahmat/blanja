@@ -4,7 +4,7 @@ import './Form.scoped.scss';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import axios from 'axios';
-import { loginPending, loginSuccess, loginFail } from './loginSlice';
+import { loginPending, loginSuccess, loginFail, getEmail } from './loginSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Spinner, Alert } from 'react-bootstrap';
 import { useHistory } from 'react-router';
@@ -29,7 +29,7 @@ const Form = () => {
 	const onSubmit = (data) => {
 		try {
 			axios.post(url, data).then((res) => {
-				const { msg, token } = res.data.data[0];
+				const { msg, token, email } = res.data.data[0];
 				console.log(res.data.data[0]);
 
 				console.log(msg);
@@ -38,7 +38,8 @@ const Form = () => {
 				} else if (msg === 'Login Success') {
 					sessionStorage.setItem('token', token);
 					dispatch(loginSuccess());
-					dispatch(getUserProfile());
+					dispatch(getEmail(email));
+					dispatch(getUserProfile(email));
 					history.push('/home');
 				}
 			});

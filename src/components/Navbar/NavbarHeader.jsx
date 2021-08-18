@@ -6,9 +6,12 @@ import MenusAfterLogin from './MenusAfterLogin';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import MenusBeforeLogin from './MenusBeforeLogin';
+import { useLocation } from 'react-router';
 
 const NavbarHeader = () => {
+	const location = useLocation();
 	const { isAuth } = useSelector((state) => state.login);
+
 	return (
 		<div className="navbar">
 			<Navbar expand="lg">
@@ -43,7 +46,7 @@ const NavbarHeader = () => {
 
 						<Navbar.Collapse className="basic-navbar" id="basic-navbar-nav">
 							<Container className="navbar-inside">
-								<Tools />
+								{location.pathname === '/home' ? <Tools /> : <span></span>}
 								{isAuth ? <MenusAfterLogin /> : <MenusBeforeLogin />}
 							</Container>
 						</Navbar.Collapse>

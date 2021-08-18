@@ -27,7 +27,6 @@ const Product = () => {
 				return value.push(val);
 			});
 			setProduct(value[0]);
-			console.log(value);
 		});
 	}, [url, id]);
 
@@ -55,7 +54,7 @@ const Product = () => {
 		<>
 			<div className="container-lg wrapper-product">
 				<div className="container-lg product-container">
-					<div className="container left-	-product">
+					<div className="container left-container-product">
 						<div className="box-product">
 							<figure className="box crop-to-fit-product">
 								<img src={products.img} alt="" />
@@ -70,6 +69,7 @@ const Product = () => {
 						<span className="fa fa-star checked" />
 						<span className="fa fa-star checked" />
 						<span className="fa fa-star checked" />
+
 						<div className="price-container">
 							<h2 className="price">Price</h2>
 							<p className="price-product">Rp{products.harga}</p>

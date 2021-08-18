@@ -7,7 +7,7 @@ const Register = () => {
 	return (
 		<>
 			<div className="form-box">
-				<Link to href="/home">
+				<Link to="/home">
 					<img
 						src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627004541/Front%20End/logo_blanja_jtyc2a.svg"
 						alt="logo blanja"

@@ -6,23 +6,38 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 const NewItemCards = () => {
+	const dispatch = useDispatch();
 	const { search } = useSelector((state) => state.search.search);
 	const url = `${process.env.REACT_APP_API}/products/search/nama`;
+	const urlGetAll = `${process.env.REACT_APP_API}/products`;
 	const [products, setProduct] = useState([]);
 
 	useEffect(() => {
-		axios.get(url, { params: { p: search } }).then((res) => {
-			const { data } = res.data;
-			const value = [];
+		if (search.length > 1) {
+			axios.get(url, { params: { p: search } }).then((res) => {
+				const { data } = res.data;
+				const value = [];
 
-			data.map((val) => {
-				return value.push(val);
+				data.map((val) => {
+					return value.push(val);
+				});
+				if (value) setProduct(value);
 			});
-			if (value) setProduct(value);
-		});
-	}, [url, search]);
+		} else {
+			axios.get(urlGetAll).then((res) => {
+				const { data } = res.data;
+				const value = [];
+
+				data.map((val) => {
+					return value.push(val);
+				});
+				if (value) setProduct(value);
+			});
+		}
+	}, [url, search, urlGetAll, dispatch]);
 
 	const renderCard = (card) => {
 		return (

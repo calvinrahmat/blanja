@@ -5,6 +5,7 @@ import './BagList.scoped.scss';
 const BagList = (props) => {
 	const products = props.products;
 	const [count, setCount] = useState(1);
+
 	const addItem = () => {
 		setCount((prevCount) => prevCount + 1);
 	};
@@ -41,19 +42,21 @@ const BagList = (props) => {
 						<div className="button-remove">
 							<button
 								className="material-icons remove-icon"
-								onClick={(e) => reduceItem(e)}
+								onClick={(e) => reduceItem(e, item.id)}
+								id={item.id}
 							>
 								remove
 							</button>
 						</div>
-						<h1>{count}</h1>
+						<h1 defaultValue={item.qty}>{count}</h1>
 						<div className="button-remove">
-							<div
+							<button
 								className="material-icons add-icon"
-								onClick={(e) => addItem(e)}
+								onClick={(e) => addItem(e, item.id)}
+								id={item.id}
 							>
 								add
-							</div>
+							</button>
 						</div>
 					</div>
 					<div className="price">
