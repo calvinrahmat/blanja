@@ -5,13 +5,17 @@ import './style/Tools.scoped.scss';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { searchSuccess } from './searchSlice';
+import { useHistory } from 'react-router';
 
 const Tools = () => {
+	const history = useHistory();
 	const dispatch = useDispatch();
 	const { register, handleSubmit } = useForm();
 	const onSubmit = (data) => {
 		console.log(data);
 		dispatch(searchSuccess(data));
+		const query = new URLSearchParams(data);
+		history.push(`/search?${query}`);
 	};
 	return (
 		<div>
@@ -26,7 +30,7 @@ const Tools = () => {
 							placeholder="Search"
 							className="search"
 							aria-label="Search"
-							{...register('search')}
+							{...register('name')}
 						/>
 
 						<button className="btn" variant="primary">

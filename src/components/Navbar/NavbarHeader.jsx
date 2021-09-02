@@ -46,8 +46,7 @@ const NavbarHeader = () => {
 
 						<Navbar.Collapse className="basic-navbar" id="basic-navbar-nav">
 							<Container className="navbar-inside">
-								{location.pathname === '/home' ? <Tools /> : <span></span>}
-								{location.pathname === '/' ? <Tools /> : <span></span>}
+								<Tools />
 								{isAuth ? <MenusAfterLogin /> : <MenusBeforeLogin />}
 							</Container>
 						</Navbar.Collapse>

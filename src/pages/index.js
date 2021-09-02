@@ -5,7 +5,7 @@ import AddProduct from './AddProduct/AddProduct';
 import ProductPreview from './ProductPreview/ProductPreview';
 import EditProduct from './EditProduct/EditProduct';
 import Register from './Register/register';
-import searchPage from './SearchPage/searchPage';
+import SearchPage from './SearchPage/SearchPage';
 
 export {
 	Login,
@@ -15,5 +15,5 @@ export {
 	ProductPreview,
 	EditProduct,
 	Register,
-	searchPage,
+	SearchPage,
 };

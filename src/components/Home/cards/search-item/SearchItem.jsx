@@ -1,6 +1,6 @@
 import { Card, Col, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import './NewItemCards.scoped.scss';
+import './SearchItemCards.scoped.scss';
 import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -8,15 +8,16 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 
-const NewItemCards = () => {
+const SearchItem = () => {
 	const dispatch = useDispatch();
-	const { search } = useSelector((state) => state.search.search);
+	const search = useSelector((state) => state.search.search);
+	console.log(search.name);
 	const url = `${process.env.REACT_APP_API}/products/search/nama`;
 	const urlGetAll = `${process.env.REACT_APP_API}/products`;
 	const [products, setProduct] = useState([]);
 
 	useEffect(() => {
-		axios.get(urlGetAll).then((res) => {
+		axios.get(url, { params: { p: search.name } }).then((res) => {
 			const { data } = res.data;
 			const value = [];
 
@@ -67,13 +68,10 @@ const NewItemCards = () => {
 	return (
 		<>
 			<Container className="products">
-				<h1>New</h1>
-
-				<h2>You’ve never seen it before!</h2>
 				<div className="grid">{products.map(renderCard)}</div>
 			</Container>
 		</>
 	);
 };
 
-export default NewItemCards;
+export default SearchItem;

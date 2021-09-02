@@ -9,6 +9,7 @@ import {
 	ProductPreview,
 	EditProduct,
 	Register,
+	SearchPage,
 } from './pages';
 import ProductInventory from './pages/ProductInventory/ProductInventory';
 
@@ -20,7 +21,7 @@ function App() {
 					<Route exact path="/" render={() => <Home />} />
 					<Route exact path="/home" render={() => <Home />} />
 					<Route exact path="/login" render={() => <Login />} />
-					<Route exact path="/search/nama:nama" render={() => <searchPage />} />
+					<Route exact path="/search" render={() => <SearchPage />} />
 					<Route
 						exact
 						path="/seller/add-product"
