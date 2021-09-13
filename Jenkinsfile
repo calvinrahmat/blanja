@@ -36,12 +36,5 @@ pipeline {
                 }
             }
         }
-         stage('Deploy') {
-            steps {
-                script{
-                    builderImage.push()
-                }
-            }
-        }
     }
 }
