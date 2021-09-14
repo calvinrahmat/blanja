@@ -4,7 +4,7 @@ def builderImage
 pipeline {
     agent any
         parameters{
-            booleanParam(name:"BuildImage", defaultValue:"false",description:"" )
+            booleanParam(name:"BUILDIMAGE", defaultValue:"false",description:"" )
             booleanParam(name:"TestingImage", defaultValue:"false",description:"" )
             booleanParam(name:"PushImage", defaultValue:"false",description:"" )
         }
@@ -12,7 +12,7 @@ pipeline {
             stage('Build Image') {
                 when {
                     expression {
-                        params.BuildImage
+                        params.BUILDIMAGE
                     }                    
                 }
                 steps {
@@ -21,32 +21,32 @@ pipeline {
                     }
                 }
             }
-            stage('Testing image') {
-                steps {
-                when {
-                    expression{
-                        params.TestingImage
-                    }                    
-                }   
-                    script {
-                        builderImage.inside {
-                            sh 'echo test image success'
-                        }
-                    }
-                }
-            }
-            stage('Push image') {
-                steps {
-                when {
-                    expression{
-                        params.PushImage
-                    }                    
-                }
-                    script {
-                        builderImage.push()
-                    }
-                }
-            }
+            // stage('Testing image') {
+            //     steps {
+            //     when {
+            //         expression{
+            //             params.TestingImage
+            //         }                    
+            //     }   
+            //         script {
+            //             builderImage.inside {
+            //                 sh 'echo test image success'
+            //             }
+            //         }
+            //     }
+            // }
+            // stage('Push image') {
+            //     steps {
+            //     when {
+            //         expression{
+            //             params.PushImage
+            //         }                    
+            //     }
+            //         script {
+            //             builderImage.push()
+            //         }
+            //     }
+            // }
             stage('Deploy') {
                 steps {
                     script{
