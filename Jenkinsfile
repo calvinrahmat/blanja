@@ -4,7 +4,7 @@ def builderImage
 pipeline {
     agent any
         parameters{
-            booleanParams(name:"RUNBUILD", defaultValue:"false",description:"" )
+            booleanParam(name:"RUNBUILD", defaultValue:"false",description:"" )
         }
         stages{
             stage('Build Image') {
