@@ -4,13 +4,15 @@ def builderImage
 pipeline {
     agent any
         parameters{
-            booleanParam(name:"RUNBUILD", defaultValue:"false",description:"" )
+            booleanParam(name:"BuildImage", defaultValue:"false",description:"" )
+            booleanParam(name:"TestingImage", defaultValue:"false",description:"" )
+            booleanParam(name:"PushImage", defaultValue:"false",description:"" )
         }
         stages{
             stage('Build Image') {
-                when{
-                    expression{
-                        params.RUNBUILD
+                when {
+                    expression {
+                        params.BuildImage
                     }                    
                 }
                 steps {
@@ -21,12 +23,12 @@ pipeline {
             }
             stage('Testing image') {
                 steps {
-                when{
+                when {
                     expression{
-                        params.RUNBUILD
+                        params.TestingImage
                     }                    
                 }   
-                    script{
+                    script {
                         builderImage.inside {
                             sh 'echo test image success'
                         }
@@ -35,12 +37,12 @@ pipeline {
             }
             stage('Push image') {
                 steps {
-                when{
+                when {
                     expression{
-                        params.RUNBUILD
+                        params.PushImage
                     }                    
                 }
-                    script{
+                    script {
                         builderImage.push()
                     }
                 }
