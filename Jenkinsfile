@@ -68,26 +68,7 @@ pipeline {
                     }
                 }
             }
-            stage('Testing Frontend') {
-            steps {
-                script{
-                    sshPublisher(
-                        publishers: [
-                            sshPublisherDesc(
-                                configName: 'develop2',
-                                verbose: false,
-                                transfers: [
-                                    sshTransfer(                        
-                                        execCommand: "curl http://blanja.site/",
-                                        execTimeout: 120000,
-                                    )
-                                ]
-                            )
-                        ]
-                    )
-                }
-            }
-        }
+            
         }
            
     }
