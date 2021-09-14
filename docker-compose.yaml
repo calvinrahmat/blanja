@@ -4,14 +4,14 @@ services:
     tty: true
     image: calvinrahmat/front_blanja
     networks:
-      - webnet
+      - backend_webnet
   webserver:
     image: calvinrahmat/nginx_blanja
     ports:
       - '80:80'
     networks:
-      - webnet
+      - backend_webnet
 networks:
-  webnet:
+  backend_webnet:
 volumes:
   database-data:
