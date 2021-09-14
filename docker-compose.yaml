@@ -5,12 +5,6 @@ services:
     image: calvinrahmat/front_blanja
     networks:
       - backend_webnet
-  webserver:
-    image: calvinrahmat/nginx_blanja
-    ports:
-      - '80:80'
-    networks:
-      - backend_webnet
 networks:
   backend_webnet:
 volumes:
