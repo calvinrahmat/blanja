@@ -3,24 +3,24 @@ def builderImage
 
 pipeline {
     agent any
-        // parameters{
-        //     booleanParam(name:"BUILDIMAGE", defaultValue:"false",description:"" )
-        //     booleanParam(name:"TestingImage", defaultValue:"false",description:"" )
-        //     booleanParam(name:"PushImage", defaultValue:"false",description:"" )
-        // }
+        parameters{
+            booleanParam(name:"BUILDIMAGE", defaultValue:"false",description:"" )
+            booleanParam(name:"TestingImage", defaultValue:"false",description:"" )
+            booleanParam(name:"PushImage", defaultValue:"false",description:"" )
+        }
         stages{
-            // stage('Build Image') {
-            //     when {
-            //         expression {
-            //             params.BUILDIMAGE
-            //         }                    
-            //     }
-            //     steps {
-            //         script {
-            //             builderImage = docker.build("${imageName}")
-            //         }
-            //     }
-            // }
+            stage('Build Image') {
+                when {
+                    expression {
+                        params.BUILDIMAGE
+                    }                    
+                }
+                steps {
+                    script {
+                        builderImage = docker.build("${imageName}")
+                    }
+                }
+            }
             // stage('Testing image') {
             //     steps {
             //     when {
