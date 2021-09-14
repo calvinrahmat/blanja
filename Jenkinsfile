@@ -27,12 +27,12 @@ pipeline {
                     sshPublisher(
                         publishers: [
                             sshPublisherDesc(
-                                configName: 'develop',
+                                configName: 'develop2',
                                 verbose: false,
                                 transfers: [
                                     sshTransfer(
                                         sourceFiles: "docker-compose.yaml; .env",
-                                        execCommand: "cd /home/ubuntu/backend; docker-compose down; docker-compose --compatibility up -d",
+                                        execCommand: "cd /home/ubuntu/front; docker-compose down; docker-compose up -d",
                                         execTimeout: 120000,
                                     )
                                 ]
