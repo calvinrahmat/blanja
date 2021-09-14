@@ -48,7 +48,6 @@ pipeline {
                     }
                 }
             }
-        }
             stage('Testing Frontend') {
             steps {
                 script{
@@ -69,4 +68,6 @@ pipeline {
                 }
             }
         }
+        }
+           
     }
