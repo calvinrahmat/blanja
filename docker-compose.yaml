@@ -1,6 +1,7 @@
 version: '3.3' # optional since v1.27.0
 services:
   front:
+    restart: always
     tty: true
     image: calvinrahmat/front_blanja
     networks:
