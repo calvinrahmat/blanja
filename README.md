@@ -52,11 +52,15 @@ Blanja.site is the E-Commerce prototype that sells fashion products. Build with 
    ```sh
    git clone https://github.com/calvinrahmat/blanja.git
    ```
-2. Install NPM packages
+1. Clone the repo for the front-end
+   ```sh
+   git clone https://github.com/calvinrahmat/blanja.git
+   ```
+1. Install NPM packages
    ```sh
    npm install
    ```
-3. Enter your env for making request to the backend API
+1. Enter your env for making request to the backend API
 
 ## Environmental Variables
 
