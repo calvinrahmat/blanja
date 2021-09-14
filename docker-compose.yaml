@@ -2,16 +2,11 @@ version: '3.3' # optional since v1.27.0
 services:
   front:
     tty: true
-    depends_on:
-      - api
     image: calvinrahmat/front_blanja
     networks:
       - webnet
   webserver:
     image: calvinrahmat/nginx_blanja
-    depends_on:
-      - api
-      - front
     ports:
       - '80:80'
     networks:
