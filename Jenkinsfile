@@ -21,5 +21,26 @@ pipeline {
                 }
             }
         }
+        stage('Deploy') {
+            steps {
+                script{
+                    sshPublisher(
+                        publishers: [
+                            sshPublisherDesc(
+                                configName: 'develop',
+                                verbose: false,
+                                transfers: [
+                                    sshTransfer(
+                                        sourceFiles: "docker-compose.yaml; .env",
+                                        execCommand: "cd /home/ubuntu/backend; docker-compose down; docker-compose --compatibility up -d",
+                                        execTimeout: 120000,
+                                    )
+                                ]
+                            )
+                        ]
+                    )
+                }
+            }
+        }
     }
 }
