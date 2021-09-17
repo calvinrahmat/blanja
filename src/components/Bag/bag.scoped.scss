@@ -24,6 +24,12 @@
 			font-size: 34px;
 		}
 		.left-container-bag {
+			width: 100%;
+			.title {
+				margin-top: 50px;
+				font-weight: bold;
+				font-size: 34px;
+			}
 			.select-container {
 				display: flex;
 
@@ -71,16 +77,12 @@
 					display: flex;
 					height: 70px;
 					margin-right: 1em;
-					margin-top: 40px;
 
-					a {
-						text-decoration: none;
-						p {
-							top: 23px;
-							position: relative;
-							color: #db3022;
-							font-weight: 500;
-						}
+					p {
+						top: 23px;
+						position: relative;
+						color: #db3022;
+						font-weight: 500;
 					}
 				}
 			}
@@ -379,10 +381,13 @@
 			}
 		}
 		.right-container-bag {
+			width: 40%;
 			.shopping-summary {
+				margin-left: auto;
+				margin-top: 130px;
 				padding: 24px;
-				top: 75px;
-				position: relative;
+				top: 100px;
+				position: fixed;
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
@@ -408,11 +413,6 @@
 					h1 {
 						font-size: 18px;
 					}
-				}
-				.buy-button {
-					border-radius: 25px;
-					background: #db3022;
-					border: none;
 				}
 			}
 		}

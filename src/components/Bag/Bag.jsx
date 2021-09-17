@@ -2,7 +2,9 @@ import './bag.scoped.scss';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import BagList from './BagList';
+import BagList from './BagList.jsx';
+import NumberFormat from 'react-number-format';
+import { motion } from 'framer-motion';
 
 const Bag = () => {
 	const url = `${process.env.REACT_APP_API}/bag`;
@@ -21,7 +23,10 @@ const Bag = () => {
 		});
 	}, [url]);
 	const totalProducts = products.length;
-
+	const totalPrice = products.reduce(function (acc, curr) {
+		return acc + curr.total;
+	}, 0);
+	console.log(totalPrice);
 	const { register } = useForm();
 
 	return (
@@ -29,7 +34,9 @@ const Bag = () => {
 			<div className="big-container-bag">
 				<div className="bag-container">
 					<div className="container left-container-bag">
-						<div className="h1">My bag</div>
+						<div className="title">
+							<p>My Bag</p>
+						</div>
 						<div className="select-container">
 							<div className="wrap-checkbox-desc">
 								<div className="check-box">
@@ -62,12 +69,28 @@ const Bag = () => {
 									<p>Total price</p>
 								</div>
 								<div className="price">
-									<h1>grandTotal</h1>
+									<h1>
+										<NumberFormat
+											value={totalPrice}
+											displayType={'text'}
+											thousandSeparator={true}
+											prefix={'Rp'}
+										/>
+									</h1>
 								</div>
 							</div>
-							<button className="btn btn-primary justify-content-center buy-button">
+							<motion.button
+								className="btn btn-primary justify-content-center buy-button"
+								whileHover={{ scale: 1.1 }}
+								whileTap={{ scale: 0.9 }}
+								style={{
+									borderRadius: '25px',
+									background: '#db3022',
+									border: 'none',
+								}}
+							>
 								Buy
-							</button>
+							</motion.button>
 						</div>
 					</div>
 				</div>

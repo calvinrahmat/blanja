@@ -5,7 +5,6 @@ h2 {
 	font-size: 20px;
 }
 .wrapper-product {
-	margin-top: 110px;
 	display: flex;
 	flex-direction: column;
 	width: 1140px;
@@ -13,7 +12,7 @@ h2 {
 	.product-container {
 		width: 100%;
 		display: flex;
-
+		margin-top: 50px;
 		.left-container-product {
 			.box {
 				width: 500px;
@@ -93,7 +92,6 @@ h2 {
 				.count-btn-product {
 					margin-top: 5em;
 					position: absolute;
-					background: lightcoral;
 					.btn-reduce {
 						background: #d4d4d4;
 						border: none;
@@ -198,7 +196,23 @@ p {
 	}
 }
 
+.wrapper-buttn {
+	display: flex;
+	align-content: flex-end;
+}
 #countBtnProduct {
 	margin-top: 5em;
 	display: flex;
+	width: 200px;
+	display: flex;
+	align-items: center;
+}
+
+.routing {
+	margin-top: 120px;
+	color: #9b9b9b;
+	p {
+		font-size: 18px;
+		font-weight: 500;
+	}
 }

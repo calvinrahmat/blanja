@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import './index.scss';
+import './app.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import {
 	Login,
@@ -10,6 +10,7 @@ import {
 	EditProduct,
 	Register,
 	SearchPage,
+	ProfilePage,
 } from './pages';
 import ProductInventory from './pages/ProductInventory/ProductInventory';
 
@@ -42,6 +43,7 @@ function App() {
 						render={() => <EditProduct />}
 					/>
 					<Route exact path="/bag" render={() => <BagPage />} />
+					<Route exact path="/profile" render={() => <ProfilePage />} />
 				</Switch>
 			</Router>
 		</>

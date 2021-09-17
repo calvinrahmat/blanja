@@ -6,6 +6,7 @@ import ProductPreview from './ProductPreview/ProductPreview';
 import EditProduct from './EditProduct/EditProduct';
 import Register from './Register/register';
 import SearchPage from './SearchPage/SearchPage';
+import ProfilePage from './Profile/Profile';
 
 export {
 	Login,
@@ -16,4 +17,5 @@ export {
 	EditProduct,
 	Register,
 	SearchPage,
+	ProfilePage,
 };

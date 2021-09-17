@@ -1,9 +1,10 @@
-.wrapper {
-	padding-top: 50px;
+.bigWrapper {
 	height: 100%;
-	width: 100%;
-	background-color: #f9f9f9;
-	margin: 0;
-	display: flex;
-	justify-content: center;
+	.wrapper {
+		padding-top: 50px;
+		background-color: #f9f9f9;
+		margin: 0;
+		display: flex;
+		justify-content: space-around;
+	}
 }

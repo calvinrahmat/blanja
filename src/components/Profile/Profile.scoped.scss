@@ -1,0 +1,100 @@
+h1 {
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 24px;
+	color: #222222;
+}
+p {
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 24px;
+	/* identical to box height, or 171% */
+
+	color: #9b9b9b;
+}
+
+.title {
+	padding-top: 30px;
+	padding-left: 30px;
+}
+
+.wrapper {
+	border: 1px solid #9b9b9b;
+	box-sizing: border-box;
+	border-radius: 4px;
+	width: 70%;
+	background-color: white;
+	margin-top: 150px;
+	margin-left: 3em;
+
+	height: 70vh;
+	.container {
+		display: flex;
+		flex-direction: row;
+
+		.left-container {
+			width: 65%;
+			padding-left: 20px;
+			padding-top: 20px;
+			display: flex;
+			.label {
+				padding-top: 20px;
+				p {
+					font-weight: 500;
+					font-size: 14px;
+					margin-bottom: 50px;
+					color: #9b9b9b;
+					text-align: right;
+					margin-right: 40px;
+				}
+			}
+			.input {
+				.box-input {
+					margin-bottom: 30px;
+
+					input {
+						width: 348px;
+						height: 48px;
+						border: 1px solid #9b9b9b;
+						box-sizing: border-box;
+						filter: drop-shadow(0px 1px 8px rgba(0, 0, 0, 0.05));
+						border-radius: 4px;
+					}
+				}
+			}
+			.gender-wrapper {
+				display: flex;
+				align-items: center;
+				width: 200px;
+				justify-content: space-between;
+				margin-bottom: 40px;
+			}
+		}
+		.right-container {
+			width: 35%;
+			padding-top: 20px;
+		}
+	}
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	/* display: none; <- Crashes Chrome on hover */
+	-webkit-appearance: none;
+	margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type='number'] {
+	-moz-appearance: textfield; /* Firefox */
+}
+
+.button-save {
+	background: #db3022;
+	border-radius: 25px;
+	width: 100px;
+	height: 36px;
+	color: white;
+	border: none;
+	margin-left: 170px;
+}

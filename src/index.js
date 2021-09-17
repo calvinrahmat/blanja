@@ -1,6 +1,6 @@
 import React from 'react';
+import './index.css';
 import ReactDOM from 'react-dom';
-import './index.scss';
 import 'bootstrap/dist/css/bootstrap.css';
 import App from './app.jsx';
 import { Provider } from 'react-redux';

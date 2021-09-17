@@ -1,5 +1,5 @@
 import React from 'react';
-import './MyProduct.scope.scss';
+import './MyProduct.scoped.scss';
 import { FaSearch } from 'react-icons/fa';
 import AllItems from './AllItems/AllItems';
 

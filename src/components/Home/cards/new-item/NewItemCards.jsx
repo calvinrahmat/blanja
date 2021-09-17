@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import NumberFormat from 'react-number-format';
 
 const NewItemCards = () => {
 	const dispatch = useDispatch();
@@ -55,7 +56,12 @@ const NewItemCards = () => {
 								fontSize: '18px',
 							}}
 						>
-							Rp {card.harga}
+							<NumberFormat
+								value={card.harga}
+								displayType={'text'}
+								thousandSeparator={true}
+								prefix={'Rp'}
+							/>
 						</Card.Title>
 						<Card.Title className="seller"> {card.seller}</Card.Title>
 					</Card.Body>

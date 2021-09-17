@@ -1,4 +1,4 @@
-import './SideBar.scope.scss';
+import './SideBar.scoped.scss';
 
 const SideBar = () => {
 	return (

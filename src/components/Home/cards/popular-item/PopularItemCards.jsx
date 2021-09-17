@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import NumberFormat from 'react-number-format';
 
 const PopularItemCards = () => {
 	const url = `${process.env.REACT_APP_API}/products`;
@@ -44,7 +45,14 @@ const PopularItemCards = () => {
 						>
 							{card.nama}
 						</Card.Title>
-						<Card.Title className="price">Rp {card.harga}</Card.Title>
+						<Card.Title className="price">
+							<NumberFormat
+								value={card.harga}
+								displayType={'text'}
+								thousandSeparator={true}
+								prefix={'Rp'}
+							/>
+						</Card.Title>
 						<Card.Title className="seller"> {card.seller}</Card.Title>
 					</Card.Body>
 				</Card>
