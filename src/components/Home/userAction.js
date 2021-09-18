@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { getUserFail, getUserSuccess, getUserPending } from './userSlice';
 
-const urlUser = `${process.env.REACT_APP_API}/user/calvin.rahmat@yahoo.co.id`;
-export const getUserProfile = () => async (dispatch) => {
+export const getUserProfile = (email) => async (dispatch) => {
 	try {
+		const urlUser = `${process.env.REACT_APP_API}/user/email`;
 		dispatch(getUserPending());
 		axios.get(urlUser).then((res) => {
 			console.log(res.data);

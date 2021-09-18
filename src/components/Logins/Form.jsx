@@ -1,4 +1,3 @@
-import React from 'react';
 import { useForm } from 'react-hook-form';
 import './Form.scoped.scss';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -8,7 +7,8 @@ import { loginPending, loginSuccess, loginFail, getEmail } from './loginSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Spinner, Alert } from 'react-bootstrap';
 import { useHistory } from 'react-router';
-import { getUserProfile } from '../Home/userAction';
+import { useEffect, useState } from 'react';
+import { getProfile } from './loginSlice';
 
 const schema = yup.object().shape({
 	email: yup.string().email('please input valid email').required(),
@@ -20,6 +20,7 @@ const Form = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const { isLoading, error } = useSelector((state) => state.login);
+	const [user, setUser] = useState('');
 	const {
 		register,
 		handleSubmit,
@@ -37,7 +38,6 @@ const Form = () => {
 					sessionStorage.setItem('token', token);
 					dispatch(loginSuccess());
 					dispatch(getEmail(email));
-					dispatch(getUserProfile(email));
 					history.push('/home');
 				} else {
 					dispatch(loginFail('invalid password or email'));
@@ -50,6 +50,17 @@ const Form = () => {
 		}
 		dispatch(loginPending());
 	};
+
+	const { email } = useSelector((state) => state.login);
+	useEffect(() => {
+		const urlGetUser = `${process.env.REACT_APP_API}/user/${email}`;
+
+		axios.get(urlGetUser).then((res) => {
+			setUser(res.data);
+			dispatch(getProfile(user));
+		});
+	}, [dispatch, email, user]);
+
 	return (
 		<div>
 			<form

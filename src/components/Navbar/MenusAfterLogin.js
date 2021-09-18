@@ -11,6 +11,10 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 const MenusAfterLogin = () => {
 	const [user, setUser] = useState('');
+	const { profile } = useSelector((state) => state.login);
+
+	const image = profile.data[0].img;
+
 	const { email } = useSelector((state) => state.login);
 	const dispatch = useDispatch();
 	const urlUser = `${process.env.REACT_APP_API}/user/${email}`;
@@ -27,7 +31,6 @@ const MenusAfterLogin = () => {
 			if (value) setUser(value);
 		});
 	}, [urlUser]);
-
 	return (
 		<div>
 			<Container>
@@ -51,7 +54,7 @@ const MenusAfterLogin = () => {
 						<Nav.Link className="photo-box">
 							<Dropdown.Toggle variant="none">
 								<img
-									src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627339637/Front%20End/profile_yzozml.jpg"
+									src={image ? image : profile.data[0].data.img}
 									alt="profile"
 								/>
 							</Dropdown.Toggle>
@@ -60,12 +63,18 @@ const MenusAfterLogin = () => {
 							<Dropdown.Item onClick={() => dispatch(logout())}>
 								Logout
 							</Dropdown.Item>
-							<Dropdown.Item onClick={() => dispatch(logout())}>
-								{user ? (
-									<span>{user[0].name}'s Profile</span>
-								) : (
-									<span>loading</span>
-								)}
+
+							<Dropdown.Item>
+								<Link
+									to="/profile"
+									style={{ textDecoration: 'none', color: 'black' }}
+								>
+									{user ? (
+										<span>{user[0].name}'s Profile</span>
+									) : (
+										<span>loading</span>
+									)}
+								</Link>
 							</Dropdown.Item>
 						</Dropdown.Menu>
 					</Dropdown>

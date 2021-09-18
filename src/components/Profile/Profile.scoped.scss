@@ -17,6 +17,10 @@ p {
 .title {
 	padding-top: 30px;
 	padding-left: 30px;
+	.title-line {
+		border: 1px solid #d4d4d4;
+		width: 97%;
+	}
 }
 
 .wrapper {
@@ -39,7 +43,7 @@ p {
 			padding-top: 20px;
 			display: flex;
 			.label {
-				padding-top: 20px;
+				padding-top: 33px;
 				p {
 					font-weight: 500;
 					font-size: 14px;
@@ -50,6 +54,7 @@ p {
 				}
 			}
 			.input {
+				margin-top: 20px;
 				.box-input {
 					margin-bottom: 30px;
 
@@ -60,6 +65,7 @@ p {
 						box-sizing: border-box;
 						filter: drop-shadow(0px 1px 8px rgba(0, 0, 0, 0.05));
 						border-radius: 4px;
+						padding-left: 10px;
 					}
 				}
 			}
@@ -68,12 +74,52 @@ p {
 				align-items: center;
 				width: 200px;
 				justify-content: space-between;
-				margin-bottom: 40px;
+				margin-bottom: 46px;
 			}
+		}
+		.middle-line {
+			border: 1px solid #d4d4d4;
+			height: 19vh;
+			margin-top: 37px;
 		}
 		.right-container {
 			width: 35%;
-			padding-top: 20px;
+			padding-top: 10px;
+
+			.photo-container {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-direction: column;
+				margin-top: 27px;
+
+				.photo-box {
+					img {
+						width: 160px;
+						height: 160px;
+						border-radius: 50%;
+						object-fit: cover;
+					}
+				}
+				.button-select {
+					margin-top: 30px;
+				}
+
+				label {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					border: 1px solid #9b9b9b;
+					box-sizing: border-box;
+					border-radius: 24px;
+					background-color: white;
+					width: 140px;
+					height: 36px;
+					font-weight: 500;
+					font-size: 14px;
+					color: #9b9b9b;
+				}
+			}
 		}
 	}
 }
@@ -97,4 +143,8 @@ input[type='number'] {
 	color: white;
 	border: none;
 	margin-left: 170px;
+}
+
+label {
+	padding-left: 5px;
 }

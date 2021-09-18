@@ -3,7 +3,7 @@ services:
   front:
     restart: always
     tty: true
-    image: calvinrahmat/front_blanja
+    image: calvinrahmat/front_blanja2
     networks:
       - backend_webnet
 networks:
