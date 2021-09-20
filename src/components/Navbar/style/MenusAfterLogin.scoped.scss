@@ -5,21 +5,41 @@
 	margin-left: auto;
 	width: 100%;
 
+	.menu-icon-cart {
+		.bubble {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: absolute;
+			margin-top: -3px;
+			width: 18px;
+			height: 18px;
+			border: 1px;
+			border-radius: 50%;
+			background-color: rgb(239, 20, 74);
+
+			font-size: 11px;
+			color: white;
+			margin-left: 10px;
+		}
+		margin-top: auto;
+		margin-bottom: auto;
+		font-size: 20px;
+		color: #9b9b9b;
+	}
 	.menu-icon {
 		margin-top: auto;
 		margin-bottom: auto;
 		font-size: 20px;
 		color: #9b9b9b;
 	}
+
 	.photo-box {
-		height: 30px;
-		width: 30px;
-		display: flex;
-		align-items: center;
-		border-radius: 50%;
 		img {
 			width: 40px;
-			clip-path: circle();
+			height: 40px;
+			border-radius: 50%;
+			object-fit: cover;
 		}
 	}
 }

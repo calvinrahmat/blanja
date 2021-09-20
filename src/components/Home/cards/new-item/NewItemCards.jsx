@@ -59,7 +59,8 @@ const NewItemCards = () => {
 							<NumberFormat
 								value={card.harga}
 								displayType={'text'}
-								thousandSeparator={true}
+								thousandSeparator={'.'}
+								decimalSeparator={','}
 								prefix={'Rp'}
 							/>
 						</Card.Title>

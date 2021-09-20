@@ -1,6 +1,13 @@
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Redirect,
+} from 'react-router-dom';
 import './app.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import { useSelector } from 'react-redux';
+
 import {
 	Login,
 	Home,
@@ -12,9 +19,12 @@ import {
 	SearchPage,
 	ProfilePage,
 } from './pages';
+
 import ProductInventory from './pages/ProductInventory/ProductInventory';
 
 function App() {
+	const { isAuth } = useSelector((state) => state.login);
+
 	return (
 		<>
 			<Router>
@@ -42,8 +52,16 @@ function App() {
 						path="/seller/edit-product/:id"
 						render={() => <EditProduct />}
 					/>
-					<Route exact path="/bag" render={() => <BagPage />} />
-					<Route exact path="/profile" render={() => <ProfilePage />} />
+					<Route
+						exact
+						path="/bag"
+						render={() => (isAuth ? <BagPage /> : <Redirect to="/login" />)}
+					/>
+					<Route
+						exact
+						path="/profile"
+						render={() => (isAuth ? <ProfilePage /> : <Redirect to="/login" />)}
+					/>
 				</Switch>
 			</Router>
 		</>

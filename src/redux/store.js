@@ -13,10 +13,12 @@ import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
 import userReducer from '../components/Home/userSlice';
 import searchReducer from '../components/Navbar/searchSlice';
+import bagReducer from '../components/Bag/BagSlice';
 const reducers = combineReducers({
 	login: loginReducer,
 	user: userReducer,
 	search: searchReducer,
+	bag: bagReducer,
 });
 
 const persistConfig = {

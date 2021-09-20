@@ -51,16 +51,6 @@ const Form = () => {
 		dispatch(loginPending());
 	};
 
-	const { email } = useSelector((state) => state.login);
-	useEffect(() => {
-		const urlGetUser = `${process.env.REACT_APP_API}/user/${email}`;
-
-		axios.get(urlGetUser).then((res) => {
-			setUser(res.data);
-			dispatch(getProfile(user));
-		});
-	}, [dispatch, email, user]);
-
 	return (
 		<div>
 			<form

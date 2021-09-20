@@ -8,9 +8,11 @@ import NumberFormat from 'react-number-format';
 import ModalAdd from '../Modal/ModalAdd';
 import { AnimatePresence, motion } from 'framer-motion';
 import useModal from '../../hooks/useModal';
+import { useSelector } from 'react-redux';
 
 const Product = () => {
 	let { id } = useParams();
+	const { email } = useSelector((state) => state.login);
 	const url = `${process.env.REACT_APP_API}/products/${id}`;
 	const urlAddToBag = `${process.env.REACT_APP_API}/products/addToBag/`;
 	const [count, setCount] = useState(1);
@@ -36,13 +38,14 @@ const Product = () => {
 	}, [url, id]);
 
 	const addToBag = async (e) => {
-		modalOpen ? close() : open();
+		// modalOpen ? close() : open();
 		e.preventDefault();
 		try {
-			const body = QueryString.stringify({
+			const body = {
 				qty: count,
 				id: products.id,
-			});
+				email: email,
+			};
 			const headers = {
 				'Content-Type': 'application/x-www-form-urlencoded',
 			};
@@ -92,7 +95,8 @@ const Product = () => {
 							<NumberFormat
 								value={products.harga}
 								displayType={'text'}
-								thousandSeparator={true}
+								thousandSeparator={'.'}
+								decimalSeparator={','}
 								prefix={'Rp'}
 							/>
 						</p>

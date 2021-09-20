@@ -279,6 +279,7 @@
 							justify-content: center;
 							align-items: center;
 							color: white;
+							border: none;
 						}
 						.add-icon {
 							width: 33px;
@@ -287,8 +288,9 @@
 							display: flex;
 							justify-content: center;
 							align-items: center;
-							box-shadow: 0px 0px 5px;
+
 							color: #8e8e93;
+							border-style: none;
 						}
 					}
 					.price {

@@ -1,9 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-	user: {},
+	user: '',
 	isLoading: false,
 	error: '',
+	userImage: '',
+	userName: '',
 };
 
 const userSlice = createSlice({
@@ -22,10 +24,22 @@ const userSlice = createSlice({
 			state.isLoading = false;
 			state.error = payload;
 		},
+		getUserImage: (state, { payload }) => {
+			state.userImage = payload;
+		},
+		getUserName: (state, { payload }) => {
+			state.userName = payload;
+		},
 	},
 });
 
 const { reducer, actions } = userSlice;
-export const { getUserPending, getUserSuccess, getUserFail } = actions;
+export const {
+	getUserPending,
+	getUserSuccess,
+	getUserFail,
+	getUserImage,
+	getUserName,
+} = actions;
 
 export default reducer;

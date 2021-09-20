@@ -5,9 +5,13 @@ import { useForm } from 'react-hook-form';
 import BagList from './BagList.jsx';
 import NumberFormat from 'react-number-format';
 import { motion } from 'framer-motion';
+import { useDispatch, useSelector } from 'react-redux';
+import { getBagItem } from './BagSlice';
 
 const Bag = () => {
-	const url = `${process.env.REACT_APP_API}/bag`;
+	const { email } = useSelector((state) => state.login);
+	const url = `${process.env.REACT_APP_API}/bag/${email}`;
+	const dispatch = useDispatch();
 
 	//const [isChecked, setIsChecked] = useState(false);
 	const [products, setProduct] = useState([]);
@@ -15,13 +19,16 @@ const Bag = () => {
 	useEffect(() => {
 		axios.get(url).then((res) => {
 			const { data } = res.data;
+
 			const value = [];
 			data.map((val) => {
 				return value.push(val);
 			});
 			setProduct(value);
+			dispatch(getBagItem(value));
 		});
-	}, [url]);
+	}, [url, dispatch]);
+
 	const totalProducts = products.length;
 	const totalPrice = products.reduce(function (acc, curr) {
 		return acc + curr.total;
@@ -73,7 +80,8 @@ const Bag = () => {
 										<NumberFormat
 											value={totalPrice}
 											displayType={'text'}
-											thousandSeparator={true}
+											thousandSeparator={'.'}
+											decimalSeparator={','}
 											prefix={'Rp'}
 										/>
 									</h1>

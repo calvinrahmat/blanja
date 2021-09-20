@@ -59,6 +59,7 @@ const Profile = () => {
 			console.log(res.data);
 			dispatch(getProfile(res.data));
 			alert('profile updated!');
+			window.location.reload(true);
 		});
 	};
 
@@ -127,7 +128,6 @@ const Profile = () => {
 										id="female"
 										name="gender"
 										value="female"
-										checked="checked"
 										{...register('gender')}
 									/>
 									<label htmlFor="female">Perempuan</label>

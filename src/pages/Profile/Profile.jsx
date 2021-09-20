@@ -10,7 +10,6 @@ const ProfilePage = () => {
 			<NavbarHeader />
 
 			<div className="wrapper">
-				<SideBar />
 				<div className="profile-container">
 					<Profile />
 				</div>

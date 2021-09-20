@@ -1,27 +1,78 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import NumberFormat from 'react-number-format';
 import { Link } from 'react-router-dom';
 import './BagList.scoped.scss';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 const BagList = (props) => {
+	const url = `${process.env.REACT_APP_API}/bag/updateqty`;
+	const deleteBag = `${process.env.REACT_APP_API}/bag/del`;
 	const products = props.products;
-	const [count, setCount] = useState(products.qty);
 
-	const addItem = () => {
-		setCount((prevCount) => prevCount + 1);
+	const [qty, setQty] = useState('');
+	const [bagId, setBagId] = useState('');
+
+	const addItem = async (bag_id, qty) => {
+		let addedQty = qty + 1;
+		console.log(addedQty);
+
+		const updateQty = {
+			bag_id: bag_id,
+			qty: addedQty,
+		};
+		if (qty >= 1) {
+			try {
+				axios.put(url, updateQty).then((res) => {
+					console.log(res.data);
+					window.location.reload(true);
+				});
+			} catch (error) {
+				console.error(error.message);
+			}
+		}
 	};
-	const reduceItem = () => {
-		if (count > 1) setCount((prevCount) => prevCount - 1);
+
+	const reduceItem = async (bag_id, qty) => {
+		let addedQty = qty - 1;
+		console.log(addedQty);
+
+		const updateQty = {
+			bag_id: bag_id,
+			qty: addedQty,
+		};
+		if (qty >= 1) {
+			try {
+				axios.put(url, updateQty).then((res) => {
+					console.log(res.data);
+					window.location.reload(true);
+				});
+			} catch (error) {
+				console.error(error.message);
+			}
+		}
 	};
+
+	const deleteItem = async (bag_id) => {
+		try {
+			axios.delete(deleteBag, { params: { id: bag_id } }).then((res) => {
+				console.log(res.data);
+				window.location.reload(true);
+			});
+		} catch (error) {
+			console.error(error.message);
+		}
+	};
+
 	const { register, handleSubmit } = useForm();
 
 	const onSubmit = (data) => console.log(data);
 
 	return (
 		<div>
-			{products.map((item) => (
-				<div key={item.id} className="item1-container">
+			{products.map((item, index) => (
+				<div key={index} className="item1-container">
 					<form className="bag-list" onSubmit={handleSubmit(onSubmit)}></form>
 					<div className="check-box">
 						<input
@@ -44,21 +95,41 @@ const BagList = (props) => {
 					</Link>
 					<div className="qty-price">
 						<div className="button-container">
-							<div className="button-remove">
+							<div className="delete-button">
 								<button
-									className="material-icons remove-icon"
-									onClick={(e) => reduceItem(e, item.id)}
-									id={item.id}
+									className="material-icons delete-icon"
+									onClick={() => deleteItem(item.bag_id)}
+									id={item.bag_id}
 								>
-									remove
+									delete
 								</button>
 							</div>
-							<h1 defaultValue={item.qty}>{item.qty}</h1>
+							<div className="button-remove">
+								{item.qty > 1 ? (
+									<button
+										className="material-icons remove-icon"
+										onClick={() => reduceItem(item.bag_id, item.qty)}
+										id={item.bag_id}
+									>
+										remove
+									</button>
+								) : (
+									<button
+										className="material-icons remove-icon"
+										onClick={() => reduceItem(item.bag_id, item.qty)}
+										id={item.bag_id}
+										disabled
+									>
+										remove
+									</button>
+								)}
+							</div>
+							<h1>{item.qty}</h1>
 							<div className="button-remove">
 								<button
 									className="material-icons add-icon"
-									onClick={(e) => addItem(e, item.id)}
-									id={item.id}
+									onClick={() => addItem(item.bag_id, item.qty)}
+									id={item.bag_id}
 								>
 									add
 								</button>
@@ -67,9 +138,10 @@ const BagList = (props) => {
 						<div className="price">
 							<h1>
 								<NumberFormat
-									value={item.total}
+									value={item.harga}
 									displayType={'text'}
-									thousandSeparator={true}
+									thousandSeparator={'.'}
+									decimalSeparator={','}
 									prefix={'Rp'}
 								/>
 							</h1>

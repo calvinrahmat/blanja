@@ -34,6 +34,8 @@ const loginSlice = createSlice({
 		logout: (state) => {
 			state.isAuth = false;
 			state.token = '';
+			state.profile = '';
+			state.email = '';
 		},
 	},
 });

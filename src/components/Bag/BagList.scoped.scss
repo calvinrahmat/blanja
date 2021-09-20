@@ -58,7 +58,7 @@
 	.button-container {
 		display: flex;
 
-		width: 112px;
+		width: 130px;
 		justify-content: space-between;
 		align-items: center;
 		h1 {
@@ -69,6 +69,17 @@
 		}
 
 		.remove-icon {
+			width: 33px;
+			height: 33px;
+			border-radius: 50%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			box-shadow: 0px 0px 5px;
+			color: #8e8e93;
+			border: 1px solid white;
+		}
+		.remove-icon-disabled {
 			width: 36px;
 			height: 36px;
 			background: #d4d4d4;
@@ -77,6 +88,7 @@
 			justify-content: center;
 			align-items: center;
 			color: white;
+			border: 1px solid white;
 		}
 		.add-icon {
 			width: 33px;
@@ -86,6 +98,17 @@
 			justify-content: center;
 			align-items: center;
 			box-shadow: 0px 0px 5px;
+			color: #8e8e93;
+			border: 1px solid white;
+		}
+		.delete-icon {
+			width: 33px;
+			height: 33px;
+			background-color: transparent;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border: none;
 			color: #8e8e93;
 		}
 	}
