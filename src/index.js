@@ -7,13 +7,20 @@ import { Provider } from 'react-redux';
 import store from '../src/redux/store';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 let persistor = persistStore(store);
+
+export const queryClient = new QueryClient();
 
 ReactDOM.render(
 	<Provider store={store}>
 		<PersistGate persistor={persistor}>
-			<App />
+			<QueryClientProvider client={queryClient}>
+				<App />
+				<ReactQueryDevtools />
+			</QueryClientProvider>
 		</PersistGate>
 	</Provider>,
 

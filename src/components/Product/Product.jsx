@@ -15,6 +15,7 @@ const Product = () => {
 	const { email } = useSelector((state) => state.login);
 	const url = `${process.env.REACT_APP_API}/products/${id}`;
 	const urlAddToBag = `${process.env.REACT_APP_API}/products/addToBag/`;
+	const getTotalQty = `${process.env.REACT_APP_API}/bag/totalqty/${email}`;
 	const [count, setCount] = useState(1);
 	const [products, setProduct] = useState([]);
 	const { modalOpen, close, open } = useModal();
@@ -37,9 +38,8 @@ const Product = () => {
 		});
 	}, [url, id]);
 
-	const addToBag = async (e) => {
+	const addToBag = async () => {
 		// modalOpen ? close() : open();
-		e.preventDefault();
 		try {
 			const body = {
 				qty: count,

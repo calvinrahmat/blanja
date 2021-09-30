@@ -1,5 +1,5 @@
-import SideBar from '../../components/SideBar/SideBar';
-import './ProductInventory.scope.scss';
+import Sidebar from '../../components/SideBar/Sidebar';
+import './ProductInventory.scoped.scss';
 import MyProduct from '../../components/Product-Inventory/MyProduct';
 import NavbarHeader from '../../components/Navbar/NavbarHeader';
 
@@ -9,7 +9,7 @@ const ProductInventory = () => {
 			<NavbarHeader />
 			<div className="big-container">
 				<div className="left-container">
-					<SideBar />
+					<Sidebar />
 				</div>
 				<div className="right-container">
 					<MyProduct />

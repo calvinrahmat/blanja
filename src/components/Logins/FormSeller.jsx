@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import './Form.scoped.scss';
+import './FormSeller.scoped.scss';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import axios from 'axios';
@@ -9,25 +9,24 @@ import {
 	loginFail,
 	getEmail,
 	getRole,
-	getToken,
 } from './loginSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { Spinner } from 'react-bootstrap';
+import { Spinner, Alert } from 'react-bootstrap';
 import { useHistory } from 'react-router';
+import { useEffect, useState } from 'react';
+import { getProfile } from './loginSlice';
 
 const schema = yup.object().shape({
 	email: yup.string().email('please input valid email').required(),
 	pass: yup.string().min(5).required(),
 });
+const url = `${process.env.REACT_APP_API}/login/seller`;
 
-const customerApi = `${process.env.REACT_APP_API}/login/customer`;
-const sellerApi = `${process.env.REACT_APP_API}/login/seller`;
-
-const Form = ({ button }) => {
+const FormSeller = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
-	const { isLoading } = useSelector((state) => state.login);
-
+	const { isLoading, error } = useSelector((state) => state.login);
+	const [user, setUser] = useState('');
 	const {
 		register,
 		handleSubmit,
@@ -36,40 +35,19 @@ const Form = ({ button }) => {
 
 	const onSubmit = (data) => {
 		try {
-			if (button === false) {
-				axios.post(customerApi, data).then((res) => {
-					const { msg, token, email, role } = res.data.data[0];
-					console.log(token);
-
-					if (msg === 'Login Success') {
-						sessionStorage.setItem('token', token);
-						dispatch(loginSuccess());
-						dispatch(getEmail(email));
-						dispatch(getRole(role));
-						dispatch(getToken(token));
-						history.push('/home');
-					} else {
-						dispatch(loginFail('invalid password or email'));
-						alert('wrong password or email');
-					}
-				});
-			} else if (button === true) {
-				axios.post(sellerApi, data).then((res) => {
-					const { msg, token, email, role } = res.data.data[0];
-
-					if (msg === 'Login Success') {
-						sessionStorage.setItem('token', token);
-						dispatch(loginSuccess());
-						dispatch(getEmail(email));
-						dispatch(getRole(role));
-						dispatch(getToken(token));
-						history.push('/seller/inventory');
-					} else {
-						dispatch(loginFail('invalid password or email'));
-						alert('wrong password or email');
-					}
-				});
-			}
+			axios.post(url, data).then((res) => {
+				const { msg, token, email, role } = res.data.data[0];
+				if (msg === 'Login Success') {
+					sessionStorage.setItem('token', token);
+					dispatch(loginSuccess());
+					dispatch(getEmail(email));
+					dispatch(getRole(role));
+					history.push('/seller/inventory');
+				} else {
+					dispatch(loginFail('invalid password or email'));
+					alert('wrong password or email');
+				}
+			});
 		} catch (error) {
 			dispatch(loginFail(error.message));
 			console.log(error.message);
@@ -113,4 +91,4 @@ const Form = ({ button }) => {
 	);
 };
 
-export default Form;
+export default FormSeller;

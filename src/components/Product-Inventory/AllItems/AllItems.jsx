@@ -1,12 +1,14 @@
 import { Container, Col, Row } from 'react-bootstrap';
 import ListInventory from '../ListInventory';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 
-import './AllItems.scope.scss';
+import './AllItems.scoped.scss';
 
 const AllItems = () => {
-	const url = `${process.env.REACT_APP_API}/seller/Erigo`;
+	const { email } = useSelector((state) => state.login);
+	const url = `${process.env.REACT_APP_API}/seller/products/${email}`;
 	const [list, setList] = useState([]);
 
 	useEffect(() => {
@@ -19,6 +21,7 @@ const AllItems = () => {
 			setList(value);
 		});
 	}, [url]);
+
 	return (
 		<div>
 			<Container className="product-table">

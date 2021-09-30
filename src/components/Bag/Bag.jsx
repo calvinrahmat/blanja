@@ -1,40 +1,32 @@
 import './bag.scoped.scss';
 import axios from 'axios';
-import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import BagList from './BagList.jsx';
 import NumberFormat from 'react-number-format';
 import { motion } from 'framer-motion';
-import { useDispatch, useSelector } from 'react-redux';
-import { getBagItem } from './BagSlice';
+import { useSelector } from 'react-redux';
+import { useQuery } from 'react-query';
 
 const Bag = () => {
 	const { email } = useSelector((state) => state.login);
 	const url = `${process.env.REACT_APP_API}/bag/${email}`;
-	const dispatch = useDispatch();
 
-	//const [isChecked, setIsChecked] = useState(false);
-	const [products, setProduct] = useState([]);
+	async function getBag() {
+		const response = await axios.get(url);
+		const { data } = await response.data;
+		return data;
+	}
 
-	useEffect(() => {
-		axios.get(url).then((res) => {
-			const { data } = res.data;
+	const { data: values, error } = useQuery('bag', getBag);
 
-			const value = [];
-			data.map((val) => {
-				return value.push(val);
-			});
-			setProduct(value);
-			dispatch(getBagItem(value));
-		});
-	}, [url, dispatch]);
+	const { register } = useForm();
+	if (!values) return <span>Loading...</span>;
+	if (error) return <span>Error retrieving data</span>;
 
-	const totalProducts = products.length;
-	const totalPrice = products.reduce(function (acc, curr) {
+	const totalProducts = values.length;
+	const totalPrice = values.reduce(function (acc, curr) {
 		return acc + curr.total;
 	}, 0);
-	console.log(totalPrice);
-	const { register } = useForm();
 
 	return (
 		<>
@@ -64,7 +56,18 @@ const Bag = () => {
 						</div>
 						<div className="items-container-bag">
 							<div>
-								<BagList products={products} />
+								{values.map(({ id, nama, seller, bag_id, qty, harga, img }) => (
+									<BagList
+										id={id}
+										nama={nama}
+										seller={seller}
+										bag_id={bag_id}
+										qty={qty}
+										harga={harga}
+										img={img}
+										key={bag_id}
+									/>
+								))}
 							</div>
 						</div>
 					</div>

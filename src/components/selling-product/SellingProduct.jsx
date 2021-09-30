@@ -3,6 +3,7 @@ import './SellingProduct.scoped.scss';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { useLocation } from 'react-router';
 
 const schema = yup.object().shape({
 	nama: yup.string().required('nama produk harus diisi'),
@@ -45,25 +46,6 @@ const SellingProduct = () => {
 	return (
 		<>
 			<div className="container d-flex wrapper">
-				<div className="container left-container">
-					<div className="container d-flex profile">
-						<div className="profile" />
-						<div className="photo-box">
-							<img
-								src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627339637/Front%20End/profile_yzozml.jpg"
-								alt="profile"
-							/>
-						</div>
-						<div className="container profile">
-							<h1 className="profile-name">Johanes Mikael</h1>
-							<div className="d-grid gap-2 d-flex update-profile">
-								<i className="fa fa-pencil" aria-hidden="true" />
-								<p className="update-profile">Ubah Profile</p>
-							</div>
-						</div>
-					</div>
-				</div>
-
 				<div className="container right-container">
 					<h1>Add New Product</h1>
 					<form onSubmit={handleSubmit(onSubmitForm)}>

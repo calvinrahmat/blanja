@@ -1,11 +1,19 @@
 import NavbarHeader from '../../components/Navbar/NavbarHeader';
 import SellingProduct from '../../components/selling-product/SellingProduct';
+import Sidebar from '../../components/SideBar/Sidebar';
+import UpdateProduct from '../../components/Update-product/UpdateProduct';
+import './AddProduct.scoped.css';
 
 const AddProduct = () => {
 	return (
 		<div>
 			<NavbarHeader />
-			<SellingProduct />
+			<div className="left-container">
+				<Sidebar />
+			</div>
+			<div className="right-container">
+				<UpdateProduct />
+			</div>
 		</div>
 	);
 };

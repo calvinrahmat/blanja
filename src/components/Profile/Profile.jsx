@@ -9,12 +9,18 @@ import { getProfile } from '../Logins/loginSlice';
 
 const Profile = () => {
 	const dispatch = useDispatch();
+	const updateUserApi = `${process.env.REACT_APP_API}/user/profile`;
+	const updateSellerApi = `${process.env.REACT_APP_API}/seller/profile`;
+
 	const { email } = useSelector((state) => state.login);
+	const getUserApi = `${process.env.REACT_APP_API}/user/${email}`;
+	const getSellerApi = `${process.env.REACT_APP_API}/seller/profile/${email}`;
+
+	const { token } = useSelector((state) => state.login);
 	const [preview, setPreview] = useState('');
 	const [image, setImage] = useState('');
 	const [user, setUser] = useState([]);
-	const updateUserApi = `${process.env.REACT_APP_API}/user/profile`;
-	const getUserApi = `${process.env.REACT_APP_API}/user/${email}`;
+	const { role } = useSelector((state) => state.login);
 	const {
 		register,
 		handleSubmit,
@@ -23,17 +29,23 @@ const Profile = () => {
 	} = useForm();
 
 	useEffect(() => {
-		axios.get(getUserApi).then((res) => {
-			const { data } = res.data;
-			const value = [];
-			data.map((val) => {
-				return value.push(val);
-			});
+		axios
+			.get(role === 'seller' ? getSellerApi : getUserApi, {
+				headers: {
+					tokenauth: token,
+				},
+			})
+			.then((res) => {
+				const { data } = res.data;
+				const value = [];
+				data.map((val) => {
+					return value.push(val);
+				});
 
-			setUser(value[0]);
-			reset(res.data);
-		});
-	}, [getUserApi, reset]);
+				setUser(value[0]);
+				reset(res.data);
+			});
+	}, [getUserApi, reset, role, getSellerApi, token]);
 
 	function onImageChange(event) {
 		if (event.target.files && event.target.files[0]) {
@@ -41,26 +53,38 @@ const Profile = () => {
 			setImage(event.target.files[0]);
 		}
 	}
-	console.log(preview);
 
 	const onSubmit = (data) => {
-		console.log(data);
-		let formData = new FormData();
-		formData.append('img', image);
-		formData.append('name', data.name);
-		formData.append('dob', data.dob);
-		formData.append('gender', data.gender);
-		formData.append('phone_number', data.phone_number);
-		formData.append('user_id', user.user_id);
-		const headers = {
-			'Content-type': 'multipart/form-data',
-		};
-		axios.put(updateUserApi, formData, headers).then((res) => {
-			console.log(res.data);
-			dispatch(getProfile(res.data));
-			alert('profile updated!');
-			window.location.reload(true);
-		});
+		if (role === 'customer') {
+			let formData = new FormData();
+			formData.append('img', image);
+			formData.append('name', data.name);
+			formData.append('dob', data.dob);
+			formData.append('gender', data.gender);
+			formData.append('phone_number', data.phone_number);
+			formData.append('user_id', user.user_id);
+			const headers = {
+				'Content-type': 'multipart/form-data',
+			};
+			axios.put(updateUserApi, formData, headers).then((res) => {
+				dispatch(getProfile(res.data));
+				alert('profile updated!');
+			});
+		} else if (role === 'seller') {
+			let formData = new FormData();
+			formData.append('img', image);
+			formData.append('name', data.name);
+			formData.append('phone_number', data.phone_number);
+			formData.append('seller_id', user.seller_id);
+			formData.append('store_desc', user.store_desc);
+			const headers = {
+				'Content-type': 'multipart/form-data',
+			};
+			axios.put(updateSellerApi, formData, headers).then((res) => {
+				dispatch(getProfile(res.data));
+				alert('profile updated!');
+			});
+		}
 	};
 
 	return (
@@ -74,11 +98,21 @@ const Profile = () => {
 				<div className="container">
 					<div className="left-container">
 						<div className="label">
-							<p>Name</p>
+							{role === 'customer' ? <p>Name</p> : <p>Store Name</p>}
+
 							<p>Email</p>
 							<p>Phone Number</p>
-							<p>Gender</p>
-							<p>Date of Birth</p>
+
+							{role === 'customer' ? (
+								<>
+									<p>Gender</p>
+									<p>Date of Birth</p>
+								</>
+							) : (
+								<>
+									<p>Store Description </p>
+								</>
+							)}
 						</div>
 						<div className="input">
 							<div className="name-wrapper">
@@ -109,37 +143,52 @@ const Profile = () => {
 									/>
 								</div>
 							</div>
-							<div className="gender-wrapper">
-								<div>
-									<input
-										type="radio"
-										id="male"
-										name="gender"
-										value="male"
-										defaultValue={user.gender}
-										{...register('gender')}
-									/>
-									<label htmlFor="male">Laki-Laki</label>
-								</div>
+							{role === 'customer' ? (
+								<>
+									<div className="gender-wrapper">
+										<div>
+											<input
+												type="radio"
+												id="male"
+												name="gender"
+												value="male"
+												defaultValue={user.gender}
+												{...register('gender')}
+											/>
+											<label htmlFor="male">Laki-Laki</label>
+										</div>
 
-								<div>
+										<div>
+											<input
+												type="radio"
+												id="female"
+												name="gender"
+												value="female"
+												{...register('gender')}
+											/>
+											<label htmlFor="female">Perempuan</label>
+										</div>
+									</div>
 									<input
-										type="radio"
-										id="female"
-										name="gender"
-										value="female"
-										{...register('gender')}
+										type="date"
+										id="start"
+										name="dob"
+										defaultValue={user.dob}
+										{...register('dob')}
 									/>
-									<label htmlFor="female">Perempuan</label>
+								</>
+							) : (
+								<div className="form-group">
+									<textarea
+										className="form-control"
+										id="exampleFormControlTextarea1"
+										rows={4}
+										defaultValue={user.store_desc}
+										{...register('store_desc')}
+									/>
+									<p>{errors.product_desc?.message}</p>
 								</div>
-							</div>
-							<input
-								type="date"
-								id="start"
-								name="dob"
-								defaultValue={user.dob}
-								{...register('dob')}
-							/>
+							)}
 						</div>
 					</div>
 					<div className="middle-line"></div>
@@ -163,7 +212,9 @@ const Profile = () => {
 						</div>
 					</div>
 				</div>
-				<button className="button-save">Save</button>
+				<button className="button-save" style={{ marginLeft: '190px' }}>
+					Save
+				</button>
 			</form>
 		</div>
 	);

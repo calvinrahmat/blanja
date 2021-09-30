@@ -12,7 +12,7 @@
 
 .form-box {
 	width: 401px;
-	height: 526px;
+	height: 800px;
 	position: relative;
 	margin: 6% auto;
 	background: transparent;
@@ -30,24 +30,27 @@
 
 		.btn-customer {
 			width: 120px;
-			background: #db3022;
 			box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.05);
-			border-radius: 4px 0px 0px 4px;
-
-			border: 1px solid #9b9b9b;
-			color: white;
-			font-style: normal;
-			font-weight: 500;
-			font-size: 14px;
+			border-radius: 0px 4px 4px 0px;
+			border: none;
+			background: #db3022;
+			transition: 0.5s ease;
+			-moz-transition: 0.5s ease;
+			-webkit-transition: 0.5s ease;
 		}
 		.btn-seller {
 			width: 120px;
-			border: 1px solid #9b9b9b;
-			box-sizing: border-box;
-			box-shadow: (0px 1px 8px rgba(0, 0, 0, 0.05));
-			border-radius: 0px 4px 4px 0px;
 			background: transparent;
+			box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.05);
+			border-radius: 0px 4px 4px 0px;
+			border: 1px solid #9b9b9b;
+			font-style: normal;
+			font-weight: 500;
+			font-size: 14px;
 			color: #9b9b9b;
+			transition: 0.5s ease;
+			-moz-transition: 0.5s ease;
+			-webkit-transition: 0.5s ease;
 		}
 		.btn-box {
 			.btn-login {

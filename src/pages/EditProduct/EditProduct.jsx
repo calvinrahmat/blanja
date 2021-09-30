@@ -1,13 +1,18 @@
-import React from 'react';
+import './EditProduct.scoped.scss';
 import NavbarHeader from '../../components/Navbar/NavbarHeader';
-
+import Sidebar from '../../components/SideBar/Sidebar';
 import UpdateProduct from '../../components/Update-product/UpdateProduct';
 
 const EditProduct = () => {
 	return (
 		<div>
 			<NavbarHeader />
-			<UpdateProduct />
+			<div className="left-container">
+				<Sidebar />
+			</div>
+			<div className="right-container">
+				<UpdateProduct />
+			</div>
 		</div>
 	);
 };

@@ -8,14 +8,28 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import NumberFormat from 'react-number-format';
+import {
+	nameAsc,
+	nameDesc,
+	newProduct,
+	oldProduct,
+	priceHigh,
+	priceLow,
+} from '../../../../helpers/sortFunction';
 
 const SearchItem = () => {
 	const dispatch = useDispatch();
 	const search = useSelector((state) => state.search.search);
-	console.log(search.name);
 	const url = `${process.env.REACT_APP_API}/products/search/nama`;
 	const urlGetAll = `${process.env.REACT_APP_API}/products`;
 	const [products, setProduct] = useState([]);
+
+	const { priceHighToLow } = useSelector((state) => state.sort);
+	const { priceLowToHigh } = useSelector((state) => state.sort);
+	const { nameAscending } = useSelector((state) => state.sort);
+	const { nameDescending } = useSelector((state) => state.sort);
+	const { sortProductNew } = useSelector((state) => state.sort);
+	const { sortProductOld } = useSelector((state) => state.sort);
 
 	useEffect(() => {
 		axios.get(url, { params: { p: search.name } }).then((res) => {
@@ -25,9 +39,41 @@ const SearchItem = () => {
 			data.map((val) => {
 				return value.push(val);
 			});
-			if (value) setProduct(value);
+			if (priceLowToHigh === true) {
+				value.sort(priceLow);
+				setProduct(value);
+			} else if (priceHighToLow === true) {
+				value.sort(priceHigh);
+				setProduct(value);
+			} else if (nameAscending === true) {
+				value.sort(nameAsc);
+				setProduct(value);
+			} else if (nameDescending === true) {
+				value.sort(nameDesc);
+				setProduct(value);
+			} else if (sortProductNew === true) {
+				value.sort(newProduct);
+				setProduct(value);
+			} else if (sortProductOld === true) {
+				value.sort(oldProduct);
+				setProduct(value);
+			} else {
+				setProduct(value);
+			}
 		});
-	}, [url, search, urlGetAll, dispatch]);
+	}, [
+		url,
+		search,
+		urlGetAll,
+		dispatch,
+		priceHighToLow,
+		priceLowToHigh,
+		nameAscending,
+		nameDescending,
+		sortProductNew,
+		sortProductOld,
+	]);
+	console.log(products);
 
 	const renderCard = (card) => {
 		return (
@@ -42,7 +88,6 @@ const SearchItem = () => {
 							className="title"
 							style={{
 								overflow: 'hidden',
-
 								textOverflow: 'ellipsis',
 								fontSize: '18px',
 								width: '150px',
@@ -60,7 +105,8 @@ const SearchItem = () => {
 							<NumberFormat
 								value={card.harga}
 								displayType={'text'}
-								thousandSeparator={true}
+								thousandSeparator={'.'}
+								decimalSeparator={','}
 								prefix={'Rp'}
 							/>
 						</Card.Title>

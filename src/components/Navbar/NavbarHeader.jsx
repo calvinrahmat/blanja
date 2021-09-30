@@ -6,10 +6,8 @@ import MenusAfterLogin from './MenusAfterLogin';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import MenusBeforeLogin from './MenusBeforeLogin';
-import { useLocation } from 'react-router';
 
 const NavbarHeader = () => {
-	const location = useLocation();
 	const { isAuth } = useSelector((state) => state.login);
 
 	return (
@@ -32,13 +30,13 @@ const NavbarHeader = () => {
 							<div className="navbar-mobile">
 								<ul>
 									<li>
-										<Link to="#home">SignUp</Link>
+										<Link to="/register">SignUp</Link>
 									</li>
 									<li>
-										<Link to="#home">Login</Link>
+										<Link to="/login">Login</Link>
 									</li>
 									<li>
-										<Link to="#home">Cart</Link>
+										<Link to="/bag">Cart</Link>
 									</li>
 								</ul>
 							</div>

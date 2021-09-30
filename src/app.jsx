@@ -24,6 +24,9 @@ import ProductInventory from './pages/ProductInventory/ProductInventory';
 
 function App() {
 	const { isAuth } = useSelector((state) => state.login);
+	const { role } = useSelector((state) => state.login);
+
+	console.log(role);
 
 	return (
 		<>
@@ -33,35 +36,48 @@ function App() {
 					<Route exact path="/home" render={() => <Home />} />
 					<Route exact path="/login" render={() => <Login />} />
 					<Route exact path="/search" render={() => <SearchPage />} />
-					<Route
-						exact
-						path="/seller/add-product"
-						render={() => <AddProduct />}
-					/>
-
 					<Route exact path="/register" render={() => <Register />} />
 
-					<Route exact path="/product/:id" render={() => <ProductPreview />} />
-					<Route
-						exact
-						path="/seller/inventory"
-						render={() => <ProductInventory />}
-					/>
-					<Route
-						exact
-						path="/seller/edit-product/:id"
-						render={() => <EditProduct />}
-					/>
 					<Route
 						exact
 						path="/bag"
-						render={() => (isAuth ? <BagPage /> : <Redirect to="/login" />)}
+						render={() =>
+							isAuth && role === 'customer' ? (
+								<BagPage />
+							) : (
+								<Redirect to="/login" />
+							)
+						}
 					/>
 					<Route
 						exact
 						path="/profile"
 						render={() => (isAuth ? <ProfilePage /> : <Redirect to="/login" />)}
 					/>
+
+					<Route exact path="/product/:id" render={() => <ProductPreview />} />
+					<Route exact path="/seller/add-product">
+						{isAuth && role === 'seller' ? (
+							<AddProduct />
+						) : (
+							<Redirect to="/login" />
+						)}
+					</Route>
+
+					<Route exact path="/seller/inventory">
+						{isAuth && role === 'seller' ? (
+							<ProductInventory />
+						) : (
+							<Redirect to="/login" />
+						)}
+					</Route>
+					<Route exact path="/seller/edit-product/:id">
+						{isAuth && role === 'seller' ? (
+							<EditProduct />
+						) : (
+							<Redirect to="/login" />
+						)}
+					</Route>
 				</Switch>
 			</Router>
 		</>

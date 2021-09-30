@@ -14,11 +14,13 @@ import { combineReducers } from 'redux';
 import userReducer from '../components/Home/userSlice';
 import searchReducer from '../components/Navbar/searchSlice';
 import bagReducer from '../components/Bag/BagSlice';
+import sortReducer from '../components/Navbar/sortSlice';
 const reducers = combineReducers({
 	login: loginReducer,
 	user: userReducer,
 	search: searchReducer,
 	bag: bagReducer,
+	sort: sortReducer,
 });
 
 const persistConfig = {

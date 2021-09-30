@@ -1,154 +1,116 @@
-import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import NumberFormat from 'react-number-format';
 import { Link } from 'react-router-dom';
 import './BagList.scoped.scss';
-import { useSelector } from 'react-redux';
-import axios from 'axios';
+import { useMutation } from 'react-query';
+import { queryClient } from '../../index';
+import { updateBagItemQty } from '../../APIs/bagApi';
+import DeleteItem from './DeleteItem/DeleteItem';
 
-const BagList = (props) => {
-	const url = `${process.env.REACT_APP_API}/bag/updateqty`;
-	const deleteBag = `${process.env.REACT_APP_API}/bag/del`;
-	const products = props.products;
-
-	const [qty, setQty] = useState('');
-	const [bagId, setBagId] = useState('');
-
-	const addItem = async (bag_id, qty) => {
-		let addedQty = qty + 1;
-		console.log(addedQty);
-
-		const updateQty = {
-			bag_id: bag_id,
-			qty: addedQty,
-		};
-		if (qty >= 1) {
-			try {
-				axios.put(url, updateQty).then((res) => {
-					console.log(res.data);
-					window.location.reload(true);
-				});
-			} catch (error) {
-				console.error(error.message);
-			}
-		}
-	};
-
-	const reduceItem = async (bag_id, qty) => {
-		let addedQty = qty - 1;
-		console.log(addedQty);
-
-		const updateQty = {
-			bag_id: bag_id,
-			qty: addedQty,
-		};
-		if (qty >= 1) {
-			try {
-				axios.put(url, updateQty).then((res) => {
-					console.log(res.data);
-					window.location.reload(true);
-				});
-			} catch (error) {
-				console.error(error.message);
-			}
-		}
-	};
-
-	const deleteItem = async (bag_id) => {
-		try {
-			axios.delete(deleteBag, { params: { id: bag_id } }).then((res) => {
-				console.log(res.data);
-				window.location.reload(true);
-			});
-		} catch (error) {
-			console.error(error.message);
-		}
-	};
-
+const BagList = ({ id, nama, seller, bag_id, qty, harga, img }) => {
 	const { register, handleSubmit } = useForm();
 
 	const onSubmit = (data) => console.log(data);
 
+	const { mutate } = useMutation(updateBagItemQty, {
+		onMutate: async (newBag) => {
+			await queryClient.cancelQueries(['bag', newBag.id]);
+
+			const prevBag = queryClient.getQueryData(['bag', newBag.id]);
+
+			queryClient.setQueryData(['bag', newBag.id], newBag);
+
+			return { prevBag, newBag };
+		},
+		onError: (err, newBag, context) => {
+			queryClient.setQueryData(['bag', context.newBag.id], context.prevBag);
+		},
+		onSettled: (newBag) => {
+			queryClient.invalidateQueries(['bag', newBag.id]);
+			queryClient.invalidateQueries('qty');
+		},
+	});
+
+	const addQty = async () => {
+		await mutate({ bag_id: bag_id, qty: qty + 1, img: img });
+	};
+
+	const reduceQty = async () => {
+		await mutate({ bag_id: bag_id, qty: qty - 1, img: img });
+	};
+
 	return (
 		<div>
-			{products.map((item, index) => (
-				<div key={index} className="item1-container">
-					<form className="bag-list" onSubmit={handleSubmit(onSubmit)}></form>
-					<div className="check-box">
-						<input
-							type="checkbox"
-							className="checkBox"
-							defaultChecked="true"
-							{...register(`checkItem`)}
-						/>
+			<div key={bag_id} className="item1-container">
+				<form className="bag-list" onSubmit={handleSubmit(onSubmit)}></form>
+				<div className="check-box">
+					<input
+						type="checkbox"
+						className="checkBox"
+						defaultChecked="true"
+						{...register(`checkItem`)}
+					/>
+				</div>
+				<Link to={`/product/${id}`} style={{ textDecoration: 'none' }}>
+					<div className="wrap-checkbox-item">
+						<div className="photo-box-bag">
+							<img className="product-img-bag" src={img} alt="item" />
+						</div>
+						<div className="item-desc">
+							<h1>{nama}</h1>
+							<p>{seller}</p>
+						</div>
 					</div>
-					<Link to={`/product/${item.id}`} style={{ textDecoration: 'none' }}>
-						<div className="wrap-checkbox-item">
-							<div className="photo-box-bag">
-								<img className="product-img-bag" src={item.img} alt="item" />
-							</div>
-							<div className="item-desc">
-								<h1>{item.nama}</h1>
-								<p>{item.seller}</p>
-							</div>
+				</Link>
+				<div className="qty-price">
+					<div className="button-container">
+						<div className="delete-button">
+							<DeleteItem bag_id={bag_id} />
 						</div>
-					</Link>
-					<div className="qty-price">
-						<div className="button-container">
-							<div className="delete-button">
+						<div className="button-remove">
+							{qty > 1 ? (
 								<button
-									className="material-icons delete-icon"
-									onClick={() => deleteItem(item.bag_id)}
-									id={item.bag_id}
+									className="material-icons remove-icon"
+									onClick={reduceQty}
+									id={bag_id}
 								>
-									delete
+									remove
 								</button>
-							</div>
-							<div className="button-remove">
-								{item.qty > 1 ? (
-									<button
-										className="material-icons remove-icon"
-										onClick={() => reduceItem(item.bag_id, item.qty)}
-										id={item.bag_id}
-									>
-										remove
-									</button>
-								) : (
-									<button
-										className="material-icons remove-icon"
-										onClick={() => reduceItem(item.bag_id, item.qty)}
-										id={item.bag_id}
-										disabled
-									>
-										remove
-									</button>
-								)}
-							</div>
-							<h1>{item.qty}</h1>
-							<div className="button-remove">
+							) : (
 								<button
-									className="material-icons add-icon"
-									onClick={() => addItem(item.bag_id, item.qty)}
-									id={item.bag_id}
+									className="material-icons remove-icon"
+									onClick={reduceQty}
+									id={bag_id}
+									disabled
 								>
-									add
+									remove
 								</button>
-							</div>
+							)}
 						</div>
-						<div className="price">
-							<h1>
-								<NumberFormat
-									value={item.harga}
-									displayType={'text'}
-									thousandSeparator={'.'}
-									decimalSeparator={','}
-									prefix={'Rp'}
-								/>
-							</h1>
+						<h1>{qty}</h1>
+						<div className="button-remove">
+							<button
+								className="material-icons add-icon"
+								onClick={addQty}
+								id={bag_id}
+							>
+								add
+							</button>
 						</div>
+					</div>
+					<div className="price">
+						<h1>
+							<NumberFormat
+								value={harga}
+								displayType={'text'}
+								thousandSeparator={'.'}
+								decimalSeparator={','}
+								prefix={'Rp'}
+							/>
+						</h1>
 					</div>
 				</div>
-			))}
+			</div>
 		</div>
 	);
 };

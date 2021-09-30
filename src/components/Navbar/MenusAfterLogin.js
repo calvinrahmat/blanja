@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useEffect } from 'react';
 import { Container, Nav } from 'react-bootstrap';
 import { FaShoppingCart, FaBell, FaEnvelope } from 'react-icons/fa';
@@ -6,28 +6,31 @@ import './style/MenusAfterLogin.scoped.scss';
 import { useDispatch } from 'react-redux';
 import { logout } from '../Logins/loginSlice';
 import { Dropdown } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getUserImage, getUserName } from '../Home/userSlice';
 import axios from 'axios';
-import { getBagQty } from '../Bag/BagSlice';
+import { LinkContainer } from 'react-router-bootstrap';
+import { useQuery } from 'react-query';
+import { useHistory } from 'react-router';
 
 const MenusAfterLogin = () => {
-	const [user, setUser] = useState('');
-	const { profile } = useSelector((state) => state.user);
-	const { bagItem } = useSelector((state) => state.bag);
-	console.log(bagItem);
-	const { email } = useSelector((state) => state.login);
-	const url = `${process.env.REACT_APP_API}/bag/${email}`;
-
+	const history = useHistory();
+	const { role } = useSelector((state) => state.login);
 	const dispatch = useDispatch();
-	const urlUser = `${process.env.REACT_APP_API}/user/${email}`;
-	const [products, setProduct] = useState([]);
+	const [user, setUser] = useState('');
+	const [newImage, setNewImage] = useState('');
+	const { profile } = useSelector((state) => state.login);
+	const { email } = useSelector((state) => state.login);
+	const getTotalQty = `${process.env.REACT_APP_API}/bag/totalqty/${email}`;
+	const getUserApi = `${process.env.REACT_APP_API}/user/${email}`;
+	const getSellerApi = `${process.env.REACT_APP_API}/seller/profile/${email}`;
 
 	useEffect(() => {
-		axios.get(urlUser).then((res) => {
-			console.log(res.data);
+		if (profile) setNewImage(profile.data[0].data.img);
+	}, [profile]);
 
+	useEffect(() => {
+		axios.get(role === 'seller' ? getSellerApi : getUserApi).then((res) => {
 			const { data } = res.data;
 			const value = [];
 			data.map((val) => {
@@ -35,71 +38,78 @@ const MenusAfterLogin = () => {
 			});
 
 			if (value) setUser(value);
+			console.log(value);
 			dispatch(getUserName(value[0].name));
 			dispatch(getUserImage(value[0].img));
 		});
-	}, [urlUser, dispatch]);
+	}, [getSellerApi, dispatch, getUserApi, role]);
 
-	useEffect(() => {
-		axios.get(url).then((res) => {
-			const { data } = res.data;
+	async function totalQty() {
+		const response = await axios.get(getTotalQty);
+		const { data } = await response.data;
+		console.log(data[0].total_qty);
+		return data[0].total_qty;
+	}
 
-			const value = [];
-			data.map((val) => {
-				return value.push(val);
-			});
-			setProduct(value);
-		});
-	}, [url, dispatch]);
+	const onPush = () => history.push('/seller/inventory');
 
-	const totalQty = products.reduce(function (acc, curr) {
-		return acc + curr.qty;
-	}, 0);
-	dispatch(getBagQty(totalQty));
+	const { data: totalBagQty } = useQuery('qty', totalQty);
 
 	const { userImage } = useSelector((state) => state.user);
-	const { qty } = useSelector((state) => state.bag);
-
 	return (
 		<div>
 			<Container>
 				<Nav className="me-auto menu-after-login">
-					<Link to="/bag">
-						<Container className="menu-icon-cart">
-							{qty ? <div className="bubble">{qty}</div> : <span />}
+					{role === 'seller' ? (
+						<span />
+					) : (
+						<LinkContainer to="/bag">
+							<Container className="menu-icon-cart">
+								{totalBagQty ? (
+									<div className="bubble">{totalBagQty}</div>
+								) : (
+									<span />
+								)}
 
-							<FaShoppingCart />
-						</Container>
-					</Link>
-					<Nav.Link>
+								<FaShoppingCart />
+							</Container>
+						</LinkContainer>
+					)}
+
+					<Nav>
 						<Container className="menu-icon">
 							<FaBell />
 						</Container>
-					</Nav.Link>
-					<Nav.Link>
+					</Nav>
+					<Nav>
 						<Container className="menu-icon">
 							<FaEnvelope />
 						</Container>
-					</Nav.Link>
+					</Nav>
 					<Dropdown>
-						<Nav.Link className="photo-box">
+						<Nav className="photo-box">
 							<Dropdown.Toggle variant="none">
-								<img src={userImage} alt="profile" />
+								<img src={newImage ? newImage : userImage} alt="profile" />
 							</Dropdown.Toggle>
-						</Nav.Link>
+						</Nav>
 						<Dropdown.Menu>
 							<Dropdown.Item onClick={() => dispatch(logout())}>
 								Logout
 							</Dropdown.Item>
 
 							<Dropdown.Item>
-								<Link
+								<LinkContainer
 									to="/profile"
 									style={{ textDecoration: 'none', color: 'black' }}
 								>
 									{user ? <span>My Profile</span> : <span>loading</span>}
-								</Link>
+								</LinkContainer>
 							</Dropdown.Item>
+							{role === 'seller' ? (
+								<Dropdown.Item onClick={onPush}>My Inventory</Dropdown.Item>
+							) : (
+								<span />
+							)}
 						</Dropdown.Menu>
 					</Dropdown>
 				</Nav>

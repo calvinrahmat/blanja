@@ -1,5 +1,6 @@
 import './SideBar.scoped.scss';
 import { useSelector } from 'react-redux';
+import { SideBarData } from './SidebarData';
 
 const SideBar = () => {
 	const { userName } = useSelector((state) => state.user);

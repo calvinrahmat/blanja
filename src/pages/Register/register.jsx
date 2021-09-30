@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 import FormRegister from '../../components/Register/FormRegister.js';
 import './register.scoped.scss';
+import FormRegisterSeller from '../../components/Register/FormRegisterSeller.js';
 
 const Register = () => {
+	const [button, setButton] = useState(false);
 	return (
 		<>
 			<div className="form-box">
@@ -17,11 +20,38 @@ const Register = () => {
 				<div className="title">
 					<h1>Please sign up with your account</h1>
 				</div>
-				<div className="button-box">
-					<div className="btn btn-primary btn-customer">Customer</div>
-					<div className="btn btn-primary btn-seller">Seller</div>
-				</div>
-				<FormRegister />
+				{button === false ? (
+					<div className="button-box">
+						<button
+							className="btn btn-primary btn-customer"
+							onClick={() => setButton(false)}
+						>
+							Customer
+						</button>
+						<button
+							className="btn btn-primary btn-seller"
+							onClick={() => setButton(true)}
+						>
+							Seller
+						</button>
+					</div>
+				) : (
+					<div className="button-box">
+						<button
+							className="btn btn-primary btn-seller"
+							onClick={() => setButton(false)}
+						>
+							Customer
+						</button>
+						<button
+							className="btn btn-primary btn-customer"
+							onClick={() => setButton(true)}
+						>
+							Seller
+						</button>
+					</div>
+				)}
+				{button === false ? <FormRegister /> : <FormRegisterSeller />}
 			</div>
 		</>
 	);

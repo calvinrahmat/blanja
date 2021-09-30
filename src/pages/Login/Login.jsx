@@ -1,8 +1,12 @@
 import { Link } from 'react-router-dom';
 import Form from '../../components/Logins/Form';
 import './login.scoped.scss';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
 
 const Login = () => {
+	const [button, setButton] = useState(false);
+
 	return (
 		<>
 			<div className="form-box">
@@ -16,11 +20,41 @@ const Login = () => {
 				<div className="title">
 					<h1>Please login with your account</h1>
 				</div>
-				<div className="button-box">
-					<div className="btn btn-primary btn-customer">Customer</div>
-					<div className="btn btn-primary btn-seller">Seller</div>
+				{button === false ? (
+					<div className="button-box">
+						<button
+							className="btn btn-primary btn-customer"
+							onClick={() => setButton(false)}
+						>
+							Customer
+						</button>
+						<button
+							className="btn btn-primary btn-seller"
+							onClick={() => setButton(true)}
+						>
+							Seller
+						</button>
+					</div>
+				) : (
+					<div className="button-box">
+						<button
+							className="btn btn-primary btn-seller"
+							onClick={() => setButton(false)}
+						>
+							Customer
+						</button>
+						<button
+							className="btn btn-primary btn-customer"
+							onClick={() => setButton(true)}
+						>
+							Seller
+						</button>
+					</div>
+				)}
+
+				<div animate={{}}>
+					<Form button={button} />
 				</div>
-				<Form />
 
 				<Link to="/register" style={{ textDecoration: 'none' }}>
 					<h2>Don't have a Blanja account? Register</h2>
