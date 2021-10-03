@@ -17,6 +17,12 @@ export const removeBagItem = async (bag_id) => {
 	return true;
 };
 
+export const removeBagAll = async (email) => {
+	await axios.delete(`${process.env.REACT_APP_API}/bag/del/all/${email}`);
+
+	return true;
+};
+
 export const updateBagItemQty = async ({ bag_id, qty, img }) => {
 	const updateQty = {
 		bag_id: bag_id,

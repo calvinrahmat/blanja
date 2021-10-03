@@ -1,0 +1,33 @@
+.shopping-summary {
+	margin-left: auto;
+	margin-top: 130px;
+	padding: 24px;
+
+	position: fixed;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 370px;
+	height: 200px;
+	border-radius: 4px;
+	box-shadow: 0px 0px 10px;
+	color: #8e8e93;
+	h1 {
+		font-size: 16px;
+		color: black;
+	}
+	.total-price {
+		display: flex;
+		justify-content: space-between;
+	}
+	.total-price-text {
+		p {
+			color: #8e8e93;
+		}
+	}
+	.price {
+		h1 {
+			font-size: 18px;
+		}
+	}
+}

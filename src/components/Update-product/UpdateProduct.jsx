@@ -7,6 +7,10 @@ import * as yup from 'yup';
 import { useLocation, useParams } from 'react-router';
 import { useDropzone } from 'react-dropzone';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { postPending, postSuccess } from './AddProductSlice';
+import { Spinner } from 'react-bootstrap';
+import { useHistory } from 'react-router';
 
 const schema = yup.object().shape({
 	nama: yup.string().required('nama produk harus diisi'),
@@ -47,6 +51,7 @@ const img = {
 };
 
 const UpdateProduct = () => {
+	const dispatch = useDispatch();
 	const { email } = useSelector((state) => state.login);
 	const { pathname } = useLocation();
 	let { id } = useParams();
@@ -57,6 +62,63 @@ const UpdateProduct = () => {
 	const [products, setProduct] = useState([]);
 	const [name, setName] = useState([]);
 	const { role } = useSelector((state) => state.login);
+	const { isLoading } = useSelector((state) => state.addProduct);
+	const history = useHistory();
+
+	const onSubmitForm = async (data) => {
+		if (pathname === '/seller/add-product') {
+			try {
+				dispatch(postPending());
+				let formData = new FormData();
+				formData.append('img', files[0]);
+				formData.append('nama', data.nama);
+				formData.append('harga', data.harga);
+				formData.append('stock', data.stock);
+				formData.append('product_desc', data.product_desc);
+				formData.append('email', email);
+				formData.append('seller', name.name);
+
+				const headers = {
+					'Content-type': 'multipart/form-data',
+				};
+				axios.post(addProduct, formData, headers).then(() => {
+					dispatch(postSuccess());
+					history.push('/seller/inventory');
+				});
+			} catch (error) {
+				console.error(error.message);
+			}
+		} else {
+			try {
+				dispatch(postPending());
+				let formData = new FormData();
+				formData.append('img', files[0]);
+				formData.append('nama', data.nama);
+				formData.append('harga', data.harga);
+				formData.append('stock', data.stock);
+				formData.append('product_desc', data.product_desc);
+				formData.append('id', data.id);
+				const headers = {
+					'Content-type': 'multipart/form-data',
+				};
+				axios.put(url, formData, headers).then(() => {
+					dispatch(postSuccess());
+					history.push('/seller/inventory');
+				});
+			} catch (error) {
+				console.error(error.message);
+			}
+		}
+	};
+
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+		reset,
+	} = useForm({
+		resolver: yupResolver(schema),
+	});
 
 	const [files, setFiles] = useState([]);
 	const { getRootProps, getInputProps } = useDropzone({
@@ -84,74 +146,6 @@ const UpdateProduct = () => {
 				setName(value[0]);
 			});
 	}, [getSellerName, role]);
-	console.log(name.name);
-
-	const thumbs = files.map((file) => (
-		<div style={thumb} key={file.name}>
-			<div style={thumbInner}>
-				<img src={file.preview} style={img} alt="product" />
-			</div>
-		</div>
-	));
-
-	const onSubmitForm = async (data) => {
-		console.log(files[0]);
-		if (pathname === '/seller/add-product') {
-			try {
-				let formData = new FormData();
-				formData.append('img', files[0]);
-				formData.append('nama', data.nama);
-				formData.append('harga', data.harga);
-				formData.append('stock', data.stock);
-				formData.append('product_desc', data.product_desc);
-				formData.append('email', email);
-				formData.append('seller', name.name);
-
-				const headers = {
-					'Content-type': 'multipart/form-data',
-				};
-				axios.post(addProduct, formData, headers).then((res) => {
-					console.log(res.data);
-				});
-			} catch (error) {
-				console.error(error.message);
-			}
-		} else {
-			try {
-				let formData = new FormData();
-				formData.append('img', files[0]);
-				formData.append('nama', data.nama);
-				formData.append('harga', data.harga);
-				formData.append('stock', data.stock);
-				formData.append('product_desc', data.product_desc);
-				formData.append('id', data.id);
-				const headers = {
-					'Content-type': 'multipart/form-data',
-				};
-				axios.put(url, formData, headers).then((res) => {
-					console.log(res.data);
-				});
-			} catch (error) {
-				console.error(error.message);
-			}
-		}
-	};
-
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-		reset,
-	} = useForm({
-		resolver: yupResolver(schema),
-	});
-
-	useEffect(
-		() => () => {
-			files.forEach((file) => URL.revokeObjectURL(file.preview));
-		},
-		[files]
-	);
 
 	useEffect(() => {
 		if (pathname !== '/seller/add-product')
@@ -166,6 +160,21 @@ const UpdateProduct = () => {
 				reset(res.data);
 			});
 	}, [getProductUrl, reset, pathname]);
+
+	const thumbs = files.map((file) => (
+		<div style={thumb} key={file.name}>
+			<div style={thumbInner}>
+				<img src={file.preview} style={img} alt="product" />
+			</div>
+		</div>
+	));
+
+	useEffect(
+		() => () => {
+			files.forEach((file) => URL.revokeObjectURL(file.preview));
+		},
+		[files]
+	);
 	return (
 		<>
 			<div className="wrapper">
@@ -254,14 +263,25 @@ const UpdateProduct = () => {
 						</div>
 						<div className="photo-of-goods-wrapper">
 							<div className="container title">Photo of goods</div>
+
 							<div
 								{...getRootProps({ className: 'dropzone' })}
 								style={{ height: '300px' }}
 							>
-								<input {...getInputProps()} />
-								<p>Drag 'n' drop image here, or click to select image</p>
+								<input {...getInputProps()} defaultValue={products.img} />
 
-								<aside style={thumbsContainer}>{thumbs}</aside>
+								<p>Drag 'n' drop image here, or click to select image</p>
+								{thumbs.length ? (
+									<aside style={thumbsContainer}>{thumbs}</aside>
+								) : products.img ? (
+									<img
+										src={products.img}
+										alt="product"
+										style={{ width: '220px', height: 'auto' }}
+									/>
+								) : (
+									<span />
+								)}
 							</div>
 						</div>
 						<div className="container description">
@@ -273,7 +293,7 @@ const UpdateProduct = () => {
 									rows={10}
 									defaultValue={
 										pathname === '/seller/add-product'
-											? null
+											? 'null'
 											: products.product_desc
 									}
 									{...register('product_desc')}
@@ -283,7 +303,17 @@ const UpdateProduct = () => {
 						</div>
 						<div className="btn-group">
 							<div className="sell-btn-container">
-								<button className="btn-primary sell-btn">Save</button>
+								{isLoading ? (
+									<Spinner variant="primary" animation="border" />
+								) : (
+									<button className="btn-primary sell-btn">Save</button>
+								)}
+								<button
+									className="cancel-btn"
+									onClick={() => history.push('/seller/inventory')}
+								>
+									Cancel
+								</button>
 							</div>
 						</div>
 					</form>

@@ -1,32 +1,15 @@
-.cards-container {
-	display: flex;
-	justify-content: space-evenly;
-	align-items: center;
-	background: lightcoral;
-	width: 100%;
-}
-
 .box {
 	margin: 20px;
+	min-width: 200px;
+
+	flex: 25%;
 }
 
 .grid {
-	min-height: 100%;
-
 	display: flex;
+	flex: 25%;
 	flex-wrap: wrap;
 	flex-direction: row;
-}
-
-.grid > div {
-	flex-basis: calc(20%);
-}
-.cards-container {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 200px;
-	height: 1000px;
 }
 
 .title {
@@ -46,18 +29,11 @@
 .products {
 	margin-top: 5em;
 }
-@media all and (max-width: 1200px) {
-	.grid > div {
-		flex-basis: calc(50%);
-	}
-}
-@media all and (max-width: 375px) {
-	.grid > div {
-		flex-basis: calc(100%);
-	}
-}
 
 h2 {
 	font-size: 20px;
 	color: #9b9b9b;
+}
+
+@media (max-width: 504) {
 }

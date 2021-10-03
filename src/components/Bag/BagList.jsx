@@ -1,4 +1,3 @@
-import { useForm } from 'react-hook-form';
 import NumberFormat from 'react-number-format';
 import { Link } from 'react-router-dom';
 import './BagList.scoped.scss';
@@ -6,12 +5,14 @@ import { useMutation } from 'react-query';
 import { queryClient } from '../../index';
 import { updateBagItemQty } from '../../APIs/bagApi';
 import DeleteItem from './DeleteItem/DeleteItem';
+import { useState } from 'react';
 
-const BagList = ({ id, nama, seller, bag_id, qty, harga, img }) => {
-	const { register, handleSubmit } = useForm();
+const BagList = ({ id, nama, seller, bag_id, qty, harga, img, selectAll }) => {
+	const [checked, setChecked] = useState(selectAll);
 
-	const onSubmit = (data) => console.log(data);
-
+	const onCheck = () => {
+		setChecked(!checked);
+	};
 	const { mutate } = useMutation(updateBagItemQty, {
 		onMutate: async (newBag) => {
 			await queryClient.cancelQueries(['bag', newBag.id]);
@@ -42,13 +43,13 @@ const BagList = ({ id, nama, seller, bag_id, qty, harga, img }) => {
 	return (
 		<div>
 			<div key={bag_id} className="item1-container">
-				<form className="bag-list" onSubmit={handleSubmit(onSubmit)}></form>
+				<form className="bag-list"></form>
 				<div className="check-box">
 					<input
 						type="checkbox"
 						className="checkBox"
-						defaultChecked="true"
-						{...register(`checkItem`)}
+						checked={selectAll}
+						onChange={onCheck}
 					/>
 				</div>
 				<Link to={`/product/${id}`} style={{ textDecoration: 'none' }}>
@@ -63,10 +64,10 @@ const BagList = ({ id, nama, seller, bag_id, qty, harga, img }) => {
 					</div>
 				</Link>
 				<div className="qty-price">
+					<div className="delete-button">
+						<DeleteItem bag_id={bag_id} />
+					</div>
 					<div className="button-container">
-						<div className="delete-button">
-							<DeleteItem bag_id={bag_id} />
-						</div>
 						<div className="button-remove">
 							{qty > 1 ? (
 								<button

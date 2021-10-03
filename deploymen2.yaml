@@ -1,0 +1,134 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gustiana
+
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: letsencrypt-prod
+  namespace: gustiana
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: gustiana882@gmail.com
+    privateKeySecretRef:
+      name: letsencrypt-prod
+    solvers:
+      - http01:
+          ingress:
+            class: nginx
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blanja
+  namespace: gustiana
+  labels:
+    name: forntend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: forntend-pod
+  template:
+    metadata:
+      name: blanja
+      labels:
+        name: forntend-pod
+    spec:
+      containers:
+        - name: blanja
+          image: gustiana/front-blanja:latest
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: blanja-service
+  namespace: gustiana
+spec:
+  selector:
+    name: forntend-pod
+  ports:
+    - port: 80
+      targetPort: 80
+
+###########
+# backend #
+###########
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-blanja
+  namespace: gustiana
+  labels:
+    name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: backend-pod
+  template:
+    metadata:
+      name: backend-blanja
+      labels:
+        name: backend-pod
+    spec:
+      containers:
+        - name: backend
+          image: gustiana/back-blanja:latest
+          ports:
+            - containerPort: 9000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+  namespace: gustiana
+spec:
+  selector:
+    name: backend-pod
+  ports:
+    - port: 9000
+      targetPort: 9000
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: blanja-ingress
+  namespace: gustiana
+  annotations:
+    kubernetes.io/ingress.class: 'nginx'
+    # nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    cert-manager.io/issuer: 'letsencrypt-prod'
+spec:
+  tls:
+    - hosts:
+        - app.blanjanow.online
+      secretName: secret-blanja-tls
+  rules:
+    - host: app.blanjanow.online
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: blanja-service
+                port:
+                  number: 80
+          - path: /api/
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-service
+                port:
+                  number: 9000

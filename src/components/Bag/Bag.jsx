@@ -1,15 +1,18 @@
 import './bag.scoped.scss';
 import axios from 'axios';
-import { useForm } from 'react-hook-form';
 import BagList from './BagList.jsx';
-import NumberFormat from 'react-number-format';
-import { motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
 import { useQuery } from 'react-query';
+import Summary from './summary/Summary';
+import { useState } from 'react';
+import DeleteAllItem from './DeleteItem/DeleteAllIItem';
+import SummaryBottom from './summary/SummaryBottom';
 
 const Bag = () => {
 	const { email } = useSelector((state) => state.login);
 	const url = `${process.env.REACT_APP_API}/bag/${email}`;
+
+	const [selectAll, setSelectAll] = useState(false);
 
 	async function getBag() {
 		const response = await axios.get(url);
@@ -19,7 +22,6 @@ const Bag = () => {
 
 	const { data: values, error } = useQuery('bag', getBag);
 
-	const { register } = useForm();
 	if (!values) return <span>Loading...</span>;
 	if (error) return <span>Error retrieving data</span>;
 
@@ -27,6 +29,10 @@ const Bag = () => {
 	const totalPrice = values.reduce(function (acc, curr) {
 		return acc + curr.total;
 	}, 0);
+
+	const onCheck = () => {
+		setSelectAll(!selectAll);
+	};
 
 	return (
 		<>
@@ -39,7 +45,7 @@ const Bag = () => {
 						<div className="select-container">
 							<div className="wrap-checkbox-desc">
 								<div className="check-box">
-									<input type="checkbox" {...register(`selectAll}`)} />
+									<input type="checkbox" onChange={onCheck} />
 								</div>
 								<div className="select-items">
 									<p>
@@ -51,7 +57,7 @@ const Bag = () => {
 								</div>
 							</div>
 							<div className="delete-box">
-								<p>Delete</p>
+								<DeleteAllItem email={email} />
 							</div>
 						</div>
 						<div className="items-container-bag">
@@ -66,43 +72,15 @@ const Bag = () => {
 										harga={harga}
 										img={img}
 										key={bag_id}
+										selectAll={selectAll}
 									/>
 								))}
 							</div>
 						</div>
+						<SummaryBottom totalPrice={totalPrice} />
 					</div>
 					<div className="container right-container-bag">
-						<div className="shopping-summary">
-							<h1>Shoppping summary</h1>
-							<div className="total-price">
-								<div className="total-price-text">
-									<p>Total price</p>
-								</div>
-								<div className="price">
-									<h1>
-										<NumberFormat
-											value={totalPrice}
-											displayType={'text'}
-											thousandSeparator={'.'}
-											decimalSeparator={','}
-											prefix={'Rp'}
-										/>
-									</h1>
-								</div>
-							</div>
-							<motion.button
-								className="btn btn-primary justify-content-center buy-button"
-								whileHover={{ scale: 1.1 }}
-								whileTap={{ scale: 0.9 }}
-								style={{
-									borderRadius: '25px',
-									background: '#db3022',
-									border: 'none',
-								}}
-							>
-								Buy
-							</motion.button>
-						</div>
+						<Summary totalPrice={totalPrice} />
 					</div>
 				</div>
 			</div>

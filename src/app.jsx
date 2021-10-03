@@ -26,8 +26,6 @@ function App() {
 	const { isAuth } = useSelector((state) => state.login);
 	const { role } = useSelector((state) => state.login);
 
-	console.log(role);
-
 	return (
 		<>
 			<Router>

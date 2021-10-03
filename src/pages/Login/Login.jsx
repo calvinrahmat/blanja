@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import Form from '../../components/Logins/Form';
 import './login.scoped.scss';
-import { motion } from 'framer-motion';
 import { useState } from 'react';
 
 const Login = () => {

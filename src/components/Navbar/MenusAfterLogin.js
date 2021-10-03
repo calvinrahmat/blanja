@@ -26,8 +26,12 @@ const MenusAfterLogin = () => {
 	const getSellerApi = `${process.env.REACT_APP_API}/seller/profile/${email}`;
 
 	useEffect(() => {
-		if (profile) setNewImage(profile.data[0].data.img);
-	}, [profile]);
+		if (profile && role === 'customer') {
+			setNewImage(profile.data[0].data.img);
+		} else if (profile && role === 'seller') {
+			setNewImage(profile.data[0].img);
+		}
+	}, [profile, role]);
 
 	useEffect(() => {
 		axios.get(role === 'seller' ? getSellerApi : getUserApi).then((res) => {
@@ -38,7 +42,6 @@ const MenusAfterLogin = () => {
 			});
 
 			if (value) setUser(value);
-			console.log(value);
 			dispatch(getUserName(value[0].name));
 			dispatch(getUserImage(value[0].img));
 		});
@@ -47,7 +50,6 @@ const MenusAfterLogin = () => {
 	async function totalQty() {
 		const response = await axios.get(getTotalQty);
 		const { data } = await response.data;
-		console.log(data[0].total_qty);
 		return data[0].total_qty;
 	}
 

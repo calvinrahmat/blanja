@@ -12,7 +12,7 @@ export const SidebarData = [
 		subNav: [
 			{
 				title: 'Store Profile',
-				path: '/seller/profile',
+				path: '/profile',
 			},
 		],
 	},

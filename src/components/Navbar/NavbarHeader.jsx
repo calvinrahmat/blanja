@@ -6,13 +6,18 @@ import MenusAfterLogin from './MenusAfterLogin';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import MenusBeforeLogin from './MenusBeforeLogin';
+import { useDispatch } from 'react-redux';
+import { logout } from '../Logins/loginSlice';
+import SearchBar from './SearchBar/SearchBar';
 
 const NavbarHeader = () => {
 	const { isAuth } = useSelector((state) => state.login);
+	const { role } = useSelector((state) => state.login);
+	const dispatch = useDispatch();
 
 	return (
 		<div className="navbar">
-			<Navbar expand="lg">
+			<Navbar expand="lg" collapseOnSelect fixed="top">
 				<Container>
 					<Navbar.Brand className="brand">
 						<Link to="/home">
@@ -23,10 +28,10 @@ const NavbarHeader = () => {
 						</Link>
 					</Navbar.Brand>
 
-					<Navbar.Toggle aria-controls="navbar-collapse" />
+					<Navbar.Toggle aria-controls="navbar-collapse-before-login" />
 
-					<Container className="navbar-inside">
-						<Navbar.Collapse id="navbar-collapse-before-login">
+					<Navbar.Collapse id="navbar-collapse-before-login">
+						{isAuth === false ? (
 							<div className="navbar-mobile">
 								<ul>
 									<li>
@@ -40,15 +45,49 @@ const NavbarHeader = () => {
 									</li>
 								</ul>
 							</div>
-						</Navbar.Collapse>
+						) : isAuth && role === 'customer' ? (
+							<div className="navbar-mobile">
+								<ul>
+									<li>
+										<SearchBar />
+									</li>
 
-						<Navbar.Collapse className="basic-navbar" id="basic-navbar-nav">
-							<Container className="navbar-inside">
-								<Tools />
-								{isAuth ? <MenusAfterLogin /> : <MenusBeforeLogin />}
-							</Container>
-						</Navbar.Collapse>
-					</Container>
+									<li>
+										<Link to="/bag">Bag</Link>
+									</li>
+									<li>
+										<Link to="/profile">My Profile</Link>
+									</li>
+
+									<li onClick={() => dispatch(logout())}>Logout</li>
+								</ul>
+							</div>
+						) : isAuth && role === 'seller' ? (
+							<div className="navbar-mobile">
+								<ul>
+									<li>
+										<Link to="/seller/inventory">My Inventory</Link>
+									</li>
+									<li>
+										<Link to="/profile">My Profile</Link>
+									</li>
+									<li>
+										<Link to="/seller/add-product">Selling Products</Link>
+									</li>
+									<li onClick={() => dispatch(logout())}>Logout</li>
+								</ul>
+							</div>
+						) : (
+							<span />
+						)}
+					</Navbar.Collapse>
+
+					<Navbar.Collapse className="basic-navbar" id="basic-navbar-nav">
+						<Container className="navbar-inside">
+							<Tools />
+							{isAuth ? <MenusAfterLogin /> : <MenusBeforeLogin />}
+						</Container>
+					</Navbar.Collapse>
 				</Container>
 			</Navbar>
 		</div>

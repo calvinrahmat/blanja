@@ -1,8 +1,4 @@
-import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import * as FaIcons from 'react-icons/fa';
-import * as AiIcons from 'react-icons/ai';
 import { SidebarData } from './SidebarData';
 import { SidebarDataCust } from './SidebarDataCust';
 import SubMenu from './SubMenu';
@@ -28,13 +24,12 @@ const SidebarWrap = styled.div`
 `;
 
 const Sidebar = () => {
-	const [sidebar, setSidebar] = useState(true);
 	const { role } = useSelector((state) => state.login);
 
 	return (
 		<>
 			<IconContext.Provider value={{ color: '#9b9b9b' }}>
-				<SidebarNav sidebar={sidebar}>
+				<SidebarNav>
 					{role === 'seller' ? (
 						<SidebarWrap>
 							{SidebarData.map((item, index) => {

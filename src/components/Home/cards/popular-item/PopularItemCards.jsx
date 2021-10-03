@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import NumberFormat from 'react-number-format';
+import { motion } from 'framer-motion';
 
 const PopularItemCards = () => {
 	const url = `${process.env.REACT_APP_API}/products`;
@@ -26,37 +27,39 @@ const PopularItemCards = () => {
 	const renderCard = (card) => {
 		return (
 			<Col key={card.id}>
-				<Card className="box">
-					<Link to={`/product/${card.id}`}>
-						<Card.Img className="img" variant="top" src={card.img} />
-					</Link>
+				<motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+					<Card className="box">
+						<Link to={`/product/${card.id}`}>
+							<Card.Img className="img" variant="top" src={card.img} />
+						</Link>
 
-					<Card.Body>
-						<Card.Title
-							className="title"
-							style={{
-								overflow: 'hidden',
+						<Card.Body>
+							<Card.Title
+								className="title"
+								style={{
+									overflow: 'hidden',
 
-								textOverflow: 'ellipsis',
-								fontSize: '18px',
-								width: '150px',
-								height: '100px',
-							}}
-						>
-							{card.nama}
-						</Card.Title>
-						<Card.Title className="price">
-							<NumberFormat
-								value={card.harga}
-								displayType={'text'}
-								thousandSeparator={'.'}
-								decimalSeparator={','}
-								prefix={'Rp'}
-							/>
-						</Card.Title>
-						<Card.Title className="seller"> {card.seller}</Card.Title>
-					</Card.Body>
-				</Card>
+									textOverflow: 'ellipsis',
+									fontSize: '18px',
+									width: '150px',
+									height: '100px',
+								}}
+							>
+								{card.nama}
+							</Card.Title>
+							<Card.Title className="price">
+								<NumberFormat
+									value={card.harga}
+									displayType={'text'}
+									thousandSeparator={'.'}
+									decimalSeparator={','}
+									prefix={'Rp'}
+								/>
+							</Card.Title>
+							<Card.Title className="seller"> {card.seller}</Card.Title>
+						</Card.Body>
+					</Card>
+				</motion.div>
 			</Col>
 		);
 	};

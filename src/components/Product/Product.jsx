@@ -3,22 +3,24 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
-import QueryString from 'qs';
 import NumberFormat from 'react-number-format';
-import ModalAdd from '../Modal/ModalAdd';
-import { AnimatePresence, motion } from 'framer-motion';
-import useModal from '../../hooks/useModal';
 import { useSelector } from 'react-redux';
+import Modal from 'react-bootstrap/Modal';
+import { queryClient } from '../../index';
+import ModalAddToBag from '../Modal/ModalAddToBag';
 
 const Product = () => {
 	let { id } = useParams();
 	const { email } = useSelector((state) => state.login);
 	const url = `${process.env.REACT_APP_API}/products/${id}`;
 	const urlAddToBag = `${process.env.REACT_APP_API}/products/addToBag/`;
-	const getTotalQty = `${process.env.REACT_APP_API}/bag/totalqty/${email}`;
+
+	const [showInside, setShowInside] = useState(false);
+	const handleClose = () => setShowInside(false);
+	const handleShow = () => setShowInside(true);
+
 	const [count, setCount] = useState(1);
 	const [products, setProduct] = useState([]);
-	const { modalOpen, close, open } = useModal();
 
 	const addCount = () => {
 		setCount((prevCount) => prevCount + 1);
@@ -53,12 +55,28 @@ const Product = () => {
 
 			axios.post(urlAddToBag, body, headers).then((res) => {
 				console.log(`add to bag: ${res.data}`);
-				alert('produk berhasil ditambahkan');
+
+				queryClient.invalidateQueries('qty');
+				handleShow();
 			});
 		} catch (error) {
 			console.error(error.message);
 		}
 	};
+
+	<style type="text/css">
+		{`
+    .btn-flat {
+      background-color: white;
+      color: black;
+    }
+
+    .btn-xxl {
+      padding: 1rem 1.5rem;
+      font-size: 1.5rem;
+    }
+    `}
+	</style>;
 
 	return (
 		<div className="container-lg wrapper-product">
@@ -101,14 +119,10 @@ const Product = () => {
 							/>
 						</p>
 					</div>
-					<h2 className="jumlah">Jumlah</h2>
 					<div className="wrapper-button">
+						<h2 className="jumlah">Jumlah</h2>
 						<div id="countBtnProduct" className="container count-btn-product">
-							<button
-								id="btnReduce"
-								className="btn btn-primary btn-circle btn-reduce"
-								onClick={reduceCount}
-							>
+							<button id="btnReduce" className="btn " onClick={reduceCount}>
 								<h1>-</h1>
 							</button>
 							<h1 className="count">{count}</h1>
@@ -138,20 +152,22 @@ const Product = () => {
 				<h2>Description</h2>
 				<p>{products.product_desc}</p>
 			</div>
-
-			<AnimatePresence
-				// Disable any initial animations on children that
-				// are present when the component is first rendered
-				initial={false}
-				// Only render one component at a time.
-				// The exiting component will finish its exit
-				// animation before entering component is rendered
-				exitBeforeEnter={true}
-				// Fires when all exiting nodes have completed animating out
-				onExitComplete={() => null}
+			<Modal
+				show={showInside}
+				onHide={handleClose}
+				centered
+				className="modal"
+				size="lg"
 			>
-				{modalOpen && <ModalAdd modalOpen={modalOpen} handleClose={close} />}
-			</AnimatePresence>
+				<Modal.Header closeButton>
+					<Modal.Title>
+						<h1>Berhasil Ditambahkan </h1>
+					</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>
+					<ModalAddToBag image={products.img} name={products.nama} />
+				</Modal.Body>
+			</Modal>
 		</div>
 	);
 };

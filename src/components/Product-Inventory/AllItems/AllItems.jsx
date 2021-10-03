@@ -1,26 +1,21 @@
 import { Container, Col, Row } from 'react-bootstrap';
 import ListInventory from '../ListInventory';
-import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-
+import { useQuery } from 'react-query';
 import './AllItems.scoped.scss';
 
 const AllItems = () => {
 	const { email } = useSelector((state) => state.login);
 	const url = `${process.env.REACT_APP_API}/seller/products/${email}`;
-	const [list, setList] = useState([]);
 
-	useEffect(() => {
-		axios.get(url).then((res) => {
-			const { data } = res.data;
-			const value = [];
-			data.map((val) => {
-				return value.push(val);
-			});
-			setList(value);
-		});
-	}, [url]);
+	async function getProductsData() {
+		const response = await axios.get(url);
+		const { data } = await response.data;
+		return data;
+	}
+
+	const { data } = useQuery('inventory', getProductsData);
 
 	return (
 		<div>
@@ -33,7 +28,19 @@ const AllItems = () => {
 					</Row>
 				</Container>
 				<Container className="product-list">
-					<ListInventory list={list} />
+					{data ? (
+						data.map(({ id, nama, harga, stock }) => (
+							<ListInventory
+								id={id}
+								nama={nama}
+								harga={harga}
+								stock={stock}
+								key={id}
+							/>
+						))
+					) : (
+						<span />
+					)}
 				</Container>
 			</Container>
 		</div>

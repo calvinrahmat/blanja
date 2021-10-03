@@ -2,7 +2,7 @@
 	display: flex;
 	flex-direction: row;
 	padding-bottom: 70px;
-	width: 100%;
+
 	background-color: #e5e5e5;
 
 	.right-container {
@@ -14,23 +14,7 @@
 			margin-left: 60px;
 		}
 		background-color: #e5e5e5;
-		.photo-of-goods {
-			border: 1px solid #9b9b9b;
-			border-style: dashed;
-			height: 375px;
-			.goods {
-				height: 15rem;
-				display: flex;
-				border-bottom: 1px solid #9b9b9b;
-				.photos {
-					height: 70px;
-					width: 70px;
-					img {
-						width: 200px;
-					}
-				}
-			}
-		}
+
 		.id {
 			display: none;
 		}
@@ -58,7 +42,18 @@
 	margin-left: 90px;
 	margin-top: 30px;
 	margin-bottom: 60px;
+	min-width: 20rem;
+	justify-content: space-between;
+
 	.sell-btn {
+		border-radius: 25px;
+		width: 128px;
+		height: 48px;
+		background-color: #db3022;
+		color: white;
+		border: none;
+	}
+	.cancel-btn {
 		border-radius: 25px;
 		width: 128px;
 		height: 48px;
@@ -113,7 +108,7 @@
 	.form-group {
 		color: #9b9b9b;
 		margin-top: 30px;
-		width: 350px;
+		max-width: 350px;
 	}
 	.title {
 		height: 84px;
@@ -147,9 +142,9 @@
 	background-color: #e5e5e5;
 	border-radius: 4px;
 	margin-top: 50px;
-	margin-left: 60px;
+	width: 89%;
 	background-color: white;
-	width: 87.5%;
+	margin-right: 100px;
 	margin-left: 5.7em;
 
 	.title {

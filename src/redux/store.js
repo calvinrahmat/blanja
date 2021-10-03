@@ -15,18 +15,20 @@ import userReducer from '../components/Home/userSlice';
 import searchReducer from '../components/Navbar/searchSlice';
 import bagReducer from '../components/Bag/BagSlice';
 import sortReducer from '../components/Navbar/sortSlice';
+import addProductReducer from '../components/Update-product/AddProductSlice';
 const reducers = combineReducers({
 	login: loginReducer,
 	user: userReducer,
 	search: searchReducer,
 	bag: bagReducer,
 	sort: sortReducer,
+	addProduct: addProductReducer,
 });
 
 const persistConfig = {
 	key: 'root',
 	storage,
-	whitelist: ['login', 'user'],
+	whitelist: ['login', 'user', 'search'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);

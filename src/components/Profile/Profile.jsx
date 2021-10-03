@@ -19,6 +19,7 @@ const Profile = () => {
 	const { token } = useSelector((state) => state.login);
 	const [preview, setPreview] = useState('');
 	const [image, setImage] = useState('');
+	console.log(image);
 	const [user, setUser] = useState([]);
 	const { role } = useSelector((state) => state.login);
 	const {
@@ -54,10 +55,12 @@ const Profile = () => {
 		}
 	}
 
+	console.log(user.img);
+
 	const onSubmit = (data) => {
 		if (role === 'customer') {
 			let formData = new FormData();
-			formData.append('img', image);
+			formData.append('img', image ? image : user.img);
 			formData.append('name', data.name);
 			formData.append('dob', data.dob);
 			formData.append('gender', data.gender);
@@ -72,7 +75,7 @@ const Profile = () => {
 			});
 		} else if (role === 'seller') {
 			let formData = new FormData();
-			formData.append('img', image);
+			formData.append('img', image ? image : user.img);
 			formData.append('name', data.name);
 			formData.append('phone_number', data.phone_number);
 			formData.append('seller_id', user.seller_id);

@@ -8,7 +8,6 @@ import store from '../src/redux/store';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
 
 let persistor = persistStore(store);
 
@@ -19,7 +18,6 @@ ReactDOM.render(
 		<PersistGate persistor={persistor}>
 			<QueryClientProvider client={queryClient}>
 				<App />
-				<ReactQueryDevtools />
 			</QueryClientProvider>
 		</PersistGate>
 	</Provider>,
