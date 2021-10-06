@@ -1,24 +1,23 @@
+<div id="top"></div>
+
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/github_username/repo_name">
-    <img src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627004541/Front%20End/logo_blanja_jtyc2a.svg" alt="Logo" width="80" height="80">
+  <a href="https://github.com/calvinrahmat/blanja.git">
+    <img src="https://res.cloudinary.com/calvin-cloud/image/upload/v1627004541/Front%20End/logo_blanja_jtyc2a.svg"  alt="Logo">
   </a>
 
-  <h3 align="center">Blanja</h3>
-
   <p align="center">
-    project_description
     <br />
     <a href="https://github.com/calvinrahmat/blanja.git"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="http://blanja.site/">View Demo</a>
-    ·
+    <a href="https://www.blanja.site/">View Demo</a>
   </p>
 </p>
 
 <!-- TABLE OF CONTENTS -->
+
 <details open="open">
   <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
   <ol>
@@ -29,46 +28,77 @@
       </ul>
     </li>
     <li><a href="#installation">Installation</a></li>
-    <li><a href="#environment">Environmental Variables</a></li>
-    <li><a href="#function">Functionality Overview</a></li>
+    <li><a href="#enviromental-variables">Environmental Variables</a></li>
+    <li><a href="#overview">Overview</a></li>
     <li><a href="#contact">Contact</a></>
   </ol>
 </details>
-
+  
 <!-- ABOUT THE PROJECT -->
 
 ## About The Project
 
-Blanja.site is the E-Commerce prototype that sells fashion products. Build with ReactJS and Redux. Alternatively, you can add `.env` file in the root folder of project to set environment variables (use PORT to change webserver's port). This file will be ignored by git, so it is suitable for API keys and other sensitive stuff. Refer to [dotenv](https://github.com/motdotla/dotenv) and [React](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-development-environment-variables-in-env) documentation for more details.
+Blanja.site is the E-Commerce prototype that sells fashion products. Build with ReactJS, Redux, ExpressJS, NodeJS and PostgreSQL. You can check the back-end in this repo: https://github.com/calvinrahmat/blanja-backend.git
+  
+### Screenshots
+|  |  |  |
+| :---: | :---: | :---: |
+| ![screenshot_1](https://res.cloudinary.com/calvin-cloud/image/upload/v1632177133/Blanja%20SS%202/Screenshot_from_2021-09-21_05-15-21_sb6la0.png) Home  | ![screenshot_2](https://res.cloudinary.com/calvin-cloud/image/upload/v1631234088/Blanja%20SS/ezgif-2-06ed2e840349_uzzk2o.gif) Searching Product  | ![screenshot_3](https://res.cloudinary.com/calvin-cloud/image/upload/v1632177132/Blanja%20SS%202/Screenshot_from_2021-09-21_05-17-29_p1rg1i.png) Register Customer |
+| ![screenshot_4](https://res.cloudinary.com/calvin-cloud/image/upload/v1633275168/Blanja%20SS/Screenshot_from_2021-10-03_22-32-32_yfsoww.png) Register Seller| ![screenshot_5](https://res.cloudinary.com/calvin-cloud/image/upload/v1632178344/Blanja%20SS%202/Screenshot_from_2021-09-21_05-50-59_zonzeg.png) Login  |  ![screenshot_6](https://res.cloudinary.com/calvin-cloud/image/upload/v1633265455/Blanja%20SS/Screenshot_from_2021-10-03_19-48-21_i6c4bk.png) Home After Login  | 
+|![screenshot_7](https://res.cloudinary.com/calvin-cloud/image/upload/v1633265772/Blanja%20SS/Screenshot_from_2021-10-03_19-51-58_ms3u9a.png) Preview Product | ![screenshot_8](https://res.cloudinary.com/calvin-cloud/image/upload/v1633265772/Blanja%20SS/Screenshot_from_2021-10-03_19-51-33_maumpq.png) Bag  | ![screenshot_9](https://res.cloudinary.com/calvin-cloud/image/upload/v1633306621/Blanja%20SS/Screenshot_from_2021-10-04_07-16-41_ajhcic.png) Profile Customer | 
+| ![screenshot_10](https://res.cloudinary.com/calvin-cloud/image/upload/v1633265772/Blanja%20SS/Screenshot_from_2021-10-03_19-53-39_twpuds.png) Profile Seller | ![screenshot_11](https://res.cloudinary.com/calvin-cloud/image/upload/v1633265772/Blanja%20SS/Screenshot_from_2021-10-03_19-53-58_eewh0t.png) Inventory Seller | ![screenshot_12](https://res.cloudinary.com/calvin-cloud/image/upload/v1633265772/Blanja%20SS/Screenshot_from_2021-10-03_19-54-35_oaiqjh.png) Add or Edit Product |
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+  
+
+### Deployment
+
+You can see this repo to learn about the deployment in Kubernetes:   <a href="https://github.com/calvinrahmat/k8s-install.git">Kubernetes Installation</a>
+
+
+  <img src="https://res.cloudinary.com/calvin-cloud/image/upload/v1633333761/Blanja%20SS/CI_CD_Flow_page-0001_zykte4.jpg" width="400">
+  
+  
 
 ## Built With
 
 - [ReactJS](https://reactjs.org/)
-- [Redux](https://redux.js.org/)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
+- [React Query](https://react-query.tanstack.com/)
+- [Framer Motion](https://www.framer.com/motion/)
 
-## Installation
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+### Installation
 
 1. Clone the repo for the front-end
    ```sh
    git clone https://github.com/calvinrahmat/blanja.git
    ```
-1. Clone the repo for the front-end
+2. Clone the repo for the back-end
    ```sh
-   git clone https://github.com/calvinrahmat/blanja.git
+   git clone https://github.com/calvinrahmat/blanja-backend.git
    ```
-1. Install NPM packages
+3. Install NPM packages
    ```sh
    npm install
    ```
-1. Enter your env for making request to the backend API
+4. Enter your env for making request to the backend API
 
-## Environmental Variables
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+### Environmental Variables
 
 You must provide the env value to use the api from the backend.
 
 REACT_APP_API = http://localhost:7123/api/
 
-## Functionality Overview
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+### Functionality Overview
 
 **General functionality:**
 
@@ -86,10 +116,14 @@ REACT_APP_API = http://localhost:7123/api/
 - Cunsomer page to view and update the bag/cart (URL: /#/bag)
 - Seller page to create/edit products (URL: /#/seller/add-product, /#/seller/edit-product/id )
 - Seller page to check inventory (URL: /#/seller/inventory )
+  
+  ### Backend
+  You can check the back-end in this repo: https://github.com/calvinrahmat/blanja-backend.git
+
+  <p align="right">(<a href="#top">back to top</a>)</p>
 
 <br />
-<!-- CONTACT -->
 
-## Contact
+### Contact
 
 LinkedIn - [https://www.linkedin.com/in/calvin-rahmat](https://www.linkedin.com/in/calvin-rahmat)
