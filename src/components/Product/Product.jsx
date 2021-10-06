@@ -93,7 +93,7 @@ const Product = () => {
 			<div className="container-lg product-container">
 				<div className="container left-container-product">
 					<div className="box-product">
-						<figure className="box crop-to-fit-product">
+						<figure className="box crop-to-fit-product skeleton">
 							<img src={products.img} alt="" />
 						</figure>
 					</div>

@@ -96,6 +96,9 @@ p {
 				margin-top: 27px;
 
 				.photo-box {
+					width: 160px;
+					height: 160px;
+					border-radius: 50%;
 					img {
 						width: 160px;
 						height: 160px;
@@ -183,5 +186,18 @@ label {
 @media (max-width: 370px) {
 	.input {
 		width: 100%;
+	}
+}
+
+.skeleton {
+	animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+	0% {
+		background-color: hsl(200, 20%, 70%);
+	}
+	100% {
+		background-color: hsl(200, 20%, 95%);
 	}
 }

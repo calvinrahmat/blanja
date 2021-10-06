@@ -35,7 +35,7 @@ const NewItemCards = () => {
 				<motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
 					<Card className="box">
 						<Link to={`/product/${card.id}`}>
-							<Card.Img className="img" variant="top" src={card.img} />
+							<Card.Img className="img skeleton" variant="top" src={card.img} />
 						</Link>
 
 						<Card.Body className="cardBody">

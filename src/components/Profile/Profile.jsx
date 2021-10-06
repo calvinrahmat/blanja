@@ -197,8 +197,8 @@ const Profile = () => {
 					<div className="middle-line"></div>
 					<div className="right-container">
 						<div className="photo-container">
-							<div className="photo-box">
-								<img src={preview ? preview : user.img} alt="profile" />
+							<div className="photo-box skeleton">
+								<img src={preview ? preview : user.img} alt="" />
 							</div>
 							<div className="button-select">
 								<input
