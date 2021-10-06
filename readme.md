@@ -39,26 +39,26 @@
 ## About The Project
 
 Blanja.site is the E-Commerce prototype that sells fashion products. Build with ReactJS, Redux, ExpressJS, NodeJS and PostgreSQL. You can check the back-end in this repo: https://github.com/calvinrahmat/blanja-backend.git
-
+  
 ### Screenshots
-
-|                                                                                                                                                              |                                                                                                                                                                |                                                                                                                                                                    |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|    ![screenshot_1](https://res.cloudinary.com/calvin-cloud/image/upload/v1632177133/Blanja%20SS%202/Screenshot_from_2021-09-21_05-15-21_sb6la0.png) Home     |        ![screenshot_2](https://res.cloudinary.com/calvin-cloud/image/upload/v1631234088/Blanja%20SS/ezgif-2-06ed2e840349_uzzk2o.gif) Searching Product         | ![screenshot_3](https://res.cloudinary.com/calvin-cloud/image/upload/v1632177132/Blanja%20SS%202/Screenshot_from_2021-09-21_05-17-29_p1rg1i.png) Register Customer |
-| ![screenshot_4](https://res.cloudinary.com/calvin-cloud/image/upload/v1633275168/Blanja%20SS/Screenshot_from_2021-10-03_22-32-32_yfsoww.png) Register Seller |     ![screenshot_5](https://res.cloudinary.com/calvin-cloud/image/upload/v1632178344/Blanja%20SS%202/Screenshot_from_2021-09-21_05-50-59_zonzeg.png) Login     |   ![screenshot_6](https://res.cloudinary.com/calvin-cloud/image/upload/v1633265455/Blanja%20SS/Screenshot_from_2021-10-03_19-48-21_i6c4bk.png) Home After Login    |
-| ![screenshot_7](https://res.cloudinary.com/calvin-cloud/image/upload/v1633265772/Blanja%20SS/Screenshot_from_2021-10-03_19-51-58_ms3u9a.png) Preview Product |        ![screenshot_8](https://res.cloudinary.com/calvin-cloud/image/upload/v1633265772/Blanja%20SS/Screenshot_from_2021-10-03_19-51-33_maumpq.png) Bag        |   ![screenshot_9](https://res.cloudinary.com/calvin-cloud/image/upload/v1633306621/Blanja%20SS/Screenshot_from_2021-10-04_07-16-41_ajhcic.png) Profile Customer    |
-| ![screenshot_10](https://res.cloudinary.com/calvin-cloud/image/upload/v1633265772/Blanja%20SS/Screenshot_from_2021-10-03_19-53-39_twpuds.png) Profile Seller | ![screenshot_11](https://res.cloudinary.com/calvin-cloud/image/upload/v1633265772/Blanja%20SS/Screenshot_from_2021-10-03_19-53-58_eewh0t.png) Inventory Seller | ![screenshot_12](https://res.cloudinary.com/calvin-cloud/image/upload/v1633265772/Blanja%20SS/Screenshot_from_2021-10-03_19-54-35_oaiqjh.png) Add or Edit Product  |
+|  |  |  |
+| :---: | :---: | :---: |
+| ![screenshot_1](https://res.cloudinary.com/calvin-cloud/image/upload/v1632177133/Blanja%20SS%202/Screenshot_from_2021-09-21_05-15-21_sb6la0.png) Home  | ![screenshot_2](https://res.cloudinary.com/calvin-cloud/image/upload/v1631234088/Blanja%20SS/ezgif-2-06ed2e840349_uzzk2o.gif) Searching Product  | ![screenshot_3](https://res.cloudinary.com/calvin-cloud/image/upload/v1632177132/Blanja%20SS%202/Screenshot_from_2021-09-21_05-17-29_p1rg1i.png) Register Customer |
+| ![screenshot_4](https://res.cloudinary.com/calvin-cloud/image/upload/v1633275168/Blanja%20SS/Screenshot_from_2021-10-03_22-32-32_yfsoww.png) Register Seller| ![screenshot_5](https://res.cloudinary.com/calvin-cloud/image/upload/v1632178344/Blanja%20SS%202/Screenshot_from_2021-09-21_05-50-59_zonzeg.png) Login  |  ![screenshot_6](https://res.cloudinary.com/calvin-cloud/image/upload/v1633265455/Blanja%20SS/Screenshot_from_2021-10-03_19-48-21_i6c4bk.png) Home After Login  | 
+|![screenshot_7](https://res.cloudinary.com/calvin-cloud/image/upload/v1633265772/Blanja%20SS/Screenshot_from_2021-10-03_19-51-58_ms3u9a.png) Preview Product | ![screenshot_8](https://res.cloudinary.com/calvin-cloud/image/upload/v1633265772/Blanja%20SS/Screenshot_from_2021-10-03_19-51-33_maumpq.png) Bag  | ![screenshot_9](https://res.cloudinary.com/calvin-cloud/image/upload/v1633306621/Blanja%20SS/Screenshot_from_2021-10-04_07-16-41_ajhcic.png) Profile Customer | 
+| ![screenshot_10](https://res.cloudinary.com/calvin-cloud/image/upload/v1633265772/Blanja%20SS/Screenshot_from_2021-10-03_19-53-39_twpuds.png) Profile Seller | ![screenshot_11](https://res.cloudinary.com/calvin-cloud/image/upload/v1633265772/Blanja%20SS/Screenshot_from_2021-10-03_19-53-58_eewh0t.png) Inventory Seller | ![screenshot_12](https://res.cloudinary.com/calvin-cloud/image/upload/v1633265772/Blanja%20SS/Screenshot_from_2021-10-03_19-54-35_oaiqjh.png) Add or Edit Product |
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
+  
 
 ### Deployment
 
-You can see this repo to learn about the deployment in Kubernetes: <a href="https://github.com/calvinrahmat/k8s-install.git">Kubernetes Installation</a>
+You can see this repo to learn about the deployment in Kubernetes:   <a href="https://github.com/calvinrahmat/k8s-install.git">Kubernetes Installation</a>
+
 
   <img src="https://res.cloudinary.com/calvin-cloud/image/upload/v1633333761/Blanja%20SS/CI_CD_Flow_page-0001_zykte4.jpg" width="400">
   
-
+  
 
 ## Built With
 
@@ -67,7 +67,9 @@ You can see this repo to learn about the deployment in Kubernetes: <a href="http
 - [React Query](https://react-query.tanstack.com/)
 - [Framer Motion](https://www.framer.com/motion/)
 
+
 <p align="right">(<a href="#top">back to top</a>)</p>
+
 
 ### Installation
 
@@ -86,6 +88,7 @@ You can see this repo to learn about the deployment in Kubernetes: <a href="http
 4. Enter your env for making request to the backend API
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+
 
 ### Environmental Variables
 
@@ -113,9 +116,8 @@ REACT_APP_API = http://localhost:7123/api/
 - Cunsomer page to view and update the bag/cart (URL: /#/bag)
 - Seller page to create/edit products (URL: /#/seller/add-product, /#/seller/edit-product/id )
 - Seller page to check inventory (URL: /#/seller/inventory )
-
+  
   ### Backend
-
   You can check the back-end in this repo: https://github.com/calvinrahmat/blanja-backend.git
 
   <p align="right">(<a href="#top">back to top</a>)</p>
