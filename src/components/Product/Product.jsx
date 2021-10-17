@@ -86,7 +86,7 @@ const Product = () => {
 						<Link to="/" style={{ textDecoration: 'none', color: '#9b9b9b' }}>
 							Home
 						</Link>
-						{'>'} kategori {'>'} {products.kategori}
+						{'>'} kateg ori {'>'} {products.kategori}
 					</p>
 				</h1>
 			</div>
