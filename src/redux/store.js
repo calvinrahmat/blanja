@@ -17,6 +17,8 @@ import bagReducer from '../components/Bag/BagSlice';
 import sortReducer from '../components/Navbar/sortSlice';
 import addProductReducer from '../components/Update-product/AddProductSlice';
 import cardReducer from '../APIs/cardsApi';
+import logger from 'redux-logger';
+
 const reducers = combineReducers({
 	login: loginReducer,
 	user: userReducer,
@@ -39,11 +41,14 @@ const store = configureStore({
 	reducer: persistedReducer,
 
 	middleware: (getDefaultMiddleware) =>
-		getDefaultMiddleware({
-			serializableCheck: {
-				ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+		getDefaultMiddleware(
+			{
+				serializableCheck: {
+					ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+				},
 			},
-		}),
+			logger
+		).concat(logger),
 });
 
 export default store;
