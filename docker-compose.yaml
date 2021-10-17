@@ -1,12 +1,48 @@
 version: '3.3' # optional since v1.27.0
 services:
-  front:
+  redis:
     restart: always
-    tty: true
-    image: calvinrahmat/front_blanja2
+    image: redis
     networks:
-      - backend_webnet
+      - webnet
+    ports:
+      - '6379:6379'
+  db:
+    restart: always
+    image: postgres
+    networks:
+      - webnet
+    env_file:
+      - database.env
+    volumes:
+      - ./database:/var/lib/postgresql/data/
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: blanja-calvin
+  # api:
+  #   restart: always
+  #   image: calvinrahmat/blanja_back2
+  #   depends_on:
+  #     - db
+  #     - redis
+  #   networks:
+  #     - webnet
+  #   environment:
+  #     DB_HOST: db
+  #     REDIS_HOST: redis
+  #   deploy:
+  #     replicas: 2
+  #     resources:
+  #       limits:
+  #         cpus: '0.1'
+  #         memory: 50M
+  #   ports:
+  #     - '127.0.0.1:7100-7101:7123'
+  #   command: [ 'node', 'server' ]
 networks:
-  backend_webnet:
+  webnet:
 volumes:
   database-data:

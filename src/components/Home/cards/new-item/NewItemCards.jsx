@@ -1,33 +1,21 @@
 import { Card, Col, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import './NewItemCards.scoped.scss';
-import axios from 'axios';
-import { useState } from 'react';
+
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import NumberFormat from 'react-number-format';
 import { motion } from 'framer-motion';
+import { getCard } from '../../../../APIs/cardsApi';
 
 const NewItemCards = () => {
 	const dispatch = useDispatch();
-	const { search } = useSelector((state) => state.search.search);
-	const url = `${process.env.REACT_APP_API}/products/search/nama`;
-	const urlGetAll = `${process.env.REACT_APP_API}/products`;
-	const [products, setProduct] = useState([]);
-
 	useEffect(() => {
-		axios.get(urlGetAll).then((res) => {
-			const { data } = res.data;
-			const value = [];
-
-			data.map((val) => {
-				return value.push(val);
-			});
-			if (value) setProduct(value);
-		});
-	}, [url, search, urlGetAll, dispatch]);
+		dispatch(getCard());
+	}, [dispatch]);
+	const { list } = useSelector((state) => state.card);
 
 	const renderCard = (card) => {
 		return (
@@ -80,7 +68,7 @@ const NewItemCards = () => {
 				<h1>New</h1>
 
 				<h2>You’ve never seen it before!</h2>
-				<div className="grid">{products.map(renderCard)}</div>
+				<div className="grid">{list.map(renderCard)}</div>
 			</Container>
 		</>
 	);

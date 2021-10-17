@@ -11,7 +11,6 @@ const SearchBar = () => {
 	const history = useHistory();
 	const dispatch = useDispatch();
 	const onSubmit = (data) => {
-		console.log(data);
 		dispatch(searchSuccess(data));
 		const query = new URLSearchParams(data);
 		history.push(`/search?${query}`);

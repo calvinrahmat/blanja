@@ -35,10 +35,10 @@ const SearchItem = () => {
 		axios.get(url, { params: { p: search.name } }).then((res) => {
 			const { data } = res.data;
 			const value = [];
-
-			data.map((val) => {
-				return value.push(val);
-			});
+			if (!data[0].msg)
+				data.map((val) => {
+					return value.push(val);
+				});
 			if (priceLowToHigh === true) {
 				value.sort(priceLow);
 				setProduct(value);
@@ -73,7 +73,6 @@ const SearchItem = () => {
 		sortProductNew,
 		sortProductOld,
 	]);
-	console.log(products);
 
 	const renderCard = (card) => {
 		return (
@@ -120,7 +119,13 @@ const SearchItem = () => {
 	return (
 		<>
 			<Container className="products">
-				<div className="grid">{products.map(renderCard)}</div>
+				{products.length > 0 ? (
+					<div className="grid">{products.map(renderCard)}</div>
+				) : (
+					<h1 style={{ top: '100px', position: 'relative' }}>
+						Pencarian tidak ditemukan
+					</h1>
+				)}
 			</Container>
 		</>
 	);

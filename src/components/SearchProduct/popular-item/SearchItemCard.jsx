@@ -4,13 +4,11 @@ import './PopularItemCards.scoped.scss';
 import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+
 import './SearchItemCard.scss';
 import NumberFormat from 'react-number-format';
 
 const SearchProduct = () => {
-	let { nama } = useParams();
 	const url = `${process.env.REACT_APP_API}/products/`;
 
 	const [products, setProduct] = useState([]);

@@ -16,6 +16,7 @@ import searchReducer from '../components/Navbar/searchSlice';
 import bagReducer from '../components/Bag/BagSlice';
 import sortReducer from '../components/Navbar/sortSlice';
 import addProductReducer from '../components/Update-product/AddProductSlice';
+import cardReducer from '../APIs/cardsApi';
 const reducers = combineReducers({
 	login: loginReducer,
 	user: userReducer,
@@ -23,6 +24,7 @@ const reducers = combineReducers({
 	bag: bagReducer,
 	sort: sortReducer,
 	addProduct: addProductReducer,
+	card: cardReducer,
 });
 
 const persistConfig = {
