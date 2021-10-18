@@ -30,7 +30,7 @@ const FormRegister = () => {
 					: history.push('/login');
 			});
 		} catch (error) {
-			console.log(error.message);
+			console.error(error.message);
 		}
 	};
 	return (

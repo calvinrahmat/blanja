@@ -8,7 +8,6 @@ const ListInventory = ({ id, nama, harga, stock }) => {
 	const urlDelete = `${process.env.REACT_APP_API}/seller/delete`;
 	const onDelete = () => {
 		axios.delete(urlDelete, { params: { id: id } }).then((res) => {
-			console.log(res.data);
 			queryClient.invalidateQueries('inventory');
 		});
 	};

@@ -8,14 +8,13 @@ const DeleteAllItem = ({ email }) => {
 	const { mutateAsync } = useMutation(removeBagAll);
 
 	const remove = async () => {
-		console.log('delete');
 		await mutateAsync(email);
 		queryClient.invalidateQueries('bag');
 	};
 
 	return (
 		<div>
-			<p className="delete" onClick={remove} style={{cursor:'pointer'}}>
+			<p className="delete" onClick={remove} style={{ cursor: 'pointer' }}>
 				Delete
 			</p>
 		</div>

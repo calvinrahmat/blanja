@@ -19,7 +19,6 @@ const Profile = () => {
 	const { token } = useSelector((state) => state.login);
 	const [preview, setPreview] = useState('');
 	const [image, setImage] = useState('');
-	console.log(image);
 	const [user, setUser] = useState([]);
 	const { role } = useSelector((state) => state.login);
 	const {
@@ -54,8 +53,6 @@ const Profile = () => {
 			setImage(event.target.files[0]);
 		}
 	}
-
-	console.log(user.img);
 
 	const onSubmit = (data) => {
 		if (role === 'customer') {

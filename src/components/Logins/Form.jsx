@@ -39,7 +39,6 @@ const Form = ({ button }) => {
 			if (button === false) {
 				axios.post(customerApi, data).then((res) => {
 					const { msg, token, email, role } = res.data.data[0];
-					console.log(token);
 
 					if (msg === 'Login Success') {
 						sessionStorage.setItem('token', token);
@@ -72,7 +71,7 @@ const Form = ({ button }) => {
 			}
 		} catch (error) {
 			dispatch(loginFail(error.message));
-			console.log(error.message);
+			console.error(error.message);
 		}
 		dispatch(loginPending());
 	};

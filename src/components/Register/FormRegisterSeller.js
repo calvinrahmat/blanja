@@ -25,7 +25,6 @@ const FormRegisterSeller = () => {
 	} = useForm({ resolver: yupResolver(schema) });
 
 	const onSubmit = (data) => {
-		console.log(data);
 		try {
 			axios.post(url, data).then((res) => {
 				res.data.data[0].msg === 'register failed email already registered'
@@ -33,7 +32,7 @@ const FormRegisterSeller = () => {
 					: history.push('/login');
 			});
 		} catch (error) {
-			console.log(error.message);
+			console.error(error.message);
 		}
 	};
 	return (

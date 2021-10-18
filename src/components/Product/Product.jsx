@@ -51,11 +51,8 @@ const Product = () => {
 			const headers = {
 				'Content-Type': 'application/x-www-form-urlencoded',
 			};
-			console.log(body);
 
 			axios.post(urlAddToBag, body, headers).then((res) => {
-				console.log(`add to bag: ${res.data}`);
-
 				queryClient.invalidateQueries('qty');
 				handleShow();
 			});

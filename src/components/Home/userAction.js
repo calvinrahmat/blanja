@@ -6,8 +6,6 @@ export const getUserProfile = (email) => async (dispatch) => {
 		const urlUser = `${process.env.REACT_APP_API}/user/email`;
 		dispatch(getUserPending());
 		axios.get(urlUser).then((res) => {
-			console.log(res.data);
-
 			const { data } = res.data;
 			const value = [];
 			data.map((val) => {

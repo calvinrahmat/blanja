@@ -50,7 +50,7 @@ const FormSeller = () => {
 			});
 		} catch (error) {
 			dispatch(loginFail(error.message));
-			console.log(error.message);
+			console.error(error.message);
 		}
 		dispatch(loginPending());
 	};
