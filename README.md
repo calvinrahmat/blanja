@@ -126,11 +126,4 @@ REACT_APP_API = http://localhost:7123/api/
 <br />
   
 ### Stress Testing
-We use K6 to test our application and also new relic to visualize the data. This stress testing used 700 vus and /api/products for the url.
-  <img src="https://res.cloudinary.com/calvin-cloud/image/upload/v1634531058/Blanja%20SS/apdex-score_acjssm.jpg" width="400">
-  
- 
-
-### Contact
-
-LinkedIn - [https://www.linkedin.com/in/calvin-rahmat](https://www.linkedin.com/in/calvin-rahmat)
+We use K6 to test our application and als
