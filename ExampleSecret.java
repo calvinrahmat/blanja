@@ -1,0 +1,1 @@
+String awsSecretKey = "AKIAI**********"; // AWS Access Key (detected)
