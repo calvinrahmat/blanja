@@ -14,4 +14,14 @@ resource "aws_s3_bucket_public_access_block" "public_access" {
   block_public_policy     = false
   ignore_public_acls      = false
   restrict_public_buckets = false
+}
+
+resource "aws_secretsmanager_secret" "example_secret" {
+  name = "example-secret"
+  description = "Example secret for demonstration purposes"
+}
+
+resource "aws_secretsmanager_secret_version" "example_secret_version" {
+  secret_id     = aws_secretsmanager_secret.example_secret.id
+  secret_string = "{\"username\":\"admin\",\"password\":\"supersecretpassword\"}"
 } 
